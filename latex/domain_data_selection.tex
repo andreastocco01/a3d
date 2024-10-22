@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{hyperref}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+ \usepackage{graphicx}
+ \usepackage{titling}
+
+ \title{Group A3D: Domain and Data Selection}
+\author{Group A3D}
+\date{25th October 2024}
+
+ \usepackage{fancyhdr}
+\fancypagestyle{plain}{%  the preset of fancyhdr
+    \fancyhf{} % clear all header and footer fields
+    % \fancyfoot[R]{\includegraphics[width=2cm]{KULEUVEN_GENT_RGB_LOGO.png}}
+    \fancyfoot[L]{\thedate}
+    \fancyhead[L]{Domain and Data Selection}
+    \fancyhead[R]{\theauthor}
+}
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+\usepackage{lipsum}
+\usepackage{cmbright}
+
+\begin{document}
+
+\maketitle
+
+\noindent\begin{tabular}{@{}ll}
+	Group Members: & \href{mailto:andrea.bruttomesso.1@studenti.unipd.it}{Andrea Bruttomesso} \\
+	               & \href{mailto:alessandro.corro.1@studenti.unipd.it}{Alessandro Corr\`o}   \\
+	               & \href{mailto:davide.seghetto@studenti.unipd.it}{Davide Seghetto}         \\
+	               & \href{mailto:andrea.stocco.8@studenti.unipd.it}{Andrea Stocco}           \\
+\end{tabular}
+
+\section*{Domain of Interest and Main Challenges}
+We chose as domain of interest the Research Papers and the Nobel Prizes over the years.
+For each Nobel Prize we have several information like:
+\begin{itemize}
+	\item the year
+	\item the category
+	\item the winner
+	\item the winner organization
+\end{itemize}
+Similarly, for each Research Paper we have among other things:
+\begin{itemize}
+	\item the year
+	\item the title
+	\item the authors
+	\item the venue
+\end{itemize}
+
+Our goal is to find some correlation between Nobel Prizes and Research Papers wrote in
+the same year. We want to answer questions like: Is a Nobel Prize topic something very studied in a year, or is it a \`stroke of genius'
+of the winner? Which is the venue that published more Nobel Prize author's papers?
+Which organizations funded the most important scientific discoveries?
+
+% TODO: add dataset links
+
+\end{document}
