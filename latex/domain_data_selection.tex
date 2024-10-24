@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{geometry}
 \usepackage{hyperref}
+\usepackage{multicol}
  \geometry{
  a4paper,
  total={170mm,257mm},
@@ -46,42 +47,66 @@
 \maketitle
 
 \noindent\begin{tabular}{@{}ll}
-	Group Members: & \href{mailto:andrea.bruttomesso.1@studenti.unipd.it}{Andrea Bruttomesso} \\
+	\textbf{Group members:} & \href{mailto:andrea.bruttomesso.1@studenti.unipd.it}{Andrea Bruttomesso} \\
 	               & \href{mailto:alessandro.corro.1@studenti.unipd.it}{Alessandro Corr\`o}   \\
-	               & \href{mailto:davide.seghetto@studenti.unipd.it}{Davide Seghetto}         \\
+	               & \href{mailto:davide.seghetto@studenti.unipd.it}{Davide Seghetto} 2122548        \\
 	               & \href{mailto:andrea.stocco.8@studenti.unipd.it}{Andrea Stocco}           \\
 \end{tabular}
+\\\\\\
+\noindent\begin{tabular}{@{}ll}
+	\textbf{Links to the datasets:} & \href{https://www.kaggle.com/datasets/nobelfoundation/nobel-laureates}{Nobel Laureates} \\
+	               & \href{https://www.kaggle.com/datasets/nechbamohammed/research-papers-dataset}{Research Papers}   \\
+	               & \href{https://www.kaggle.com/datasets/xabirhasan/journal-ranking-dataset}{Journal Ranking}         \\
+	               & \href{https://data-explorer.oecd.org/vis?fs[0]=Topic%2C1%7CScience%252C%20technology%20and%20innovation%23INT%23%7CResearch%20and%20development%20%28R%26D%29%23INT_RD%23&pg=0&fc=Topic&bp=true&snb=9&vw=tb&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_RDS_GOV%40DF_GBARD_NABS07&df[ag]=OECD.STI.STP&df[vs]=1.0&dq=.A.._T...USD.&pd=%2C&to[TIME_PERIOD]=false}{Government budget allocations for R\&D}\\
+\end{tabular}
 
-\section*{Domain of Interest}
-We have chosen the domain of interest to be Research Papers and Nobel Prizes over the years.\\
-We are curious about exploring correlations between Nobel Prizes and Research Papers published in the same years, 
-as well as analyzing how affiliations to certain organizations or countries may help researchers in reaching this goal.
+\section*{Domain of Interest and Main Challenges}
 
-\section*{Main Challenges}
-We aim to address questions such as: "Is a Nobel Prize topic one that has been extensively studied in a given year, 
-or is it a 'stroke of genius' from the winner?" "Which venue has published the most papers by Nobel Prize authors?" 
-"Are there any organizations that are leading this field?" We will also analyze whether countries that invest more in 
-Research and Development produce a higher number of scientific papers or Nobel Prizes, additionally, it is interesting 
-to investigate whether Nobel Prize winners collaborate with each other or if their works inspire others through citations.
-
-\section*{Data Characteristics}
-For each Nobel Prize we have several information like:
-\begin{itemize}
-	\item the year
-	\item the category
-	\item the winner
-	\item the winner organization
-\end{itemize}
-Similarly, for each Research Paper we have among other things:
+For our project we have chosen the domain of scientific research. Specifically, we aim to analyze potential correlations among Nobel Prize winners,
+their publications, and the research funding invested by various countries. This domain was selected because it allows us to reveal potential historical
+and geographical patterns in scientific research. 
+For example, we want to examine whether, in certain years, the number of published papers in a specific field of science has increased or decreased, and
+identify in which states this has occurred. We will also analyze whether countries that invest more in Research and Development produce a higher number
+of scientific papers or Nobel Prizes, additionally, it is interesting to investigate whether Nobel Prize winners
+collaborate with each other or if their works inspire others through citations. Finally, we want to answer questions like: is a Nobel Prize topic something
+very studied in a year, or is it a winners's stroke of genius? Which is the venue that published more Nobel Prize author's papers? Which organizations
+funded the most important scientific discoveries?
+\section*{Datasets}
+\subsubsection*{Nobel Laureates}
+The dataset contains information about the Nobel prize awarded from 1901 to 2016. The main data:
+\begin{multicols}{2}
+  \begin{itemize}
+    \item the year
+    \item the category
+    \item the winner
+    \item the birthdate of the winner
+    \item the birthplace of the winner
+    \item the sex of the winner
+    \item the winner organization
+    \item the state of the organization
+  \end{itemize}
+  \end{multicols}
+\subsubsection*{Research papers}
+The dataset contains information about research papers published between 1937 and 2017. For istance, we use this dataset in order to check whether a
+specific topic, winner of the prize, was something very studied during the year or it was totally a new discovery. They main data are:
 \begin{itemize}
 	\item the year
 	\item the title
 	\item the authors
-	\item the venue
+	\item the venue (journal or conference)
+	\item the number of citations
 \end{itemize}
-
-
-
-\section*{Selected Datasets}
-
+\subsubsection*{Journal ranking}
+The dataset contains information about academic and research journals in which research articles relating to a particular academic discipline are published.
+We use this dataset in order to have more information about the venue of the research articles published by the winners of the Nobel. The main data are:
+\begin{itemize}
+	\item overall rank
+	\item the title
+	\item the country
+	\item the hirsh index
+	\item the total number of references
+\end{itemize}
+\subsubsection*{Government budget allocations for R\&D}
+This dataset contains the budget allocated by the major states from 1981 to 2023. We use this dataset to analyze, for example,
+how much more the countries that win the most Nobel Prizes spend on research compared to others.
 \end{document}
