@@ -334,13 +334,17 @@
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#journalCategoryScheme
 :journalCategoryScheme rdf:type owl:NamedIndividual ,
-                                <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                                <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+                       <http://www.w3.org/2004/02/skos/core#hasTopConcept> :chemistry ,
+                                                                           :economics ,
+                                                                           :medicine ,
+                                                                           :physics .
 
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#journal_A
 :journal_A rdf:type owl:NamedIndividual ,
                     :Journal ;
-           :hasCategory :medicine .
+           :hasCategory :neuroscience .
 
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#medicine
