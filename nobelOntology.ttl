@@ -14,12 +14,6 @@
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#hasCategory
-:hasCategory rdf:type owl:ObjectProperty ;
-             rdfs:domain :Journal ;
-             rdfs:range :JournalCategory .
-
-
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/basedIn
 :basedIn rdf:type owl:ObjectProperty ,
                   owl:FunctionalProperty ;
@@ -45,6 +39,12 @@
 :funded rdf:type owl:ObjectProperty ;
         rdfs:domain :Country ;
         rdfs:range :Funding .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/hasCategory
+:hasCategory rdf:type owl:ObjectProperty ;
+             rdfs:domain :Journal ;
+             rdfs:range :JournalCategory .
 
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/hasCountry
@@ -73,11 +73,7 @@
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/locatedIn
 :locatedIn rdf:type owl:ObjectProperty ,
                     owl:FunctionalProperty ;
-           rdfs:domain [ rdf:type owl:Class ;
-                         owl:unionOf ( :City
-                                       :Journal
-                                     )
-                       ] ;
+           rdfs:domain :City ;
            rdfs:range :Country .
 
 
@@ -98,11 +94,25 @@
 #    Data properties
 #################################################################
 
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#birthDate
+:birthDate rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+           rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#hasSJR
+:hasSJR rdf:type owl:DatatypeProperty ,
+                 owl:FunctionalProperty ;
+        rdfs:domain :Journal ;
+        rdfs:range xsd:integer .
+
+
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/deathDate
 :deathDate rdf:type owl:DatatypeProperty ,
                     owl:FunctionalProperty ;
            rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
-           rdfs:range rdfs:Literal .
+           rdfs:range xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/hasAbstractTopics
@@ -177,13 +187,6 @@
           rdfs:range xsd:string .
 
 
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/hasType
-:hasType rdf:type owl:DatatypeProperty ,
-                  owl:FunctionalProperty ;
-         rdfs:domain :Laureate ;
-         rdfs:range xsd:string .
-
-
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/hasYear
 :hasYear rdf:type owl:DatatypeProperty ,
                   owl:FunctionalProperty ;
@@ -207,12 +210,6 @@
 #################################################################
 #    Classes
 #################################################################
-
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#JournalCategory
-:JournalCategory rdf:type owl:Class ;
-                 owl:disjointWith :Laureate ,
-                                  :Researcher .
-
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/ChemestryNobel
 :ChemestryNobel rdf:type owl:Class ;
@@ -250,6 +247,12 @@
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/Journal
 :Journal rdf:type owl:Class ;
          rdfs:subClassOf :Venue .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/JournalCategory
+:JournalCategory rdf:type owl:Class ;
+                 owl:disjointWith :Laureate ,
+                                  :Researcher .
 
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/Laureate
@@ -318,21 +321,21 @@
 #    Individuals
 #################################################################
 
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#chemistry
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/chemistry
 :chemistry rdf:type owl:NamedIndividual ,
                     :JournalCategory ,
                     <http://www.w3.org/2004/02/skos/core#Concept> ;
            <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
 
 
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#economics
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/economics
 :economics rdf:type owl:NamedIndividual ,
                     :JournalCategory ,
                     <http://www.w3.org/2004/02/skos/core#Concept> ;
            <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
 
 
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#journalCategoryScheme
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/journalCategoryScheme
 :journalCategoryScheme rdf:type owl:NamedIndividual ,
                                 <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
                        <http://www.w3.org/2004/02/skos/core#hasTopConcept> :chemistry ,
@@ -341,27 +344,27 @@
                                                                            :physics .
 
 
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#journal_A
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/journal_A
 :journal_A rdf:type owl:NamedIndividual ,
                     :Journal ;
            :hasCategory :neuroscience .
 
 
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#medicine
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/medicine
 :medicine rdf:type owl:NamedIndividual ,
                    :JournalCategory ,
                    <http://www.w3.org/2004/02/skos/core#Concept> ;
           <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
 
 
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#neurophysiology
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/neurophysiology
 :neurophysiology rdf:type owl:NamedIndividual ,
                           :JournalCategory ,
                           <http://www.w3.org/2004/02/skos/core#Concept> ;
                  <http://www.w3.org/2004/02/skos/core#broaderTransitive> :neuroscience .
 
 
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#neuroscience
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/neuroscience
 :neuroscience rdf:type owl:NamedIndividual ,
                        :JournalCategory ,
                        <http://www.w3.org/2004/02/skos/core#Concept> ;
@@ -369,7 +372,7 @@
               <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
 
 
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#physics
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/physics
 :physics rdf:type owl:NamedIndividual ,
                   :JournalCategory ,
                   <http://www.w3.org/2004/02/skos/core#Concept> ;
@@ -381,24 +384,25 @@
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :JournalCategory
-                :City
-                :Country
-                :Funding
-                :NobelPrize
-                :Organization
-                :Paper
-                :Venue
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
   owl:members ( :ChemestryNobel
                 :EconomicsNobel
                 :LiteratureNobel
                 :MedicineNobel
                 :PeaceNobel
+                :PhysicsNobel
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :City
+                :Country
+                :Funding
+                :JournalCategory
+                :NobelPrize
+                :Organization
+                :Paper
+                :Venue
               )
 ] .
 
