@@ -321,6 +321,214 @@
 #    Individuals
 #################################################################
 
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#agricolturalBiologicalSciences
+:agricolturalBiologicalSciences rdf:type owl:NamedIndividual ,
+                                         :JournalCategory ,
+                                         <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
+                                                                                        :medicine .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#artsHumanities
+:artsHumanities rdf:type owl:NamedIndividual ,
+                         :JournalCategory ,
+                         <http://www.w3.org/2004/02/skos/core#Concept> ;
+                <http://www.w3.org/2004/02/skos/core#broaderTransitive> :literature .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#biochemistryGeneticsMolecularBiology
+:biochemistryGeneticsMolecularBiology rdf:type owl:NamedIndividual ,
+                                               :JournalCategory ,
+                                               <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                      <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
+                                                                                              :medicine .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#businessManagementAccounting
+:businessManagementAccounting rdf:type owl:NamedIndividual ,
+                                       :JournalCategory ,
+                                       <http://www.w3.org/2004/02/skos/core#Concept> ;
+                              <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#chemicalEngineering
+:chemicalEngineering rdf:type owl:NamedIndividual ,
+                              :JournalCategory ,
+                              <http://www.w3.org/2004/02/skos/core#Concept> ;
+                     <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#computerScience
+:computerScience rdf:type owl:NamedIndividual ,
+                          :JournalCategory ,
+                          <http://www.w3.org/2004/02/skos/core#Concept> ;
+                 <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#decisionSciences
+:decisionSciences rdf:type owl:NamedIndividual ,
+                           :JournalCategory ,
+                           <http://www.w3.org/2004/02/skos/core#Concept> ;
+                  <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#dentistry
+:dentistry rdf:type owl:NamedIndividual ,
+                    :JournalCategory ,
+                    <http://www.w3.org/2004/02/skos/core#Concept> ;
+           <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#earthPlanetarySciences
+:earthPlanetarySciences rdf:type owl:NamedIndividual ,
+                                 :JournalCategory ,
+                                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+                        <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
+                                                                                :physics .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#economicsEconometricsFinance
+:economicsEconometricsFinance rdf:type owl:NamedIndividual ,
+                                       :JournalCategory ,
+                                       <http://www.w3.org/2004/02/skos/core#Concept> ;
+                              <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#energy
+:energy rdf:type owl:NamedIndividual ,
+                 :JournalCategory ,
+                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+        <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
+                                                                :physics .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#engineering
+:engineering rdf:type owl:NamedIndividual ,
+                      :JournalCategory ,
+                      <http://www.w3.org/2004/02/skos/core#Concept> ;
+             <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#environmentalScience
+:environmentalScience rdf:type owl:NamedIndividual ,
+                               :JournalCategory ,
+                               <http://www.w3.org/2004/02/skos/core#Concept> ;
+                      <http://www.w3.org/2004/02/skos/core#broaderTransitive> :peace ,
+                                                                              :chemistry .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#general
+:general rdf:type owl:NamedIndividual ,
+                  :JournalCategory ,
+                  <http://www.w3.org/2004/02/skos/core#Concept> ;
+         <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#healthProfessions
+:healthProfessions rdf:type owl:NamedIndividual ,
+                            :JournalCategory ,
+                            <http://www.w3.org/2004/02/skos/core#Concept> ;
+                   <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#immunologyMicrobiology
+:immunologyMicrobiology rdf:type owl:NamedIndividual ,
+                                 :JournalCategory ,
+                                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+                        <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#laureateA
+:laureateA rdf:type owl:NamedIndividual ,
+                    :Laureate ;
+           :hasWon :physicsNobel2001 .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#literature
+:literature rdf:type owl:NamedIndividual ,
+                     :JournalCategory ,
+                     <http://www.w3.org/2004/02/skos/core#Concept> ;
+            <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#materialsScience
+:materialsScience rdf:type owl:NamedIndividual ,
+                           :JournalCategory ,
+                           <http://www.w3.org/2004/02/skos/core#Concept> ;
+                  <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
+                                                                          :physics .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#mathematics
+:mathematics rdf:type owl:NamedIndividual ,
+                      :JournalCategory ,
+                      <http://www.w3.org/2004/02/skos/core#Concept> ;
+             <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#neuroscience
+:neuroscience rdf:type owl:NamedIndividual ,
+                       :JournalCategory ,
+                       <http://www.w3.org/2004/02/skos/core#Concept> ;
+              <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#nursing
+:nursing rdf:type owl:NamedIndividual ,
+                  :JournalCategory ,
+                  <http://www.w3.org/2004/02/skos/core#Concept> ;
+         <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#peace
+:peace rdf:type owl:NamedIndividual ,
+                :JournalCategory ,
+                <http://www.w3.org/2004/02/skos/core#Concept> ;
+       <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#pharmacologyToxicologyPharmaceutics
+:pharmacologyToxicologyPharmaceutics rdf:type owl:NamedIndividual ,
+                                              :JournalCategory ,
+                                              <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                     <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
+                                                                                             :medicine .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#physicsAstronomy
+:physicsAstronomy rdf:type owl:NamedIndividual ,
+                           :JournalCategory ,
+                           <http://www.w3.org/2004/02/skos/core#Concept> ;
+                  <http://www.w3.org/2004/02/skos/core#broaderTransitive> :physics .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#physicsNobel2001
+:physicsNobel2001 rdf:type owl:NamedIndividual ,
+                           :PhysicsNobel .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#psychology
+:psychology rdf:type owl:NamedIndividual ,
+                     :JournalCategory ,
+                     <http://www.w3.org/2004/02/skos/core#Concept> ;
+            <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#socialSciences
+:socialSciences rdf:type owl:NamedIndividual ,
+                         :JournalCategory ,
+                         <http://www.w3.org/2004/02/skos/core#Concept> ;
+                <http://www.w3.org/2004/02/skos/core#broaderTransitive> :peace ,
+                                                                        :economics .
+
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#veterinary
+:veterinary rdf:type owl:NamedIndividual ,
+                     :JournalCategory ,
+                     <http://www.w3.org/2004/02/skos/core#Concept> ;
+            <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+
+
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/chemistry
 :chemistry rdf:type owl:NamedIndividual ,
                     :JournalCategory ,
@@ -338,7 +546,13 @@
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/journalCategoryScheme
 :journalCategoryScheme rdf:type owl:NamedIndividual ,
                                 <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
-                       <http://www.w3.org/2004/02/skos/core#hasTopConcept> :chemistry ,
+                       <http://www.w3.org/2004/02/skos/core#hasTopConcept> :computerScience ,
+                                                                           :engineering ,
+                                                                           :general ,
+                                                                           :literature ,
+                                                                           :mathematics ,
+                                                                           :peace ,
+                                                                           :chemistry ,
                                                                            :economics ,
                                                                            :medicine ,
                                                                            :physics .
@@ -346,8 +560,7 @@
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/journal_A
 :journal_A rdf:type owl:NamedIndividual ,
-                    :Journal ;
-           :hasCategory :neuroscience .
+                    :Journal .
 
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/medicine
@@ -355,21 +568,6 @@
                    :JournalCategory ,
                    <http://www.w3.org/2004/02/skos/core#Concept> ;
           <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
-
-
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/neurophysiology
-:neurophysiology rdf:type owl:NamedIndividual ,
-                          :JournalCategory ,
-                          <http://www.w3.org/2004/02/skos/core#Concept> ;
-                 <http://www.w3.org/2004/02/skos/core#broaderTransitive> :neuroscience .
-
-
-###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/neuroscience
-:neuroscience rdf:type owl:NamedIndividual ,
-                       :JournalCategory ,
-                       <http://www.w3.org/2004/02/skos/core#Concept> ;
-              <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
-              <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
 
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/physics
