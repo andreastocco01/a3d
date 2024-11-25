@@ -57,8 +57,8 @@
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/hasWon
 :hasWon rdf:type owl:ObjectProperty ;
         rdfs:domain [ rdf:type owl:Class ;
-                      owl:unionOf ( :Laureate
-                                    :Organization
+                      owl:unionOf ( :OrganizationWinner
+                                    :Laureate
                                   )
                     ] ;
         rdfs:range :NobelPrize .
@@ -210,6 +210,11 @@
 #################################################################
 #    Classes
 #################################################################
+
+###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology#OrganizationWinner
+:OrganizationWinner rdf:type owl:Class ;
+                    rdfs:subClassOf :Organization .
+
 
 ###  http://www.semanticweb.org/dsegh/ontologies/2024/10/nobelOntology/ChemestryNobel
 :ChemestryNobel rdf:type owl:Class ;
