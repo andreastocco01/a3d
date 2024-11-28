@@ -100,7 +100,7 @@
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/worksFor
 :worksFor rdf:type owl:ObjectProperty ;
-          rdfs:domain :Laureate ;
+          rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
           rdfs:range :Organization ;
           rdfs:comment "This property describes the organization in which a laureate works."@en ;
           rdfs:label "worksFor"@en .
