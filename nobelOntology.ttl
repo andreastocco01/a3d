@@ -388,9 +388,30 @@
 #    Individuals
 #################################################################
 
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#italy
+:italy rdf:type owl:NamedIndividual ,
+                :Country ;
+       :hasName "Italy" .
+
+
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#laureateA
 :laureateA rdf:type owl:NamedIndividual ,
                     :Laureate .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#padua
+:padua rdf:type owl:NamedIndividual ,
+                :City ;
+       :locatedIn :italy ;
+       :hasName "Padua" .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#person1
+:person1 rdf:type owl:NamedIndividual ,
+                  <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+         :worksFor :unipd ;
+         <http://xmlns.com/foaf/0.1/firstName> "Person" ;
+         <http://xmlns.com/foaf/0.1/lastName> "Person" .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/agricolturalBiologicalSciences
@@ -426,7 +447,8 @@
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/cancerJournal
 :cancerJournal rdf:type owl:NamedIndividual ,
                         :Journal ;
-               :hasCategory :biochemistryGeneticsMolecularBiology .
+               :hasCategory :biochemistryGeneticsMolecularBiology ;
+               :hasCountry :italy .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/cancerPaper
@@ -693,6 +715,7 @@
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/unipd
 :unipd rdf:type owl:NamedIndividual ,
                 :Organization ;
+       :basedIn :padua ;
        :hasWon :medicineNobel1945 ;
        :hasName "Unipd" .
 
