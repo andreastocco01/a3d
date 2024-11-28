@@ -68,11 +68,6 @@
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasWon
 :hasWon rdf:type owl:ObjectProperty ;
-        rdfs:domain [ rdf:type owl:Class ;
-                      owl:unionOf ( :Laureate
-                                    :OrganizationWinner
-                                  )
-                    ] ;
         rdfs:range :NobelPrize ;
         rdfs:comment "This property links laureates and organizations to the nobel prize they won."@en ;
         rdfs:label "hasWon"@en .
@@ -337,12 +332,15 @@
                                 owl:onProperty :hasWon ;
                                 owl:someValuesFrom :NobelPrize
                               ] ;
-          rdfs:subClassOf <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+          rdfs:subClassOf [ rdf:type owl:Class ;
+                            owl:unionOf ( :Organization
+                                          <http://www.w3.org/2000/10/swap/pim/contact#Person>
+                                        )
+                          ] ;
           owl:disjointWith :NobelPrize ,
-                           :Organization ,
                            :Paper ,
                            :Venue ;
-          rdfs:comment "This class represents a Nobel prize awarded between 1901 and 2016."@en ;
+          rdfs:comment "This class represents a Person who has won a NobelPrize"@en ;
           rdfs:label "Laureate"@en .
 
 
@@ -355,16 +353,10 @@
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Organization
 :Organization rdf:type owl:Class ;
-              owl:disjointWith :Researcher ;
+              owl:disjointWith :Researcher ,
+                               <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
               rdfs:label "Organization"@en ,
                          "This class represents an organization."@en .
-
-
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/OrganizationWinner
-:OrganizationWinner rdf:type owl:Class ;
-                    rdfs:subClassOf :Organization ;
-                    rdfs:comment "This class represents an organization that won a Nobel Prize."@en ;
-                    rdfs:label "Winning Organization"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Paper
@@ -396,20 +388,17 @@
 #    Individuals
 #################################################################
 
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#laureateA
+:laureateA rdf:type owl:NamedIndividual ,
+                    :Laureate .
+
+
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/agricolturalBiologicalSciences
 :agricolturalBiologicalSciences rdf:type owl:NamedIndividual ,
                                          :JournalCategory ,
                                          <http://www.w3.org/2004/02/skos/core#Concept> ;
                                 <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
                                                                                         :medicine .
-
-
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/alberto
-:alberto rdf:type owl:NamedIndividual ,
-                  <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
-         :bornIn :ulma ;
-         :hasWon :nobelFisica1905 ;
-         :hasWritten :effettoFotoelettrico .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/artsHumanities
@@ -432,6 +421,20 @@
                                        :JournalCategory ,
                                        <http://www.w3.org/2004/02/skos/core#Concept> ;
                               <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/cancerJournal
+:cancerJournal rdf:type owl:NamedIndividual ,
+                        :Journal ;
+               :hasCategory :biochemistryGeneticsMolecularBiology .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/cancerPaper
+:cancerPaper rdf:type owl:NamedIndividual ,
+                      :Paper ;
+             :publishedIn :cancerJournal ,
+                          :medicineConference ;
+             :hasTitle "Cancer Studies" .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/chemicalEngineering
@@ -469,12 +472,6 @@
            <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
 
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/dresda
-:dresda rdf:type owl:NamedIndividual ,
-                 :City ;
-        :locatedIn :germany .
-
-
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/earthPlanetarySciences
 :earthPlanetarySciences rdf:type owl:NamedIndividual ,
                                  :JournalCategory ,
@@ -497,10 +494,18 @@
                               <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics .
 
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/effettoFotoelettrico
-:effettoFotoelettrico rdf:type owl:NamedIndividual ,
-                               :Paper ;
-                      :publishedIn :giornaleFisica .
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/einstein
+:einstein rdf:type owl:NamedIndividual ,
+                   <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+          :hasWon :physicsNobel1921 ;
+          <http://xmlns.com/foaf/0.1/firstName> "Albert" ;
+          <http://xmlns.com/foaf/0.1/lastName> "Einstein" .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/electricFieldPaper
+:electricFieldPaper rdf:type owl:NamedIndividual ,
+                             :Paper ;
+                    :hasTitle "Electric Field Studies" .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/energy
@@ -526,6 +531,14 @@
                                                                               :peace .
 
 
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/gauss
+:gauss rdf:type owl:NamedIndividual ,
+                <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+       :hasWritten :electricFieldPaper ;
+       <http://xmlns.com/foaf/0.1/firstName> "Carl" ;
+       <http://xmlns.com/foaf/0.1/lastName> "Gauss" .
+
+
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/general
 :general rdf:type owl:NamedIndividual ,
                   :JournalCategory ,
@@ -533,15 +546,12 @@
          <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
 
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/germany
-:germany rdf:type owl:NamedIndividual ,
-                  :Country .
-
-
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/giornaleFisica
-:giornaleFisica rdf:type owl:NamedIndividual ,
-                         :Journal ;
-                :hasCategory :physicsAstronomy .
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/gurdon
+:gurdon rdf:type owl:NamedIndividual ,
+                 :Researcher ;
+        :hasWritten :cancerPaper ;
+        <http://xmlns.com/foaf/0.1/firstName> "John" ;
+        <http://xmlns.com/foaf/0.1/lastName> "Gurdon" .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/healthProfessions
@@ -602,17 +612,23 @@
           <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
 
 
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/medicineConference
+:medicineConference rdf:type owl:NamedIndividual ,
+                             :Conference .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/medicineNobel1945
+:medicineNobel1945 rdf:type owl:NamedIndividual ,
+                            :NobelPrize ;
+                   :hasNobelCategory "Medicine" ;
+                   :hasYear 1945 .
+
+
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/neuroscience
 :neuroscience rdf:type owl:NamedIndividual ,
                        :JournalCategory ,
                        <http://www.w3.org/2004/02/skos/core#Concept> ;
               <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
-
-
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/nobelFisica1905
-:nobelFisica1905 rdf:type owl:NamedIndividual ,
-                          :NobelPrize ;
-                 :hasNobelCategory "Physics" .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/nursing
@@ -651,6 +667,14 @@
                   <http://www.w3.org/2004/02/skos/core#broaderTransitive> :physics .
 
 
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/physicsNobel1921
+:physicsNobel1921 rdf:type owl:NamedIndividual ,
+                           :NobelPrize ;
+                  :hasNobelCategory "Physics" ;
+                  :hasPrizeShare 1 ;
+                  :hasYear 1921 .
+
+
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/psychology
 :psychology rdf:type owl:NamedIndividual ,
                      :JournalCategory ,
@@ -666,10 +690,11 @@
                                                                         :peace .
 
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/ulma
-:ulma rdf:type owl:NamedIndividual ,
-               :City ;
-      :locatedIn :germany .
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/unipd
+:unipd rdf:type owl:NamedIndividual ,
+                :Organization ;
+       :hasWon :medicineNobel1945 ;
+       :hasName "Unipd" .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/veterinary
