@@ -390,26 +390,21 @@
 #    Individuals
 #################################################################
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#funding2010Italy
-:funding2010Italy rdf:type owl:NamedIndividual ,
-                           :Funding ;
-                  :hasAmount 200 ;
-                  :hasYear 2010 .
-
-
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/agricolturalBiologicalSciences
 :agricolturalBiologicalSciences rdf:type owl:NamedIndividual ,
                                          :JournalCategory ,
                                          <http://www.w3.org/2004/02/skos/core#Concept> ;
                                 <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
-                                                                                        :medicine .
+                                                                                        :medicine ;
+                                rdfs:label "Agricultural and Biological Sciences"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/artsHumanities
 :artsHumanities rdf:type owl:NamedIndividual ,
                          :JournalCategory ,
                          <http://www.w3.org/2004/02/skos/core#Concept> ;
-                <http://www.w3.org/2004/02/skos/core#broaderTransitive> :literature .
+                <http://www.w3.org/2004/02/skos/core#broaderTransitive> :literature ;
+                rdfs:label "Arts and Humanities"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/biochemistryGeneticsMolecularBiology
@@ -417,21 +412,25 @@
                                                :JournalCategory ,
                                                <http://www.w3.org/2004/02/skos/core#Concept> ;
                                       <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
-                                                                                              :medicine .
+                                                                                              :medicine ;
+                                      rdfs:label "Biochemistry, Genetics and Molecular Biology"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/businessManagementAccounting
 :businessManagementAccounting rdf:type owl:NamedIndividual ,
                                        :JournalCategory ,
                                        <http://www.w3.org/2004/02/skos/core#Concept> ;
-                              <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics .
+                              <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics ;
+                              rdfs:label "Business, Management and Accounting"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/cancerJournal
 :cancerJournal rdf:type owl:NamedIndividual ,
                         :Journal ;
                :hasCategory :biochemistryGeneticsMolecularBiology ;
-               :hasCountry :italy .
+               :hasCountry :italy ;
+               rdfs:comment "This is a journal about cancer."@en ;
+               rdfs:label "Cancer Journal"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/cancerPaper
@@ -439,42 +438,49 @@
                       :Paper ;
              :publishedIn :cancerJournal ,
                           :medicineConference ;
-             :hasTitle "Cancer Studies" .
+             :hasTitle "Cancer Studies" ;
+             rdfs:comment "This is a cancer paper."@en ;
+             rdfs:label "Cancer Paper"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/chemicalEngineering
 :chemicalEngineering rdf:type owl:NamedIndividual ,
                               :JournalCategory ,
                               <http://www.w3.org/2004/02/skos/core#Concept> ;
-                     <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry .
+                     <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ;
+                     rdfs:label "Chemical Engineering"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/chemistry
 :chemistry rdf:type owl:NamedIndividual ,
                     :JournalCategory ,
                     <http://www.w3.org/2004/02/skos/core#Concept> ;
-           <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+           <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+           rdfs:label "Chemistry"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/computerScience
 :computerScience rdf:type owl:NamedIndividual ,
                           :JournalCategory ,
                           <http://www.w3.org/2004/02/skos/core#Concept> ;
-                 <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+                 <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+                 rdfs:label "Computer Science"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/decisionSciences
 :decisionSciences rdf:type owl:NamedIndividual ,
                            :JournalCategory ,
                            <http://www.w3.org/2004/02/skos/core#Concept> ;
-                  <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics .
+                  <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics ;
+                  rdfs:label "Decision Sciences"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/dentistry
 :dentistry rdf:type owl:NamedIndividual ,
                     :JournalCategory ,
                     <http://www.w3.org/2004/02/skos/core#Concept> ;
-           <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+           <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+           rdfs:label "Dentistry"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/earthPlanetarySciences
@@ -482,21 +488,24 @@
                                  :JournalCategory ,
                                  <http://www.w3.org/2004/02/skos/core#Concept> ;
                         <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
-                                                                                :physics .
+                                                                                :physics ;
+                        rdfs:label "Earth and Planetary Sciences"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/economics
 :economics rdf:type owl:NamedIndividual ,
                     :JournalCategory ,
                     <http://www.w3.org/2004/02/skos/core#Concept> ;
-           <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+           <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+           rdfs:label "Economics"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/economicsEconometricsFinance
 :economicsEconometricsFinance rdf:type owl:NamedIndividual ,
                                        :JournalCategory ,
                                        <http://www.w3.org/2004/02/skos/core#Concept> ;
-                              <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics .
+                              <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics ;
+                              rdfs:label "Economics, Econometrics and Finance"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/einstein
@@ -504,13 +513,17 @@
                    <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
           :hasWon :physicsNobel1921 ;
           <http://xmlns.com/foaf/0.1/firstName> "Albert" ;
-          <http://xmlns.com/foaf/0.1/lastName> "Einstein" .
+          <http://xmlns.com/foaf/0.1/lastName> "Einstein" ;
+          rdfs:comment "This is Albert Einstein."@en ;
+          rdfs:label "Einstein"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/electricFieldPaper
 :electricFieldPaper rdf:type owl:NamedIndividual ,
                              :Paper ;
-                    :hasTitle "Electric Field Studies" .
+                    :hasTitle "Electric Field Studies" ;
+                    rdfs:comment "This is an electric field paper."@en ;
+                    rdfs:label "Electric Field Paper"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/energy
@@ -518,14 +531,16 @@
                  :JournalCategory ,
                  <http://www.w3.org/2004/02/skos/core#Concept> ;
         <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
-                                                                :physics .
+                                                                :physics ;
+        rdfs:label "Energy"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/engineering
 :engineering rdf:type owl:NamedIndividual ,
                       :JournalCategory ,
                       <http://www.w3.org/2004/02/skos/core#Concept> ;
-             <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+             <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+             rdfs:label "Engineering"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/environmentalScience
@@ -533,7 +548,17 @@
                                :JournalCategory ,
                                <http://www.w3.org/2004/02/skos/core#Concept> ;
                       <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
-                                                                              :peace .
+                                                                              :peace ;
+                      rdfs:label "Environmental Science"@en .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/funding2010Italy
+:funding2010Italy rdf:type owl:NamedIndividual ,
+                           :Funding ;
+                  :hasAmount 200 ;
+                  :hasYear 2010 ;
+                  rdfs:comment "This is the funding allocated for R&D by Italy in 2010."@en ;
+                  rdfs:label "Funding 2010 Italy"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/gauss
@@ -541,14 +566,17 @@
                 <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
        :hasWritten :electricFieldPaper ;
        <http://xmlns.com/foaf/0.1/firstName> "Carl" ;
-       <http://xmlns.com/foaf/0.1/lastName> "Gauss" .
+       <http://xmlns.com/foaf/0.1/lastName> "Gauss" ;
+       rdfs:comment "This is Carl Gauss."@en ;
+       rdfs:label "Gauss"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/general
 :general rdf:type owl:NamedIndividual ,
                   :JournalCategory ,
                   <http://www.w3.org/2004/02/skos/core#Concept> ;
-         <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+         <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+         rdfs:label "General"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/gurdon
@@ -556,28 +584,34 @@
                  :Researcher ;
         :hasWritten :cancerPaper ;
         <http://xmlns.com/foaf/0.1/firstName> "John" ;
-        <http://xmlns.com/foaf/0.1/lastName> "Gurdon" .
+        <http://xmlns.com/foaf/0.1/lastName> "Gurdon" ;
+        rdfs:comment "This is John Gurdon."@en ;
+        rdfs:label "Gurdon"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/healthProfessions
 :healthProfessions rdf:type owl:NamedIndividual ,
                             :JournalCategory ,
                             <http://www.w3.org/2004/02/skos/core#Concept> ;
-                   <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+                   <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+                   rdfs:label "Health Professions"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/immunologyMicrobiology
 :immunologyMicrobiology rdf:type owl:NamedIndividual ,
                                  :JournalCategory ,
                                  <http://www.w3.org/2004/02/skos/core#Concept> ;
-                        <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+                        <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+                        rdfs:label "Immunology and Microbiology"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/italy
 :italy rdf:type owl:NamedIndividual ,
                 :Country ;
        :funded :funding2010Italy ;
-       :hasName "Italy" .
+       :hasName "Italy" ;
+       rdfs:comment "This is Italy."@en ;
+       rdfs:label "Italy"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/journalCategoryScheme
@@ -592,19 +626,24 @@
                                                                            :mathematics ,
                                                                            :medicine ,
                                                                            :peace ,
-                                                                           :physics .
+                                                                           :physics ;
+                       rdfs:comment "This is the SKOS Concept Scheme describing journal categories."@en ;
+                       rdfs:label "Journal Category Scheme"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/laureateA
 :laureateA rdf:type owl:NamedIndividual ,
-                    :Laureate .
+                    :Laureate ;
+           rdfs:comment "This is the laureate A."@en ;
+           rdfs:label "Laureate A"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/literature
 :literature rdf:type owl:NamedIndividual ,
                      :JournalCategory ,
                      <http://www.w3.org/2004/02/skos/core#Concept> ;
-            <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+            <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+            rdfs:label "Literature"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/materialsScience
@@ -612,61 +651,73 @@
                            :JournalCategory ,
                            <http://www.w3.org/2004/02/skos/core#Concept> ;
                   <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
-                                                                          :physics .
+                                                                          :physics ;
+                  rdfs:label "Materials Science"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/mathematics
 :mathematics rdf:type owl:NamedIndividual ,
                       :JournalCategory ,
                       <http://www.w3.org/2004/02/skos/core#Concept> ;
-             <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+             <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+             rdfs:label "Mathematics"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/medicine
 :medicine rdf:type owl:NamedIndividual ,
                    :JournalCategory ,
                    <http://www.w3.org/2004/02/skos/core#Concept> ;
-          <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+          <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+          rdfs:label "Medicine"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/medicineConference
 :medicineConference rdf:type owl:NamedIndividual ,
-                             :Conference .
+                             :Conference ;
+                    rdfs:comment "This is a conference about medicine."@en ;
+                    rdfs:label "Medicine Conference"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/medicineNobel1945
 :medicineNobel1945 rdf:type owl:NamedIndividual ,
                             :NobelPrize ;
                    :hasNobelCategory "Medicine" ;
-                   :hasYear 1945 .
+                   :hasYear 1945 ;
+                   rdfs:comment "This is the medicine Nobel prize awarded in 1945."@en ;
+                   rdfs:label "Medicine Nobel 1945"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/neuroscience
 :neuroscience rdf:type owl:NamedIndividual ,
                        :JournalCategory ,
                        <http://www.w3.org/2004/02/skos/core#Concept> ;
-              <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+              <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+              rdfs:label "Neuroscience"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/nursing
 :nursing rdf:type owl:NamedIndividual ,
                   :JournalCategory ,
                   <http://www.w3.org/2004/02/skos/core#Concept> ;
-         <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+         <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+         rdfs:label "Nursing"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/padua
 :padua rdf:type owl:NamedIndividual ,
                 :City ;
        :locatedIn :italy ;
-       :hasName "Padua" .
+       :hasName "Padua" ;
+       rdfs:comment "This is the city of Padua."@en ;
+       rdfs:label "Padua"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/peace
 :peace rdf:type owl:NamedIndividual ,
                 :JournalCategory ,
                 <http://www.w3.org/2004/02/skos/core#Concept> ;
-       <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+       <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+       rdfs:label "Peace"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/person1
@@ -674,7 +725,9 @@
                   <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
          :worksFor :unipd ;
          <http://xmlns.com/foaf/0.1/firstName> "Person" ;
-         <http://xmlns.com/foaf/0.1/lastName> "Person" .
+         <http://xmlns.com/foaf/0.1/lastName> "Person" ;
+         rdfs:comment "This is Person 1."@en ;
+         rdfs:label "Person 1"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/pharmacologyToxicologyPharmaceutics
@@ -682,21 +735,24 @@
                                               :JournalCategory ,
                                               <http://www.w3.org/2004/02/skos/core#Concept> ;
                                      <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
-                                                                                             :medicine .
+                                                                                             :medicine ;
+                                     rdfs:label "Pharmacology, Toxicology and Pharmaceutics"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/physics
 :physics rdf:type owl:NamedIndividual ,
                   :JournalCategory ,
                   <http://www.w3.org/2004/02/skos/core#Concept> ;
-         <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+         <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+         rdfs:label "Physics"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/physicsAstronomy
 :physicsAstronomy rdf:type owl:NamedIndividual ,
                            :JournalCategory ,
                            <http://www.w3.org/2004/02/skos/core#Concept> ;
-                  <http://www.w3.org/2004/02/skos/core#broaderTransitive> :physics .
+                  <http://www.w3.org/2004/02/skos/core#broaderTransitive> :physics ;
+                  rdfs:label "Physics and Astronomy"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/physicsNobel1921
@@ -704,14 +760,17 @@
                            :NobelPrize ;
                   :hasNobelCategory "Physics" ;
                   :hasPrizeShare 1 ;
-                  :hasYear 1921 .
+                  :hasYear 1921 ;
+                  rdfs:comment "This is the physics Nobel prize awarded in 1921."@en ;
+                  rdfs:label "Physics Nobel 1921"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/psychology
 :psychology rdf:type owl:NamedIndividual ,
                      :JournalCategory ,
                      <http://www.w3.org/2004/02/skos/core#Concept> ;
-            <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+            <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+            rdfs:label "Psychology"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/socialSciences
@@ -719,7 +778,8 @@
                          :JournalCategory ,
                          <http://www.w3.org/2004/02/skos/core#Concept> ;
                 <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics ,
-                                                                        :peace .
+                                                                        :peace ;
+                rdfs:label "Social Sciences"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/unipd
@@ -727,14 +787,17 @@
                 :Organization ;
        :basedIn :padua ;
        :hasWon :medicineNobel1945 ;
-       :hasName "Unipd" .
+       :hasName "Unipd" ;
+       rdfs:comment "This is UniPD, the university of Padua."@en ;
+       rdfs:label "UniPD"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/veterinary
 :veterinary rdf:type owl:NamedIndividual ,
                      :JournalCategory ,
                      <http://www.w3.org/2004/02/skos/core#Concept> ;
-            <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+            <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+            rdfs:label "Veterinary"@en .
 
 
 #################################################################
