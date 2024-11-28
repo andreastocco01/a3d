@@ -115,33 +115,6 @@
 #    Data properties
 #################################################################
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#hasNobelCategory
-:hasNobelCategory rdf:type owl:DatatypeProperty ,
-                           owl:FunctionalProperty ;
-                  rdfs:domain :NobelPrize ;
-                  rdfs:range [ rdf:type rdfs:Datatype ;
-                               owl:oneOf [ rdf:type rdf:List ;
-                                           rdf:first "Chemistry" ;
-                                           rdf:rest [ rdf:type rdf:List ;
-                                                      rdf:first "Economics" ;
-                                                      rdf:rest [ rdf:type rdf:List ;
-                                                                 rdf:first "Literature" ;
-                                                                 rdf:rest [ rdf:type rdf:List ;
-                                                                            rdf:first "Medicine" ;
-                                                                            rdf:rest [ rdf:type rdf:List ;
-                                                                                       rdf:first "Peace" ;
-                                                                                       rdf:rest [ rdf:type rdf:List ;
-                                                                                                  rdf:first "Physics" ;
-                                                                                                  rdf:rest rdf:nil
-                                                                                                ]
-                                                                                     ]
-                                                                          ]
-                                                               ]
-                                                    ]
-                                         ]
-                             ] .
-
-
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/birthDate
 :birthDate rdf:type owl:DatatypeProperty ,
                     owl:FunctionalProperty ;
@@ -217,6 +190,33 @@
          rdfs:range rdf:PlainLiteral ;
          rdfs:comment "The name of a city, country or organization."@en ;
          rdfs:label "hasName"@en .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasNobelCategory
+:hasNobelCategory rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:domain :NobelPrize ;
+                  rdfs:range [ rdf:type rdfs:Datatype ;
+                               owl:oneOf [ rdf:type rdf:List ;
+                                           rdf:first "Chemistry" ;
+                                           rdf:rest [ rdf:type rdf:List ;
+                                                      rdf:first "Economics" ;
+                                                      rdf:rest [ rdf:type rdf:List ;
+                                                                 rdf:first "Literature" ;
+                                                                 rdf:rest [ rdf:type rdf:List ;
+                                                                            rdf:first "Medicine" ;
+                                                                            rdf:rest [ rdf:type rdf:List ;
+                                                                                       rdf:first "Peace" ;
+                                                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                                                  rdf:first "Physics" ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ]
+                             ] .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasOpenAccess
@@ -312,7 +312,7 @@
 :Funding rdf:type owl:Class ;
          owl:disjointWith :Laureate ,
                           :Researcher ;
-         rdfs:comment "This class represents the budget allocated by the major states from 1981 to 2023."@en ;
+         rdfs:comment "This class represents the budget allocated for R&D by the major states from 1981 to 2023."@en ;
          rdfs:label "Funding"@en .
 
 
@@ -341,7 +341,9 @@
           owl:disjointWith :NobelPrize ,
                            :Organization ,
                            :Paper ,
-                           :Venue .
+                           :Venue ;
+          rdfs:comment "This class represents a Nobel prize awarded between 1901 and 2016."@en ;
+          rdfs:label "Laureate"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/NobelPrize
@@ -379,7 +381,9 @@
                                   owl:someValuesFrom :Paper
                                 ] ;
             rdfs:subClassOf <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
-            owl:disjointWith :Venue .
+            owl:disjointWith :Venue ;
+            rdfs:comment "This class represents a researcher who wrote at least one paper between 1937 and 2017."@en ;
+            rdfs:label "Researcher"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Venue
@@ -391,12 +395,6 @@
 #################################################################
 #    Individuals
 #################################################################
-
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#nobelFisica1905
-:nobelFisica1905 rdf:type owl:NamedIndividual ,
-                          :NobelPrize ;
-                 :hasNobelCategory "Physics" .
-
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/agricolturalBiologicalSciences
 :agricolturalBiologicalSciences rdf:type owl:NamedIndividual ,
@@ -609,6 +607,12 @@
                        :JournalCategory ,
                        <http://www.w3.org/2004/02/skos/core#Concept> ;
               <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/nobelFisica1905
+:nobelFisica1905 rdf:type owl:NamedIndividual ,
+                          :NobelPrize ;
+                 :hasNobelCategory "Physics" .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/nursing
