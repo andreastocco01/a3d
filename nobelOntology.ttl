@@ -266,18 +266,24 @@
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/City
 :City rdf:type owl:Class ;
       owl:disjointWith :Laureate ,
-                       :Researcher .
+                       :Researcher ;
+      rdfs:comment "This class represents a city."@en ;
+      rdfs:label "City"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Conference
 :Conference rdf:type owl:Class ;
-            rdfs:subClassOf :Venue .
+            rdfs:subClassOf :Venue ;
+            rdfs:comment "This class represents a conference."@en ;
+            rdfs:label "Conference"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Country
 :Country rdf:type owl:Class ;
          owl:disjointWith :Laureate ,
-                          :Researcher .
+                          :Researcher ;
+         rdfs:comment "This class represents a country."@en ;
+         rdfs:label "Country"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/EconomicsNobel
@@ -288,18 +294,24 @@
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Funding
 :Funding rdf:type owl:Class ;
          owl:disjointWith :Laureate ,
-                          :Researcher .
+                          :Researcher ;
+         rdfs:comment "This class represents the budget allocated by the major states from 1981 to 2023."@en ;
+         rdfs:label "Funding"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Journal
 :Journal rdf:type owl:Class ;
-         rdfs:subClassOf :Venue .
+         rdfs:subClassOf :Venue ;
+         rdfs:comment "This class represents an academic or research journal."@en ;
+         rdfs:label "Journal"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/JournalCategory
 :JournalCategory rdf:type owl:Class ;
                  owl:disjointWith :Laureate ,
-                                  :Researcher .
+                                  :Researcher ;
+                 rdfs:comment "This class represents the main topic of a journal."@en ;
+                 rdfs:label "Journal Category"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Laureate
@@ -327,22 +339,30 @@
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/NobelPrize
 :NobelPrize rdf:type owl:Class ;
-            owl:disjointWith :Researcher .
+            owl:disjointWith :Researcher ;
+            rdfs:comment "This class represents a Nobel Prize awarded from 1901 to 2016."@en ;
+            rdfs:label "Nobel Prize"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Organization
 :Organization rdf:type owl:Class ;
-              owl:disjointWith :Researcher .
+              owl:disjointWith :Researcher ;
+              rdfs:label "Organization"@en ,
+                         "This class represents an organization."@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/OrganizationWinner
 :OrganizationWinner rdf:type owl:Class ;
-                    rdfs:subClassOf :Organization .
+                    rdfs:subClassOf :Organization ;
+                    rdfs:comment "This class represents an organization that won a Nobel Prize."@en ;
+                    rdfs:label "Winning Organization"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Paper
 :Paper rdf:type owl:Class ;
-       owl:disjointWith :Researcher .
+       owl:disjointWith :Researcher ;
+       rdfs:comment "This class represents a research paper published between 1937 and 2017."@en ;
+       rdfs:label "Paper"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/PeaceNobel
@@ -366,7 +386,9 @@
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Venue
-:Venue rdf:type owl:Class .
+:Venue rdf:type owl:Class ;
+       rdfs:comment "This class represents a venue related to a paper."@en ;
+       rdfs:label "Venue"@en .
 
 
 #################################################################
