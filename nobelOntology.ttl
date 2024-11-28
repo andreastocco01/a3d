@@ -396,6 +396,7 @@
                                          <http://www.w3.org/2004/02/skos/core#Concept> ;
                                 <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
                                                                                         :medicine ;
+                                rdfs:comment "This is the SKOS Concept describing agricultural and biological sciences."@en ;
                                 rdfs:label "Agricultural and Biological Sciences"@en .
 
 
@@ -404,6 +405,7 @@
                          :JournalCategory ,
                          <http://www.w3.org/2004/02/skos/core#Concept> ;
                 <http://www.w3.org/2004/02/skos/core#broaderTransitive> :literature ;
+                rdfs:comment "This is the SKOS Concept describing arts and humanities."@en ;
                 rdfs:label "Arts and Humanities"@en .
 
 
@@ -413,6 +415,7 @@
                                                <http://www.w3.org/2004/02/skos/core#Concept> ;
                                       <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
                                                                                               :medicine ;
+                                      rdfs:comment "This is the SKOS Concept describing biochemistry, genetics and molecular biology."@en ;
                                       rdfs:label "Biochemistry, Genetics and Molecular Biology"@en .
 
 
@@ -421,6 +424,7 @@
                                        :JournalCategory ,
                                        <http://www.w3.org/2004/02/skos/core#Concept> ;
                               <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics ;
+                              rdfs:comment "This is the SKOS Concept describing business, management and accounting."@en ;
                               rdfs:label "Business, Management and Accounting"@en .
 
 
@@ -448,6 +452,7 @@
                               :JournalCategory ,
                               <http://www.w3.org/2004/02/skos/core#Concept> ;
                      <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ;
+                     rdfs:comment "This is the SKOS Concept describing chemical engineering."@en ;
                      rdfs:label "Chemical Engineering"@en .
 
 
@@ -456,6 +461,7 @@
                     :JournalCategory ,
                     <http://www.w3.org/2004/02/skos/core#Concept> ;
            <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+           rdfs:comment "This is the SKOS Concept describing chemistry."@en ;
            rdfs:label "Chemistry"@en .
 
 
@@ -464,6 +470,7 @@
                           :JournalCategory ,
                           <http://www.w3.org/2004/02/skos/core#Concept> ;
                  <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+                 rdfs:comment "This is the SKOS Concept describing computer science."@en ;
                  rdfs:label "Computer Science"@en .
 
 
@@ -472,6 +479,7 @@
                            :JournalCategory ,
                            <http://www.w3.org/2004/02/skos/core#Concept> ;
                   <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics ;
+                  rdfs:comment "This is the SKOS Concept describing decision sciences."@en ;
                   rdfs:label "Decision Sciences"@en .
 
 
@@ -480,6 +488,7 @@
                     :JournalCategory ,
                     <http://www.w3.org/2004/02/skos/core#Concept> ;
            <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+           rdfs:comment "This is the SKOS Concept describing dentistry."@en ;
            rdfs:label "Dentistry"@en .
 
 
@@ -489,6 +498,7 @@
                                  <http://www.w3.org/2004/02/skos/core#Concept> ;
                         <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
                                                                                 :physics ;
+                        rdfs:comment "This is the SKOS Concept describing earth and planetary sciences."@en ;
                         rdfs:label "Earth and Planetary Sciences"@en .
 
 
@@ -497,6 +507,7 @@
                     :JournalCategory ,
                     <http://www.w3.org/2004/02/skos/core#Concept> ;
            <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+           rdfs:comment "This is the SKOS Concept describing economics."@en ;
            rdfs:label "Economics"@en .
 
 
@@ -505,6 +516,7 @@
                                        :JournalCategory ,
                                        <http://www.w3.org/2004/02/skos/core#Concept> ;
                               <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics ;
+                              rdfs:comment "This is the SKOS Concept describing economics, econometrics and finance."@en ;
                               rdfs:label "Economics, Econometrics and Finance"@en .
 
 
@@ -532,6 +544,7 @@
                  <http://www.w3.org/2004/02/skos/core#Concept> ;
         <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
                                                                 :physics ;
+        rdfs:comment "This is the SKOS Concept describing energy."@en ;
         rdfs:label "Energy"@en .
 
 
@@ -540,6 +553,7 @@
                       :JournalCategory ,
                       <http://www.w3.org/2004/02/skos/core#Concept> ;
              <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+             rdfs:comment "This is the SKOS Concept describing engineering."@en ;
              rdfs:label "Engineering"@en .
 
 
@@ -549,6 +563,7 @@
                                <http://www.w3.org/2004/02/skos/core#Concept> ;
                       <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
                                                                               :peace ;
+                      rdfs:comment "This is the SKOS Concept describing environmental science."@en ;
                       rdfs:label "Environmental Science"@en .
 
 
@@ -576,6 +591,7 @@
                   :JournalCategory ,
                   <http://www.w3.org/2004/02/skos/core#Concept> ;
          <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+         rdfs:comment "This is the SKOS Concept describing a general category."@en ;
          rdfs:label "General"@en .
 
 
@@ -594,6 +610,7 @@
                             :JournalCategory ,
                             <http://www.w3.org/2004/02/skos/core#Concept> ;
                    <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+                   rdfs:comment "This is the SKOS Concept describing health professions."@en ;
                    rdfs:label "Health Professions"@en .
 
 
@@ -602,6 +619,7 @@
                                  :JournalCategory ,
                                  <http://www.w3.org/2004/02/skos/core#Concept> ;
                         <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+                        rdfs:comment "This is the SKOS Concept describing immunology and microbiology."@en ;
                         rdfs:label "Immunology and Microbiology"@en .
 
 
@@ -643,6 +661,7 @@
                      :JournalCategory ,
                      <http://www.w3.org/2004/02/skos/core#Concept> ;
             <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+            rdfs:comment "This is the SKOS Concept describing literature."@en ;
             rdfs:label "Literature"@en .
 
 
@@ -652,6 +671,7 @@
                            <http://www.w3.org/2004/02/skos/core#Concept> ;
                   <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
                                                                           :physics ;
+                  rdfs:comment "This is the SKOS Concept describing materials science."@en ;
                   rdfs:label "Materials Science"@en .
 
 
@@ -660,6 +680,7 @@
                       :JournalCategory ,
                       <http://www.w3.org/2004/02/skos/core#Concept> ;
              <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+             rdfs:comment "This is the SKOS Concept describing mathematics."@en ;
              rdfs:label "Mathematics"@en .
 
 
@@ -668,6 +689,7 @@
                    :JournalCategory ,
                    <http://www.w3.org/2004/02/skos/core#Concept> ;
           <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+          rdfs:comment "This is the SKOS Concept describing medicine."@en ;
           rdfs:label "Medicine"@en .
 
 
@@ -692,6 +714,7 @@
                        :JournalCategory ,
                        <http://www.w3.org/2004/02/skos/core#Concept> ;
               <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+              rdfs:comment "This is the SKOS Concept describing neuroscience."@en ;
               rdfs:label "Neuroscience"@en .
 
 
@@ -700,6 +723,7 @@
                   :JournalCategory ,
                   <http://www.w3.org/2004/02/skos/core#Concept> ;
          <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+         rdfs:comment "This is the SKOS Concept describing nursing."@en ;
          rdfs:label "Nursing"@en .
 
 
@@ -717,6 +741,7 @@
                 :JournalCategory ,
                 <http://www.w3.org/2004/02/skos/core#Concept> ;
        <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+       rdfs:comment "This is the SKOS Concept describing peace."@en ;
        rdfs:label "Peace"@en .
 
 
@@ -736,6 +761,7 @@
                                               <http://www.w3.org/2004/02/skos/core#Concept> ;
                                      <http://www.w3.org/2004/02/skos/core#broaderTransitive> :chemistry ,
                                                                                              :medicine ;
+                                     rdfs:comment "This is the SKOS Concept describing pharmacology, toxicology and pharmaceutics."@en ;
                                      rdfs:label "Pharmacology, Toxicology and Pharmaceutics"@en .
 
 
@@ -744,6 +770,7 @@
                   :JournalCategory ,
                   <http://www.w3.org/2004/02/skos/core#Concept> ;
          <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme ;
+         rdfs:comment "This is the SKOS Concept describing physics."@en ;
          rdfs:label "Physics"@en .
 
 
@@ -752,6 +779,7 @@
                            :JournalCategory ,
                            <http://www.w3.org/2004/02/skos/core#Concept> ;
                   <http://www.w3.org/2004/02/skos/core#broaderTransitive> :physics ;
+                  rdfs:comment "This is the SKOS Concept describing physics and astronomy."@en ;
                   rdfs:label "Physics and Astronomy"@en .
 
 
@@ -770,6 +798,7 @@
                      :JournalCategory ,
                      <http://www.w3.org/2004/02/skos/core#Concept> ;
             <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+            rdfs:comment "This is the SKOS Concept describing psychology."@en ;
             rdfs:label "Psychology"@en .
 
 
@@ -779,6 +808,7 @@
                          <http://www.w3.org/2004/02/skos/core#Concept> ;
                 <http://www.w3.org/2004/02/skos/core#broaderTransitive> :economics ,
                                                                         :peace ;
+                rdfs:comment "This is the SKOS Concept describing social sciences."@en ;
                 rdfs:label "Social Sciences"@en .
 
 
@@ -797,6 +827,7 @@
                      :JournalCategory ,
                      <http://www.w3.org/2004/02/skos/core#Concept> ;
             <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine ;
+            rdfs:comment "This is the SKOS Concept describing veterinary."@en ;
             rdfs:label "Veterinary"@en .
 
 
