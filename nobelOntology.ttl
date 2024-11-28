@@ -340,7 +340,7 @@
           owl:disjointWith :NobelPrize ,
                            :Paper ,
                            :Venue ;
-          rdfs:comment "This class represents a Person who has won a NobelPrize"@en ;
+          rdfs:comment "This class represents a person or an organization that has won a NobelPrize"@en ;
           rdfs:label "Laureate"@en .
 
 
@@ -388,30 +388,11 @@
 #    Individuals
 #################################################################
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#italy
-:italy rdf:type owl:NamedIndividual ,
-                :Country ;
-       :hasName "Italy" .
-
-
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#laureateA
-:laureateA rdf:type owl:NamedIndividual ,
-                    :Laureate .
-
-
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#padua
-:padua rdf:type owl:NamedIndividual ,
-                :City ;
-       :locatedIn :italy ;
-       :hasName "Padua" .
-
-
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#person1
-:person1 rdf:type owl:NamedIndividual ,
-                  <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
-         :worksFor :unipd ;
-         <http://xmlns.com/foaf/0.1/firstName> "Person" ;
-         <http://xmlns.com/foaf/0.1/lastName> "Person" .
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology#funding2010Italy
+:funding2010Italy rdf:type owl:NamedIndividual ,
+                           :Funding ;
+                  :hasAmount 200 ;
+                  :hasYear 2010 .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/agricolturalBiologicalSciences
@@ -590,6 +571,13 @@
                         <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
 
 
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/italy
+:italy rdf:type owl:NamedIndividual ,
+                :Country ;
+       :funded :funding2010Italy ;
+       :hasName "Italy" .
+
+
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/journalCategoryScheme
 :journalCategoryScheme rdf:type owl:NamedIndividual ,
                                 <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
@@ -603,6 +591,11 @@
                                                                            :medicine ,
                                                                            :peace ,
                                                                            :physics .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/laureateA
+:laureateA rdf:type owl:NamedIndividual ,
+                    :Laureate .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/literature
@@ -660,11 +653,26 @@
          <http://www.w3.org/2004/02/skos/core#broaderTransitive> :medicine .
 
 
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/padua
+:padua rdf:type owl:NamedIndividual ,
+                :City ;
+       :locatedIn :italy ;
+       :hasName "Padua" .
+
+
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/peace
 :peace rdf:type owl:NamedIndividual ,
                 :JournalCategory ,
                 <http://www.w3.org/2004/02/skos/core#Concept> ;
        <http://www.w3.org/2004/02/skos/core#inScheme> :journalCategoryScheme .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/person1
+:person1 rdf:type owl:NamedIndividual ,
+                  <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+         :worksFor :unipd ;
+         <http://xmlns.com/foaf/0.1/firstName> "Person" ;
+         <http://xmlns.com/foaf/0.1/lastName> "Person" .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/pharmacologyToxicologyPharmaceutics
