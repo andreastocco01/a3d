@@ -9,7 +9,8 @@
 <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology> rdf:type owl:Ontology ;
                                                                    owl:imports <http://www.w3.org/2004/02/skos/core> ,
                                                                                <http://xmlns.com/foaf/0.1/> ;
-                                                                   rdfs:comment "This ontology models Nobel prizes awarded between 1901 and 2016, papers published in a venue (journal or conference) between 1937 and 2017, and the budget allocated for R&D by the major states from 1981 to 2023."@en ;
+                                                                   rdfs:comment """This ontology captures the relationships and data associated with three key domains: Nobel Prize winners,, academic papers published in journals or conferences, and R&D (research and development) budgets allocated by the nations over the years.
+By integrating these domains, the ontology provides a framework to explore connections between outstanding discoveries, scholarly output, and the financial investments driving innovation."""@en ;
                                                                    rdfs:label "The Nobel ontology"@en .
 
 #################################################################
@@ -71,7 +72,7 @@
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasWon
 :hasWon rdf:type owl:ObjectProperty ;
         rdfs:range :NobelPrize ;
-        rdfs:comment "This property links laureates and organizations to the nobel prize they won."@en ;
+        rdfs:comment "This property links laureates to the nobel prize they won."@en ;
         rdfs:label "hasWon"@en .
 
 
@@ -213,7 +214,9 @@
                                                                ]
                                                     ]
                                          ]
-                             ] .
+                             ] ;
+                  rdfs:comment "The categories of Nobel Prizes"@en ;
+                  rdfs:label "hasNobelCategory"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasOpenAccess
@@ -293,7 +296,7 @@
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Conference
 :Conference rdf:type owl:Class ;
             rdfs:subClassOf :Venue ;
-            rdfs:comment "This class represents a conference."@en ;
+            rdfs:comment "This class represents a conference, an academic event where researchers present and discuss their work about specific fields."@en ;
             rdfs:label "Conference"@en .
 
 
@@ -309,14 +312,14 @@
 :Funding rdf:type owl:Class ;
          owl:disjointWith :Laureate ,
                           :Researcher ;
-         rdfs:comment "This class represents the budget allocated for R&D by the major states from 1981 to 2023."@en ;
+         rdfs:comment "This class represents the budget allocated for Research & Development by Governments from 1981 to 2023."@en ;
          rdfs:label "Funding"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Journal
 :Journal rdf:type owl:Class ;
          rdfs:subClassOf :Venue ;
-         rdfs:comment "This class represents an academic or research journal."@en ;
+         rdfs:comment "This class represents a journal, a periodic publication that shares peer-reviewed scholarly articles."@en ;
          rdfs:label "Journal"@en .
 
 
@@ -358,7 +361,7 @@
               owl:disjointWith :Researcher ,
                                <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
               rdfs:label "Organization"@en ,
-                         "This class represents an organization."@en .
+                         "This class represents an organization, defined as a group of individuals who collaborate in a structured manner to achieve a common goal or purpose."@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Paper
@@ -382,7 +385,7 @@
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Venue
 :Venue rdf:type owl:Class ;
-       rdfs:comment "This class represents a venue related to a paper."@en ;
+       rdfs:comment "This class represents a venue, a physical or virtual location where academic papers are published."@en ;
        rdfs:label "Venue"@en .
 
 
