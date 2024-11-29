@@ -21,7 +21,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/basedIn
 :basedIn rdf:type owl:ObjectProperty ,
                   owl:FunctionalProperty ;
-         rdfs:domain :Organization ;
+         rdfs:domain <http://xmlns.com/foaf/0.1/Organization> ;
          rdfs:range :City ;
          rdfs:comment "This property links an organization to the city in which it is based."@en ;
          rdfs:label "basedIn"@en .
@@ -106,7 +106,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/worksFor
 :worksFor rdf:type owl:ObjectProperty ;
           rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
-          rdfs:range :Organization ;
+          rdfs:range <http://xmlns.com/foaf/0.1/Organization> ;
           rdfs:comment "This property describes the organization in which a laureate works."@en ;
           rdfs:label "worksFor"@en .
 
@@ -184,7 +184,7 @@ By integrating these domains, the ontology provides a framework to explore conne
          rdfs:domain [ rdf:type owl:Class ;
                        owl:unionOf ( <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country>
                                      :City
-                                     :Organization
+                                     <http://xmlns.com/foaf/0.1/Organization>
                                    )
                      ] ;
          rdfs:range rdf:PlainLiteral ;
@@ -287,15 +287,8 @@ By integrating these domains, the ontology provides a framework to explore conne
 #    Classes
 #################################################################
 
-###  http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country
-<http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country> owl:disjointWith :Laureate ,
-                                                                               :Researcher .
-
-
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/City
 :City rdf:type owl:Class ;
-      owl:disjointWith :Laureate ,
-                       :Researcher ;
       rdfs:comment "This class represents a city."@en ;
       rdfs:label "City"@en .
 
@@ -309,8 +302,6 @@ By integrating these domains, the ontology provides a framework to explore conne
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Funding
 :Funding rdf:type owl:Class ;
-         owl:disjointWith :Laureate ,
-                          :Researcher ;
          rdfs:comment "This class represents the budget allocated for Research & Development by governments."@en ;
          rdfs:label "Funding"@en .
 
@@ -324,8 +315,6 @@ By integrating these domains, the ontology provides a framework to explore conne
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/JournalCategory
 :JournalCategory rdf:type owl:Class ;
-                 owl:disjointWith :Laureate ,
-                                  :Researcher ;
                  rdfs:comment "This class represents the main topic of a journal."@en ;
                  rdfs:label "Journal Category"@en .
 
@@ -337,35 +326,22 @@ By integrating these domains, the ontology provides a framework to explore conne
                                 owl:someValuesFrom :NobelPrize
                               ] ;
           rdfs:subClassOf [ rdf:type owl:Class ;
-                            owl:unionOf ( :Organization
-                                          <http://www.w3.org/2000/10/swap/pim/contact#Person>
+                            owl:unionOf ( <http://www.w3.org/2000/10/swap/pim/contact#Person>
+                                          <http://xmlns.com/foaf/0.1/Organization>
                                         )
                           ] ;
-          owl:disjointWith :NobelPrize ,
-                           :Paper ,
-                           :Venue ;
           rdfs:comment "This class represents a person or an organization that has won a Nobel Prize."@en ;
           rdfs:label "Laureate"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/NobelPrize
 :NobelPrize rdf:type owl:Class ;
-            owl:disjointWith :Researcher ;
             rdfs:comment "This class represents a Nobel Prize."@en ;
             rdfs:label "Nobel Prize"@en .
 
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Organization
-:Organization rdf:type owl:Class ;
-              owl:disjointWith :Researcher ,
-                               <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
-              rdfs:label "Organization"@en ,
-                         "This class represents an organization, defined as a group of individuals who collaborate in a structured manner to achieve a common goal or purpose."@en .
-
-
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Paper
 :Paper rdf:type owl:Class ;
-       owl:disjointWith :Researcher ;
        rdfs:comment "This class represents a research paper."@en ;
        rdfs:label "Paper"@en .
 
@@ -377,7 +353,6 @@ By integrating these domains, the ontology provides a framework to explore conne
                                   owl:someValuesFrom :Paper
                                 ] ;
             rdfs:subClassOf <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
-            owl:disjointWith :Venue ;
             rdfs:comment "This class represents a person who wrote at least one paper."@en ;
             rdfs:label "Researcher"@en .
 
@@ -803,7 +778,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/unipd
 :unipd rdf:type owl:NamedIndividual ,
-                :Organization ;
+                <http://xmlns.com/foaf/0.1/Organization> ;
        :basedIn :padua ;
        :hasWon :medicineNobel1945 ;
        :hasName "Unipd" ;
@@ -830,9 +805,10 @@ By integrating these domains, the ontology provides a framework to explore conne
                 :Funding
                 :JournalCategory
                 :NobelPrize
-                :Organization
                 :Paper
                 :Venue
+                <http://www.w3.org/2000/10/swap/pim/contact#Person>
+                <http://xmlns.com/foaf/0.1/Organization>
               )
 ] .
 
