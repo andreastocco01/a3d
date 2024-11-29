@@ -74,7 +74,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 :hasWon rdf:type owl:ObjectProperty ;
         rdfs:domain :Laureate ;
         rdfs:range :NobelPrize ;
-        rdfs:comment "This property links laureates to the Nobel prize they won."@en ;
+        rdfs:comment "This property links laureates to the Nobel Prize they won."@en ;
         rdfs:label "hasWon"@en .
 
 
@@ -174,13 +174,19 @@ By integrating these domains, the ontology provides a framework to explore conne
                               owl:FunctionalProperty ;
                      rdfs:domain :NobelPrize ;
                      rdfs:range xsd:string ;
-                     rdfs:comment "The motivation's topic of a Nobel prize."@en ;
+                     rdfs:comment "The motivation's topic of a Nobel Prize."@en ;
                      rdfs:label "hasMotivationTopics"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasName
 :hasName rdf:type owl:DatatypeProperty ,
                   owl:FunctionalProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country>
+                                     :City
+                                     :Organization
+                                   )
+                     ] ;
          rdfs:range rdf:PlainLiteral ;
          rdfs:comment "The name of a city, country or organization."@en ;
          rdfs:label "hasName"@en .
@@ -211,7 +217,7 @@ By integrating these domains, the ontology provides a framework to explore conne
                                                     ]
                                          ]
                              ] ;
-                  rdfs:comment "The categories of a Nobel prize."@en ;
+                  rdfs:comment "The categories of a Nobel Prize."@en ;
                   rdfs:label "hasNobelCategory"@en .
 
 
@@ -229,7 +235,7 @@ By integrating these domains, the ontology provides a framework to explore conne
                         owl:FunctionalProperty ;
                rdfs:domain :NobelPrize ;
                rdfs:range xsd:integer ;
-               rdfs:comment "This data property describes sharing a Nobel prize."@en ;
+               rdfs:comment "This data property describes sharing a Nobel Prize."@en ;
                rdfs:label "hasPrizeShare"@en .
 
 
@@ -265,7 +271,7 @@ By integrating these domains, the ontology provides a framework to explore conne
                                    )
                      ] ;
          rdfs:range xsd:integer ;
-         rdfs:comment "The year in which a funding is allocated or a Nobel prize is assigned or a paper is written."@en ;
+         rdfs:comment "The year in which a funding is allocated or a Nobel Prize is assigned or a paper is written."@en ;
          rdfs:label "hasYear"@en .
 
 
@@ -338,14 +344,14 @@ By integrating these domains, the ontology provides a framework to explore conne
           owl:disjointWith :NobelPrize ,
                            :Paper ,
                            :Venue ;
-          rdfs:comment "This class represents a person or an organization that has won a Nobel prize."@en ;
+          rdfs:comment "This class represents a person or an organization that has won a Nobel Prize."@en ;
           rdfs:label "Laureate"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/NobelPrize
 :NobelPrize rdf:type owl:Class ;
             owl:disjointWith :Researcher ;
-            rdfs:comment "This class represents a Nobel prize."@en ;
+            rdfs:comment "This class represents a Nobel Prize."@en ;
             rdfs:label "Nobel Prize"@en .
 
 
@@ -372,7 +378,7 @@ By integrating these domains, the ontology provides a framework to explore conne
                                 ] ;
             rdfs:subClassOf <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
             owl:disjointWith :Venue ;
-            rdfs:comment "This class represents a researcher who wrote at least once."@en ;
+            rdfs:comment "This class represents a person who wrote at least one paper."@en ;
             rdfs:label "Researcher"@en .
 
 
@@ -385,6 +391,10 @@ By integrating these domains, the ontology provides a framework to explore conne
 #################################################################
 #    Individuals
 #################################################################
+
+###  http://eulersharp.sourceforge.net/2003/03swap/countries#it
+<http://eulersharp.sourceforge.net/2003/03swap/countries#it> :hasFunded :funding2010Italy .
+
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/agricolturalBiologicalSciences
 :agricolturalBiologicalSciences rdf:type owl:NamedIndividual ,
@@ -427,7 +437,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/cancerJournal
 :cancerJournal rdf:type owl:NamedIndividual ,
                         :Journal ;
-               :hasCategory :biochemistryGeneticsMolecularBiology ;
+               :hasJournalCategory :biochemistryGeneticsMolecularBiology ;
                rdfs:comment "This is a journal about cancer."@en ;
                rdfs:label "Cancer Journal"@en .
 
@@ -635,13 +645,6 @@ By integrating these domains, the ontology provides a framework to explore conne
                        rdfs:label "Journal Category Scheme"@en .
 
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/laureateA
-:laureateA rdf:type owl:NamedIndividual ,
-                    :Laureate ;
-           rdfs:comment "This is the laureate A."@en ;
-           rdfs:label "Laureate A"@en .
-
-
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/literature
 :literature rdf:type owl:NamedIndividual ,
                      :JournalCategory ,
@@ -691,7 +694,7 @@ By integrating these domains, the ontology provides a framework to explore conne
                             :NobelPrize ;
                    :hasNobelCategory "Medicine" ;
                    :hasYear 1945 ;
-                   rdfs:comment "This is the medicine Nobel prize awarded in 1945."@en ;
+                   rdfs:comment "This is the medicine Nobel Prize awarded in 1945."@en ;
                    rdfs:label "Medicine Nobel 1945"@en .
 
 
@@ -775,7 +778,7 @@ By integrating these domains, the ontology provides a framework to explore conne
                   :hasNobelCategory "Physics" ;
                   :hasPrizeShare 1 ;
                   :hasYear 1921 ;
-                  rdfs:comment "This is the physics Nobel prize awarded in 1921."@en ;
+                  rdfs:comment "This is the physics Nobel Prize awarded in 1921."@en ;
                   rdfs:label "Physics Nobel 1921"@en .
 
 
