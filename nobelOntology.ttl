@@ -7,7 +7,8 @@
 @base <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/> .
 
 <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology> rdf:type owl:Ontology ;
-                                                                   owl:imports <http://www.w3.org/2004/02/skos/core> ,
+                                                                   owl:imports <http://eulersharp.sourceforge.net/2003/03swap/countries> ,
+                                                                               <http://www.w3.org/2004/02/skos/core> ,
                                                                                <http://xmlns.com/foaf/0.1/> ;
                                                                    rdfs:comment """This ontology captures the relationships and data associated with three key domains: Nobel Prize winners, academic papers published in journals or conferences, and R&D (research and development) budgets allocated by the nations over the years.
 By integrating these domains, the ontology provides a framework to explore connections between outstanding discoveries, scholarly output, and the financial investments driving innovation."""@en ;
@@ -48,14 +49,14 @@ By integrating these domains, the ontology provides a framework to explore conne
 :hasCountry rdf:type owl:ObjectProperty ,
                      owl:FunctionalProperty ;
             rdfs:domain :Journal ;
-            rdfs:range :Country ;
+            rdfs:range <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country> ;
             rdfs:comment "This property links a journal to the country in which it is based."@en ;
             rdfs:label "hasCountry"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasFunded
 :hasFunded rdf:type owl:ObjectProperty ;
-           rdfs:domain :Country ;
+           rdfs:domain <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country> ;
            rdfs:range :Funding ;
            rdfs:comment "This property links a country to its allocated funding."@en ;
            rdfs:label "hasFunded"@en .
@@ -71,6 +72,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasWon
 :hasWon rdf:type owl:ObjectProperty ;
+        rdfs:domain :Laureate ;
         rdfs:range :NobelPrize ;
         rdfs:comment "This property links laureates to the Nobel prize they won."@en ;
         rdfs:label "hasWon"@en .
@@ -88,7 +90,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 :locatedIn rdf:type owl:ObjectProperty ,
                     owl:FunctionalProperty ;
            rdfs:domain :City ;
-           rdfs:range :Country ;
+           rdfs:range <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country> ;
            rdfs:comment "This property connects a city to the state in which it is located."@en ;
            rdfs:label "locatedIn"@en .
 
@@ -179,12 +181,6 @@ By integrating these domains, the ontology provides a framework to explore conne
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasName
 :hasName rdf:type owl:DatatypeProperty ,
                   owl:FunctionalProperty ;
-         rdfs:domain [ rdf:type owl:Class ;
-                       owl:unionOf ( :City
-                                     :Country
-                                     :Organization
-                                   )
-                     ] ;
          rdfs:range rdf:PlainLiteral ;
          rdfs:comment "The name of a city, country or organization."@en ;
          rdfs:label "hasName"@en .
@@ -285,6 +281,11 @@ By integrating these domains, the ontology provides a framework to explore conne
 #    Classes
 #################################################################
 
+###  http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country
+<http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country> owl:disjointWith :Laureate ,
+                                                                               :Researcher .
+
+
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/City
 :City rdf:type owl:Class ;
       owl:disjointWith :Laureate ,
@@ -298,14 +299,6 @@ By integrating these domains, the ontology provides a framework to explore conne
             rdfs:subClassOf :Venue ;
             rdfs:comment "This class represents a conference, an academic event where researchers present and discuss their work about specific fields."@en ;
             rdfs:label "Conference"@en .
-
-
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Country
-:Country rdf:type owl:Class ;
-         owl:disjointWith :Laureate ,
-                          :Researcher ;
-         rdfs:comment "This class represents a country."@en ;
-         rdfs:label "Country"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Funding
@@ -434,8 +427,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/cancerJournal
 :cancerJournal rdf:type owl:NamedIndividual ,
                         :Journal ;
-               :hasCountry :italy ;
-               :hasJournalCategory :biochemistryGeneticsMolecularBiology ;
+               :hasCategory :biochemistryGeneticsMolecularBiology ;
                rdfs:comment "This is a journal about cancer."@en ;
                rdfs:label "Cancer Journal"@en .
 
@@ -626,15 +618,6 @@ By integrating these domains, the ontology provides a framework to explore conne
                         rdfs:label "Immunology and Microbiology"@en .
 
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/italy
-:italy rdf:type owl:NamedIndividual ,
-                :Country ;
-       :hasFunded :funding2010Italy ;
-       :hasName "Italy" ;
-       rdfs:comment "This is the state of Italy."@en ;
-       rdfs:label "Italy"@en .
-
-
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/journalCategoryScheme
 :journalCategoryScheme rdf:type owl:NamedIndividual ,
                                 <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
@@ -733,7 +716,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/padua
 :padua rdf:type owl:NamedIndividual ,
                 :City ;
-       :locatedIn :italy ;
+       :locatedIn <http://eulersharp.sourceforge.net/2003/03swap/countries#it> ;
        :hasName "Padua" ;
        rdfs:comment "This is the city of Padua."@en ;
        rdfs:label "Padua"@en .
@@ -839,8 +822,8 @@ By integrating these domains, the ontology provides a framework to explore conne
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :City
-                :Country
+  owl:members ( <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country>
+                :City
                 :Funding
                 :JournalCategory
                 :NobelPrize
