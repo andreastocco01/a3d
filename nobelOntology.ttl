@@ -44,14 +44,6 @@ By integrating these domains, the ontology provides a framework to explore conne
         rdfs:label "diedIn"@en .
 
 
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasCategory
-:hasCategory rdf:type owl:ObjectProperty ;
-             rdfs:domain :Journal ;
-             rdfs:range :JournalCategory ;
-             rdfs:comment "This property describes the academic discipline of the journal."@en ;
-             rdfs:label "hasCategory"@en .
-
-
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasCountry
 :hasCountry rdf:type owl:ObjectProperty ,
                      owl:FunctionalProperty ;
@@ -67,6 +59,14 @@ By integrating these domains, the ontology provides a framework to explore conne
            rdfs:range :Funding ;
            rdfs:comment "This property links a country to its allocated funding."@en ;
            rdfs:label "hasFunded"@en .
+
+
+###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasJournalCategory
+:hasJournalCategory rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Journal ;
+                    rdfs:range :JournalCategory ;
+                    rdfs:comment "This property describes the academic discipline of the journal."@en ;
+                    rdfs:label "hasCategory"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasWon
@@ -312,7 +312,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 :Funding rdf:type owl:Class ;
          owl:disjointWith :Laureate ,
                           :Researcher ;
-         rdfs:comment "This class represents the budget allocated for Research & Development by Governments from 1981 to 2023."@en ;
+         rdfs:comment "This class represents the budget allocated for Research & Development by Governments."@en ;
          rdfs:label "Funding"@en .
 
 
@@ -352,7 +352,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/NobelPrize
 :NobelPrize rdf:type owl:Class ;
             owl:disjointWith :Researcher ;
-            rdfs:comment "This class represents a Nobel Prize awarded from 1901 to 2016."@en ;
+            rdfs:comment "This class represents a Nobel Prize."@en ;
             rdfs:label "Nobel Prize"@en .
 
 
@@ -367,7 +367,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Paper
 :Paper rdf:type owl:Class ;
        owl:disjointWith :Researcher ;
-       rdfs:comment "This class represents a research paper published between 1937 and 2017."@en ;
+       rdfs:comment "This class represents a research paper."@en ;
        rdfs:label "Paper"@en .
 
 
@@ -379,7 +379,7 @@ By integrating these domains, the ontology provides a framework to explore conne
                                 ] ;
             rdfs:subClassOf <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
             owl:disjointWith :Venue ;
-            rdfs:comment "This class represents a researcher who wrote at least one paper between 1937 and 2017."@en ;
+            rdfs:comment "This class represents a researcher who wrote at least one."@en ;
             rdfs:label "Researcher"@en .
 
 
@@ -434,8 +434,8 @@ By integrating these domains, the ontology provides a framework to explore conne
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/cancerJournal
 :cancerJournal rdf:type owl:NamedIndividual ,
                         :Journal ;
-               :hasCategory :biochemistryGeneticsMolecularBiology ;
                :hasCountry :italy ;
+               :hasJournalCategory :biochemistryGeneticsMolecularBiology ;
                rdfs:comment "This is a journal about cancer."@en ;
                rdfs:label "Cancer Journal"@en .
 
