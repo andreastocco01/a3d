@@ -5,3 +5,4 @@ latex/*.fls
 latex/*.fdb_latexmk
 latex/*.synctex.gz
 catalog-v001.xml
+/nobel-laureates
