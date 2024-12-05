@@ -182,8 +182,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 :hasName rdf:type owl:DatatypeProperty ,
                   owl:FunctionalProperty ;
          rdfs:domain [ rdf:type owl:Class ;
-                       owl:unionOf ( <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country>
-                                     :City
+                       owl:unionOf ( :City
                                      <http://xmlns.com/foaf/0.1/Organization>
                                    )
                      ] ;
