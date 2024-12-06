@@ -15,6 +15,18 @@ By integrating these domains, the ontology provides a framework to explore conne
                                                                    rdfs:label "The Nobel ontology"@en .
 
 #################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#gYear
+xsd:gYear rdf:type rdfs:Datatype .
+
+
+#################################################################
 #    Object Properties
 #################################################################
 
@@ -119,7 +131,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 :birthDate rdf:type owl:DatatypeProperty ,
                     owl:FunctionalProperty ;
            rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
-           rdfs:range xsd:dateTime ;
+           rdfs:range xsd:date ;
            rdfs:comment "The birth date of a person."@en ;
            rdfs:label "birthDate"@en .
 
@@ -128,7 +140,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 :deathDate rdf:type owl:DatatypeProperty ,
                     owl:FunctionalProperty ;
            rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
-           rdfs:range xsd:dateTime ;
+           rdfs:range xsd:date ;
            rdfs:comment "The death date of a person."@en ;
            rdfs:label "deathDate"@en .
 
@@ -176,19 +188,6 @@ By integrating these domains, the ontology provides a framework to explore conne
                      rdfs:range xsd:string ;
                      rdfs:comment "The motivation's topic of a Nobel Prize."@en ;
                      rdfs:label "hasMotivationTopics"@en .
-
-
-###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasName
-:hasName rdf:type owl:DatatypeProperty ,
-                  owl:FunctionalProperty ;
-         rdfs:domain [ rdf:type owl:Class ;
-                       owl:unionOf ( :City
-                                     <http://xmlns.com/foaf/0.1/Organization>
-                                   )
-                     ] ;
-         rdfs:range rdf:PlainLiteral ;
-         rdfs:comment "The name of a city, country or organization."@en ;
-         rdfs:label "hasName"@en .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/hasNobelCategory
@@ -269,7 +268,7 @@ By integrating these domains, the ontology provides a framework to explore conne
                                      :Paper
                                    )
                      ] ;
-         rdfs:range xsd:integer ;
+         rdfs:range xsd:gYear ;
          rdfs:comment "The year in which a funding is allocated or a Nobel Prize is assigned or a paper is written."@en ;
          rdfs:label "hasYear"@en .
 
@@ -550,7 +549,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 :funding2010Italy rdf:type owl:NamedIndividual ,
                            :Funding ;
                   :hasAmount 200 ;
-                  :hasYear 2010 ;
+                  :hasYear "2010"^^xsd:gYear ;
                   rdfs:comment "This is the funding allocated for R&D by Italy in 2010."@en ;
                   rdfs:label "Funding 2010 Italy"@en .
 
@@ -667,7 +666,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 :medicineNobel1945 rdf:type owl:NamedIndividual ,
                             :NobelPrize ;
                    :hasNobelCategory "Medicine" ;
-                   :hasYear 1945 ;
+                   :hasYear "1945"^^xsd:gYear ;
                    rdfs:comment "This is the medicine Nobel Prize awarded in 1945."@en ;
                    rdfs:label "Medicine Nobel 1945"@en .
 
@@ -694,7 +693,7 @@ By integrating these domains, the ontology provides a framework to explore conne
 :padua rdf:type owl:NamedIndividual ,
                 :City ;
        :locatedIn <http://eulersharp.sourceforge.net/2003/03swap/countries#it> ;
-       :hasName "Padua" ;
+       <http://xmlns.com/foaf/0.1/name> "Padua" ;
        rdfs:comment "This is the city of Padua."@en ;
        rdfs:label "Padua"@en .
 
@@ -751,7 +750,7 @@ By integrating these domains, the ontology provides a framework to explore conne
                            :NobelPrize ;
                   :hasNobelCategory "Physics" ;
                   :hasPrizeShare 1 ;
-                  :hasYear 1921 ;
+                  :hasYear "1921"^^xsd:gYear ;
                   rdfs:comment "This is the physics Nobel Prize awarded in 1921."@en ;
                   rdfs:label "Physics Nobel 1921"@en .
 
@@ -780,7 +779,7 @@ By integrating these domains, the ontology provides a framework to explore conne
                 <http://xmlns.com/foaf/0.1/Organization> ;
        :basedIn :padua ;
        :hasWon :medicineNobel1945 ;
-       :hasName "Unipd" ;
+       <http://xmlns.com/foaf/0.1/name> "Unipd" ;
        rdfs:comment "This is UniPD, the university of Padua."@en ;
        rdfs:label "UniPD"@en .
 
