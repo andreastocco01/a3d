@@ -241,7 +241,7 @@ xsd:gYear rdf:type rdfs:Datatype .
 :hasSJR rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
         rdfs:domain :Journal ;
-        rdfs:range xsd:integer ;
+        rdfs:range xsd:decimal ;
         rdfs:comment "The SJR indicator of a journal."@en ;
         rdfs:label "hasSJR"@en .
 
