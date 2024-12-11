@@ -5,8 +5,7 @@ from gensim import corpora
 from gensim.models.ldamodel import LdaModel
 
 # Download required NLTK data files
-#nltk.download('punkt')
-nltk.download('punkt_tab')
+nltk.download('punkt')
 nltk.download('stopwords')
 
 print(f"Il path è  {nltk.data.path}")
