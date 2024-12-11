@@ -1,12 +1,23 @@
+# LATEX FILES
 latex/*.aux
 latex/*.log
 latex/*.out
 latex/*.fls
 latex/*.fdb_latexmk
 latex/*.synctex.gz
+
+# PROTEGE FILES
 catalog-v001.xml
-/nobel-laureates
 test.ttl
+
+# PYTHON FILES
 .ipynb_checkpoints/
-journal-ranking-dataset/
+__pycache__
+
+# DATASETS
+/journal-ranking-dataset
+/nobel-laureates
 /research-papers-dataset
+
+# KAGGLE CREDENTIALS
+kaggle.json
