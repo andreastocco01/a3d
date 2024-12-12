@@ -158,7 +158,7 @@ xsd:gYear rdf:type rdfs:Datatype .
 :hasAmount rdf:type owl:DatatypeProperty ,
                     owl:FunctionalProperty ;
            rdfs:domain :Funding ;
-           rdfs:range xsd:integer ;
+           rdfs:range xsd:decimal ;
            rdfs:comment "The amount of money allocated for a funding."@en ;
            rdfs:label "hasAmount"@en .
 
@@ -285,6 +285,10 @@ xsd:gYear rdf:type rdfs:Datatype .
 #    Classes
 #################################################################
 
+###  http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country
+<http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#Country> rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/City
 :City rdf:type owl:Class ;
       rdfs:comment "This class represents a city."@en ;
@@ -366,7 +370,8 @@ xsd:gYear rdf:type rdfs:Datatype .
 #################################################################
 
 ###  http://eulersharp.sourceforge.net/2003/03swap/countries#it
-<http://eulersharp.sourceforge.net/2003/03swap/countries#it> :hasFunded :funding2010Italy .
+<http://eulersharp.sourceforge.net/2003/03swap/countries#it> rdf:type owl:NamedIndividual ;
+                                                             :hasFunded :funding2010Italy .
 
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/agricolturalBiologicalSciences
