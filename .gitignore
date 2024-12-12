@@ -21,3 +21,6 @@ __pycache__
 
 # KAGGLE CREDENTIALS
 kaggle.json
+
+#VSCODE
+.vscode/
