@@ -31,8 +31,7 @@ xsd:gYear rdf:type rdfs:Datatype .
 #################################################################
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/basedIn
-:basedIn rdf:type owl:ObjectProperty ,
-                  owl:FunctionalProperty ;
+:basedIn rdf:type owl:ObjectProperty ;
          rdfs:domain <http://xmlns.com/foaf/0.1/Organization> ;
          rdfs:range :City ;
          rdfs:comment "This property links an organization to the city in which it is based."@en ;
