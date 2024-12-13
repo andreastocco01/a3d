@@ -7,8 +7,7 @@
 @base <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/> .
 
 <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology> rdf:type owl:Ontology ;
-                                                                   owl:imports <http://eulersharp.sourceforge.net/2003/03swap/countries> ,
-                                                                               <http://www.w3.org/2004/02/skos/core> ,
+                                                                   owl:imports <http://www.w3.org/2004/02/skos/core> ,
                                                                                <http://xmlns.com/foaf/0.1/> ;
                                                                    rdfs:comment """This ontology captures the relationships and data associated with three key domains: Nobel Prize winners, academic papers published in journals or conferences, and R&D (research and development) budgets allocated by the nations over the years.
 By integrating these domains, the ontology provides a framework to explore connections between outstanding discoveries, scholarly output, and the financial investments driving innovation."""@en ;
