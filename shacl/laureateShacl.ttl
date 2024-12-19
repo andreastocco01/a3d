@@ -1,0 +1,92 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix :      <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/>
+
+:CityShape
+	a sh:NodeShape;
+    	sh:targetClass :City;
+    	sh:property [
+        		sh:path :locatedIn;
+        		sh:minCount 1;
+		sh:maxCount 1;
+    	];
+.
+
+:LaureateTypeShape
+	a sh:NodeShape;
+	sh:targerClass :Laureate;
+	sh:xone (
+		[
+			sh:path rdf:type;
+			sh:Class foaf:Person;
+			sh:minCount 1;
+			sh:maxCount 1;
+		]
+		[
+			sh:path rdf:type;
+			sh:Class foaf:Organization;
+			sh:minCount 1;
+			sh:maxCount 1;
+		]
+	)
+.
+
+:LaureateShape
+	a sh:NodeShape;
+	sh:targetClass :Laureate;
+	sh:property [
+		sh:path :hasWon;
+		sh:Class :NobelPrize;
+		sh:minCount 1;
+	];
+.
+
+:PersonShape
+	a sh:NodeShape;
+	sh:targetClass foaf:Person;
+	sh:property [
+		sh:path foaf:name;
+		sh:dataType xsd:string;
+		sh:minCount 1;
+		sh:maxCount 1;
+	];
+	sh:property [
+		sh:path :birthDate;
+		sh:dataType xsd:date;
+		sh:maxCount 1;
+	];
+	sh:property [
+		sh:path :deathDate;
+		sh:dataType xsd:date;
+		sh:maxCount 1;
+	];
+	sh:property [
+		sh:path :worksFor;
+		sh:Class :Organization;
+	];
+	sh:property [
+		sh:path :bornIn;
+		sh:Class :City;
+		sh:maxCount 1;
+	];
+	sh:property [
+		sh:path :diedIn;
+		sh:Class :City;
+		sh:maxCount 1;
+	];
+.
+
+:OrganizationShape
+	a sh:NodeShape;
+	sh:targetClass foaf:Organization;
+	sh:property [
+		sh:path foaf:name;	
+		sh:dataType xsd:string;
+		sh:minCount 1;
+		sh:maxCount 1;
+	];
+.
