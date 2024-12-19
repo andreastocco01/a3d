@@ -14,6 +14,11 @@
         		sh:minCount 1;
 		sh:maxCount 1;
     	];
+	sh:property [
+		sh:path foaf:name;
+		sh:minCount 1;
+		sh:maxCount 1;
+	];
 .
 
 :LaureateTypeShape

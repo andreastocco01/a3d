@@ -289,6 +289,10 @@ xsd:gYear rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/City
 :City rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://xmlns.com/foaf/0.1/name> ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ;
       rdfs:comment "This class represents a city."@en ;
       rdfs:label "City"@en .
 
