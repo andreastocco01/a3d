@@ -40,7 +40,7 @@ xsd:gYear rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/bornIn
 :bornIn rdf:type owl:ObjectProperty ,
                  owl:FunctionalProperty ;
-        rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+        rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
         rdfs:range :City ;
         rdfs:comment "This property describes the city where a person was born."@en ;
         rdfs:label "bornIn"@en .
@@ -49,7 +49,7 @@ xsd:gYear rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/diedIn
 :diedIn rdf:type owl:ObjectProperty ,
                  owl:FunctionalProperty ;
-        rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+        rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
         rdfs:range :City ;
         rdfs:comment "This property describes the city where a person died."@en ;
         rdfs:label "diedIn"@en .
@@ -115,7 +115,7 @@ xsd:gYear rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/worksFor
 :worksFor rdf:type owl:ObjectProperty ;
-          rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+          rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
           rdfs:range <http://xmlns.com/foaf/0.1/Organization> ;
           rdfs:comment "This property describes the organization in which a laureate works."@en ;
           rdfs:label "worksFor"@en .
@@ -128,7 +128,7 @@ xsd:gYear rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/birthDate
 :birthDate rdf:type owl:DatatypeProperty ,
                     owl:FunctionalProperty ;
-           rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+           rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
            rdfs:range xsd:date ;
            rdfs:comment "The birth date of a person."@en ;
            rdfs:label "birthDate"@en .
@@ -137,7 +137,7 @@ xsd:gYear rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/deathDate
 :deathDate rdf:type owl:DatatypeProperty ,
                     owl:FunctionalProperty ;
-           rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+           rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
            rdfs:range xsd:date ;
            rdfs:comment "The death date of a person."@en ;
            rdfs:label "deathDate"@en .
@@ -330,8 +330,8 @@ xsd:gYear rdf:type rdfs:Datatype .
                                 owl:someValuesFrom :NobelPrize
                               ] ;
           rdfs:subClassOf [ rdf:type owl:Class ;
-                            owl:unionOf ( <http://www.w3.org/2000/10/swap/pim/contact#Person>
-                                          <http://xmlns.com/foaf/0.1/Organization>
+                            owl:unionOf ( <http://xmlns.com/foaf/0.1/Organization>
+                                          <http://xmlns.com/foaf/0.1/Person>
                                         )
                           ] ;
           rdfs:comment "This class represents a person or an organization that has won a Nobel Prize."@en ;
@@ -356,7 +356,7 @@ xsd:gYear rdf:type rdfs:Datatype .
                                   owl:onProperty :hasWritten ;
                                   owl:someValuesFrom :Paper
                                 ] ;
-            rdfs:subClassOf <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+            rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ;
             rdfs:comment "This class represents a person who wrote at least one paper."@en ;
             rdfs:label "Researcher"@en .
 
@@ -367,8 +367,8 @@ xsd:gYear rdf:type rdfs:Datatype .
        rdfs:label "Venue"@en .
 
 
-###  http://www.w3.org/2000/10/swap/pim/contact#Person
-<http://www.w3.org/2000/10/swap/pim/contact#Person> rdfs:subClassOf [ rdf:type owl:Restriction ;
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                                       owl:onProperty <http://xmlns.com/foaf/0.1/name> ;
                                                                       owl:cardinality "1"^^xsd:nonNegativeInteger
                                                                     ] .
@@ -709,7 +709,7 @@ xsd:gYear rdf:type rdfs:Datatype .
                 :NobelPrize
                 :Paper
                 :Venue
-                <http://www.w3.org/2000/10/swap/pim/contact#Person>
+                <http://xmlns.com/foaf/0.1/Person>
                 <http://xmlns.com/foaf/0.1/Organization>
               )
 ] .
