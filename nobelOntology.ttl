@@ -363,6 +363,20 @@ xsd:gYear rdf:type rdfs:Datatype .
        rdfs:label "Venue"@en .
 
 
+###  http://www.w3.org/2000/10/swap/pim/contact#Person
+<http://www.w3.org/2000/10/swap/pim/contact#Person> rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://xmlns.com/foaf/0.1/name> ;
+                                                                      owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                                    ] .
+
+
+###  http://xmlns.com/foaf/0.1/Organization
+<http://xmlns.com/foaf/0.1/Organization> rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <http://xmlns.com/foaf/0.1/name> ;
+                                                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                         ] .
+
+
 #################################################################
 #    Individuals
 #################################################################
