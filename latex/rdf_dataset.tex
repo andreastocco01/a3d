@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{multicol}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+ \usepackage{graphicx}
+ \usepackage{titling}
+
+ \title{Group A3D: RDF Dataset}
+\author{Group A3D}
+\date{20th December 2024}
+
+ \usepackage{fancyhdr}
+\fancypagestyle{plain}{%  the preset of fancyhdr
+    \fancyhf{} % clear all header and footer fields
+    % \fancyfoot[R]{\includegraphics[width=2cm]{KULEUVEN_GENT_RGB_LOGO.png}}
+    \fancyhead[]{\thedate}
+    \fancyhead[L]{RDF Dataset}
+    \fancyhead[R]{\theauthor}
+}
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+\usepackage{lipsum}
+\usepackage{cmbright}
+
+\begin{document}
+
+\maketitle
+
+\noindent\begin{tabular}{@{}ll}
+	\textbf{Group members:}
+  & \href{mailto:andrea.bruttomesso.1@studenti.unipd.it}{Andrea Bruttomesso} 2120933\\
+	& \href{mailto:alessandro.corro.1@studenti.unipd.it}{Alessandro Corr\`o} 2125034\\
+	& \href{mailto:davide.seghetto@studenti.unipd.it}{Davide Seghetto} 2122548\\
+	& \href{mailto:andrea.stocco.8@studenti.unipd.it}{Andrea Stocco} 2108885\\
+\end{tabular}
+\\\\\\
+\noindent\begin{tabular}{@{}ll}
+	\textbf{Link to the GitHub repository:} \href{https://github.com/andreastocco01/a3d}{https://github.com/andreastocco01/a3d}
+\end{tabular}
+
+\section*{Mapping of the open data in RDF}
+
+\section*{Main statistics}
+\end{document}
