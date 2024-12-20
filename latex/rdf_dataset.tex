@@ -76,7 +76,7 @@ datasets, which contain information regarding Nobel Prize winners, scientific pa
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{C:/Users/dsegh/Documents/Graph databases/a3d/NobelOntologyTransparent.png}
+    \includegraphics[width=\textwidth]{NobelOntology.png}
     \caption{nobelOntology}
     \label{fig:nobelOntology}
 \end{figure}
@@ -89,11 +89,11 @@ the RDF dataset, such as a scientific journal, we performed a thorough check to 
 To facilitate this, we defined a series of functions, such as \textit{handle\_city} and \textit{handle\_org}.
 
 \noindent In addition to addressing duplicates, we also encountered the challenge of discrepancies in naming conventions between the data in our open
-datasets and the EulerSharp ontology. In particular, some country names in our datasets differed from those used in the EulerSharp ontology (e.g., "United
-States" vs "United States of America"), so we had to manually handle these specific cases.
+datasets and the EulerSharp ontology. In particular, some country names in our datasets differed from those used in the EulerSharp ontology, e.g. "United
+States" and "United States of America", so we had to manually handle these specific cases.
 
-\noindent Moreover, we wrote a script (\textit{topic\_extraction.py}) to extract the most significant words from the texts defining the abstract of a
-scientific paper and the motivation for the award of a Nobel Prize. The script was developed to generate shorter, more concise values for the properties
+\noindent In addition, we wrote a script (\textit{topic\_extraction.py}) to extract the most significant words from the texts that define the abstract of a
+scientific paper and the motivation for the award of a Nobel Prize. The script was developed to generate shorter, more concise values for properties
 \textit{motivationAbstract} and \textit{motivationTopics}. For instance, long descriptions such as "in recognition of the extraordinary services he has rendered by the
 discovery of the laws of chemical dynamics and osmotic pressure in solutions" are transformed into more focused terms like "chemical dynamics osmotic
 pressure solutions." This approach enhances the dataset's efficiency by reducing the length of textual values while preserving the key concepts relevant
@@ -105,5 +105,42 @@ to the Nobel Prize motivation and the research topics.
 %(e.g. the URI for Albert Einstein is \url{http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/AlbertEinstein}), while for the URI of the Nobels
 %we used the ontology base URI and the category of the prize followed by the year of award (e.g. the URI for the Nobel Prize in Chemistry of 1956
 %is \url{http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Chemistry1956}).
-\section*{Main statistics}
+\section*{Main Statistics}
+
+The following statistics summarize the key features of the RDF dataset created from the ontology.
+
+\begin{itemize}
+    \item \textbf{Entity and Triple Counts:}
+    \begin{itemize}
+        \item Total number of RDF triples: 207,258
+        \item Number of unique entities:
+        \begin{itemize}
+            \item Person: 6,677
+            \item Researchers: 4,919
+            \item Laureates: 1,785
+            \item Organizations: 355
+            \item Papers: 5,002
+            \item Journals: 18,616
+            \item Conferences: 306
+            \item Cities: 881
+            \item Countries: 246
+            \item Nobel Prizes: 581
+            \item Funding: 2,747
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Laureates and Nobel Prizes:}
+    \begin{itemize}
+        \item Researchers that won a Nobel Prize: 27
+        \item Total Nobel Prizes awarded: 581
+        \item Prize categories: 6 (Physics, Chemistry, Medicine, Literature, Peace, Economics)
+        \item Gender distribution of laureates:
+        \begin{itemize}
+            \item Male: 1664 (94.6\%)
+            \item Female: 94 (5.4\%)
+        \end{itemize}
+    \end{itemize}
+    
+\end{itemize}
+
 \end{document}
