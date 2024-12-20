@@ -6,20 +6,27 @@
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 
-:FundingShape
+:JournalShape
 	a sh:NodeShape;
-	sh:targetClass :Funding;
+	sh:targetClass :Journal;
 	sh:property [
-		sh:path :hasAmount;
-		sh:dataType xsd:decimal;
+		sh:path :hasCategory;
+		sh:Class :JournalCategory;
 		sh:minCount 1;
-		sh:maxCount 1;
-		sh:minInclusive 0.0 ;
 	];
-    sh:property [
-		sh:path :hasYear;
-		sh:dataType xsd:gYear;
-		sh:minCount 1;
+    	sh:property [
+		sh:path :hasOpenAccess;
+		sh:dataType xsd:boolean;
+		sh:maxCount 1;
+	];
+	sh:property [
+		sh:path :hasSJR;
+		sh:dataType xsd:decimal;
+		sh:maxCount 1;
+	];
+    	sh:property [
+		sh:path :hasHIndex;
+		sh:dataType xsd:integer;
 		sh:maxCount 1;
 	];
 .
