@@ -50,10 +50,10 @@
 
 \noindent\begin{tabular}{@{}ll}
 	\textbf{Group members:}
-  & \href{mailto:andrea.bruttomesso.1@studenti.unipd.it}{Andrea Bruttomesso} 2120933\\
-	& \href{mailto:alessandro.corro.1@studenti.unipd.it}{Alessandro Corr\`o} 2125034\\
-	& \href{mailto:davide.seghetto@studenti.unipd.it}{Davide Seghetto} 2122548\\
-	& \href{mailto:andrea.stocco.8@studenti.unipd.it}{Andrea Stocco} 2108885\\
+	 & \href{mailto:andrea.bruttomesso.1@studenti.unipd.it}{Andrea Bruttomesso} 2120933 \\
+	 & \href{mailto:alessandro.corro.1@studenti.unipd.it}{Alessandro Corr\`o} 2125034   \\
+	 & \href{mailto:davide.seghetto@studenti.unipd.it}{Davide Seghetto} 2122548         \\
+	 & \href{mailto:andrea.stocco.8@studenti.unipd.it}{Andrea Stocco} 2108885           \\
 \end{tabular}
 \\\\\\
 \noindent\begin{tabular}{@{}ll}
@@ -75,10 +75,10 @@ datasets, which contain information regarding Nobel Prize winners, scientific pa
 \noindent We mapped the data into RDF format in the following way.
 
 \begin{figure}[ht]
-    \centering
-    \includegraphics[width=\textwidth]{nobelOntologyTransparent.png}
-    \caption{nobelOntology}
-    \label{fig:nobelOntology}
+	\centering
+	\includegraphics[width=\textwidth]{../nobelOntologyTransparent.png}
+	\caption{Nobel Ontology}
+	\label{fig:nobelOntology}
 \end{figure}
 
 \newpage
@@ -101,7 +101,7 @@ to the Nobel Prize motivation and the research topics.
 
 %\subsection*{Nobel Prize Dataset}
 %We processed the Nobel Prize data to create RDF triples that represent laureates, the Nobel Prize they won, and the related metadata
-%(e.g., year, category, motivation etc.). In particular, for the URI creation of the Nobel laureates we used the ontology base URI and their name 
+%(e.g., year, category, motivation etc.). In particular, for the URI creation of the Nobel laureates we used the ontology base URI and their name
 %(e.g. the URI for Albert Einstein is \url{http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/AlbertEinstein}), while for the URI of the Nobels
 %we used the ontology base URI and the category of the prize followed by the year of award (e.g. the URI for the Nobel Prize in Chemistry of 1956
 %is \url{http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Chemistry1956}).
@@ -110,59 +110,36 @@ to the Nobel Prize motivation and the research topics.
 The following statistics summarize the key features of the RDF dataset created from the ontology.
 
 \begin{itemize}
-    \item \textbf{Entity and Triple Counts:}
-    \begin{itemize}
-        \item Total number of RDF triples: 207,258
-        \item Number of unique entities:
-        \begin{itemize}
-            \item Person: 6,677
-            \item Researchers: 4,919
-            \item Laureates: 1,785
-            \item Organizations: 355
-            \item Papers: 5,002
-            \item Journals: 18,616
-            \item Conferences: 306
-            \item Cities: 881
-            \item Countries: 246
-            \item Nobel Prizes: 581
-            \item Funding: 2,747
-        \end{itemize}
-    \end{itemize}
-    
-    \item \textbf{Laureates and Nobel Prizes:}
+	\item \textbf{Entity and Triple Counts:}
+	      \begin{itemize}
+		      \item Total number of RDF triples: 207,258
+		      \item Number of unique entities:
+		            \begin{itemize}
+			            \item Person: 6,677
+			            \item Researchers: 4,919
+			            \item Laureates: 1,785
+			            \item Organizations: 355
+			            \item Papers: 5,002
+			            \item Journals: 18,616
+			            \item Conferences: 306
+			            \item Cities: 881
+			            \item Countries: 246
+			            \item Nobel Prizes: 581
+			            \item Funding: 2,747
+		            \end{itemize}
+	      \end{itemize}
 
-    The dataset contains information about Nobel Prizes awarded from 1901 to 2016.
-    \begin{itemize}
-        \item Total Nobel Prizes awarded: 581
-        \item Prize categories: Physics, Chemistry, Medicine, Literature, Peace, Economics
-        \item Gender distribution of laureates:
-        \begin{itemize}
-            \item Male: 1664 (94.6\%)
-            \item Female: 94 (5.4\%)
-        \end{itemize}
-        \item Researchers that won a Nobel Prize: 1
-        \item Organizations that won a Nobel Prize: 29
-        \item Most awarded countries: 
-
-        \vspace{0.5cm}
-        \hspace{2cm}
-        \begin{tabular}{|c|l|c|}
-          \hline
-          \textbf{Position} & \textbf{Country} & \textbf{Total prizes} \\
-          \hline
-          1 & United States of America & 514 \\
-          \hline
-          2 & United Kingdom & 198 \\
-          \hline
-          3 & Germany & 160 \\
-          \hline
-          4 & France & 146 \\
-          \hline
-          5 & Italy & 129 \\
-          \hline
-        \end{tabular}
-    \end{itemize}
-    
+	\item \textbf{Laureates and Nobel Prizes:}
+	      \begin{itemize}
+		      \item Researchers that won a Nobel Prize: 27
+		      \item Total Nobel Prizes awarded: 581
+		      \item Prize categories: 6 (Physics, Chemistry, Medicine, Literature, Peace, Economics)
+		      \item Gender distribution of laureates:
+		            \begin{itemize}
+			            \item Male: 1664 (94.6\%)
+			            \item Female: 94 (5.4\%)
+		            \end{itemize}
+	      \end{itemize}
 \end{itemize}
 
 \end{document}
