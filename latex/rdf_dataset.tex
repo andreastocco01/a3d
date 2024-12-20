@@ -82,6 +82,12 @@ maintain data integrity. \\
 Additionally, we encountered discrepancies with the EulerSharp ontology.
 For instance, some country names in our datasets differed from those used in the EulerSharp ontology, such as "United
 States" and "United States of America". These cases were manually addressed to ensure consistency. \\
+Another critical aspect was filtering the information provided by various datasets. Initially, the Paper dataset contained 
+over one million rows, making it necessary to reduce its size to avoid an excessively large and imbalanced 
+database, particularly favoring the Researchers in terms of class population. To address this, we first selected 
+only papers authored by Laureates or published in Journals also included in the dedicated dataset. 
+Subsequently, we further narrowed it down to the first 50,000 rows of the already filtered dataset 
+for the reasons outlined above.\\
 Furthermore, we wrote a small script (\textit{topic\_extraction.py}) that uses \textit{gensim} to extract the most significant topics from lengthy textual properties.
 For example, long descriptions such as "in recognition of the extraordinary services he has rendered by the
 discovery of the laws of chemical dynamics and osmotic pressure in solutions" were reduced into more focused terms like "chemical dynamics osmotic
@@ -94,19 +100,19 @@ The following statistics summarize the key features of the RDF dataset.
 \begin{itemize}
 	\item	\textbf{Triples Count:}
 				\begin{itemize}
-				\item Total number of RDF triples: % TODO
+				\item Total number of RDF triples: 3298916
 				\end{itemize}
 	\item	\textbf{Entities:}
 				\begin{itemize}
 		      	\item Number of unique entities:
 		            \begin{itemize}
-			            \item Person: % TODO
-			            \item Researchers: % TODO
+			            \item Person: 110981
+			            \item Researchers: 110160
 			            \item Laureates: 904 (23 Organizations, 881 Persons)
 			            \item Organizations: 339
-			            \item Papers: % TODO
-			            \item Journals: % TODO
-			            \item Conferences: % TODO
+			            \item Papers: 53492
+			            \item Journals: 18466
+			            \item Conferences: 309
 			            \item Cities: 874
 			            \item Countries: 246
 			            \item Nobel Prizes: 579
@@ -116,10 +122,17 @@ The following statistics summarize the key features of the RDF dataset.
 
 	\item \textbf{Laureates and Nobel Prizes:}
 	      \begin{itemize}
-		      \item Researchers that won a Nobel Prize: % TODO
+		      \item Researchers that won a Nobel Prize: 60
 		      \item Total Nobel Prizes awarded: 969
 		      \item Prize categories: 6 (Physics, Chemistry, Medicine, Literature, Peace, Economics)
 	      \end{itemize}
+	\item \textbf{Most Funding Countries: }
+		\begin{enumerate}
+			\item United States: \$4128 bn
+			\item Japan: \$1189 bn
+			\item Germany: \$1056 bn
+		\end{enumerate}
+	
 \end{itemize}
 
 \end{document}
