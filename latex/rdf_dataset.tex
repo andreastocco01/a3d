@@ -60,19 +60,11 @@
 	\textbf{Link to the GitHub repository:} \href{https://github.com/andreastocco01/a3d}{https://github.com/andreastocco01/a3d}
 \end{tabular}
 
-\section*{Mapping of the open data in RDF}
-We modeled an ontology that captures the relationships among three key domains: Nobel Prize winners, academic papers published in journals or conferences,
-and R\&D (research and development) budgets allocated by nations over the years. By integrating these domains, the ontology provides a comprehensive
-framework to explore connections between outstanding scientific discoveries, scholarly output, and the financial investments that drive global innovation.
-This integrated approach enables a deeper understanding of the dynamics between scientific achievement and the resources that fuel it, highlighting how
-funding decisions may influence groundbreaking research and its impact on society. Through this process, we aim to create a valuable resource for
-researchers and scholars, offering a clearer view of the intersection between scientific achievements, academic output, and the financial investments
-that drive progress in various fields of knowledge.
-
-\noindent In order to model our ontology, we utilized four distinct open
-datasets, which contain information regarding Nobel Prize winners, scientific papers, scientific journals, and investments in R\&D by countries.
-
-\noindent We mapped the data into RDF format in the following way.
+\section*{Ontology domain}
+The domain of interest for our ontology focuses on scientific research. In particular, we aim to analyze potential correlations between Nobel Prize winners,
+their publications, and the research funding allocated by nations. \\
+Figure \ref{fig:nobelOntology} shows a schema of our ontology comprehensive of all the classes
+and the properties modeled. For data integration we also imported well-known ontologies available on the web, such as \textit{SKOS}, \textit{FOAF} and \textit{EulerSharp countries}.
 
 \begin{figure}[ht]
 	\centering
@@ -81,64 +73,49 @@ datasets, which contain information regarding Nobel Prize winners, scientific pa
 	\label{fig:nobelOntology}
 \end{figure}
 
-\newpage
+\section*{Datasets and Population}
+To populate our ontology, we used four distinct open datasets containing information about Nobel Prizes, scientific papers, publication venues and
+national funding. The use of multiple datasets required us to address various inconsistencies. \\
+Specifically, to resolve the discrepancies in names across the datasets,
+we used the Python library \textit{rapidfuzz} for fuzzy matching the laureates' names with those of paper authors. We also ensured the absence of duplicates to
+maintain data integrity. \\
+Additionally, we encountered discrepancies with the EulerSharp ontology.
+For instance, some country names in our datasets differed from those used in the EulerSharp ontology, such as "United
+States" and "United States of America". These cases were manually addressed to ensure consistency. \\
+Furthermore, we wrote a small script (\textit{topic\_extraction.py}) that uses \textit{gensim} to extract the most significant topics from lengthy textual properties.
+For example, long descriptions such as "in recognition of the extraordinary services he has rendered by the
+discovery of the laws of chemical dynamics and osmotic pressure in solutions" were reduced into more focused terms like "chemical dynamics osmotic
+pressure solutions." This approach enhances the dataset's efficiency and significance while preserving its key concepts.
 
-\noindent We had to address the issue of duplicates to ensure that there were no resources in the RDF dataset with the same URI representing the same
-entity. This is a critical aspect of maintaining data integrity and avoiding inconsistencies in the ontology. Therefore, before adding a new resource to
-the RDF dataset, such as a scientific journal, we performed a thorough check to confirm that the resource was not already present in the graph.
-To facilitate this, we defined a series of functions, such as \textit{handle\_city} and \textit{handle\_org}.
-
-\noindent In addition to addressing duplicates, we also encountered the challenge of discrepancies in naming conventions between the data in our open
-datasets and the EulerSharp ontology. In particular, some country names in our datasets differed from those used in the EulerSharp ontology, e.g. "United
-States" and "United States of America", so we had to manually handle these specific cases.
-
-\noindent In addition, we wrote a script (\textit{topic\_extraction.py}) to extract the most significant words from the texts that define the abstract of a
-scientific paper and the motivation for the award of a Nobel Prize. The script was developed to generate shorter, more concise values for properties
-\textit{motivationAbstract} and \textit{motivationTopics}. For instance, long descriptions such as "in recognition of the extraordinary services he has rendered by the
-discovery of the laws of chemical dynamics and osmotic pressure in solutions" are transformed into more focused terms like "chemical dynamics osmotic
-pressure solutions." This approach enhances the dataset's efficiency by reducing the length of textual values while preserving the key concepts relevant
-to the Nobel Prize motivation and the research topics.
-
-%\subsection*{Nobel Prize Dataset}
-%We processed the Nobel Prize data to create RDF triples that represent laureates, the Nobel Prize they won, and the related metadata
-%(e.g., year, category, motivation etc.). In particular, for the URI creation of the Nobel laureates we used the ontology base URI and their name
-%(e.g. the URI for Albert Einstein is \url{http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/AlbertEinstein}), while for the URI of the Nobels
-%we used the ontology base URI and the category of the prize followed by the year of award (e.g. the URI for the Nobel Prize in Chemistry of 1956
-%is \url{http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/Chemistry1956}).
 \section*{Main Statistics}
 
-The following statistics summarize the key features of the RDF dataset created from the ontology.
+The following statistics summarize the key features of the RDF dataset.
 
 \begin{itemize}
 	\item \textbf{Entity and Triple Counts:}
 	      \begin{itemize}
-		      \item Total number of RDF triples: 207,258
+		      \item Total number of RDF triples: % TODO
 		      \item Number of unique entities:
 		            \begin{itemize}
-			            \item Person: 6,677
-			            \item Researchers: 4,919
-			            \item Laureates: 1,785
-			            \item Organizations: 355
-			            \item Papers: 5,002
-			            \item Journals: 18,616
-			            \item Conferences: 306
-			            \item Cities: 881
+			            \item Person: % TODO
+			            \item Researchers: % TODO
+			            \item Laureates: 904 (23 Organizations, 881 Persons)
+			            \item Organizations: 339
+			            \item Papers: % TODO
+			            \item Journals: % TODO
+			            \item Conferences: % TODO
+			            \item Cities: 874
 			            \item Countries: 246
-			            \item Nobel Prizes: 581
-			            \item Funding: 2,747
+			            \item Nobel Prizes: 579
+			            \item Funding: 1373
 		            \end{itemize}
 	      \end{itemize}
 
 	\item \textbf{Laureates and Nobel Prizes:}
 	      \begin{itemize}
-		      \item Researchers that won a Nobel Prize: 27
-		      \item Total Nobel Prizes awarded: 581
+		      \item Researchers that won a Nobel Prize: % TODO
+		      \item Total Nobel Prizes awarded: 969
 		      \item Prize categories: 6 (Physics, Chemistry, Medicine, Literature, Peace, Economics)
-		      \item Gender distribution of laureates:
-		            \begin{itemize}
-			            \item Male: 1664 (94.6\%)
-			            \item Female: 94 (5.4\%)
-		            \end{itemize}
 	      \end{itemize}
 \end{itemize}
 
