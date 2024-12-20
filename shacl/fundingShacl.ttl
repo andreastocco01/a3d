@@ -14,6 +14,7 @@
 		sh:dataType xsd:decimal;
 		sh:minCount 1;
 		sh:maxCount 1;
+		sh:minInclusive 0.0 ;
 	];
     sh:property [
 		sh:path :hasYear;
