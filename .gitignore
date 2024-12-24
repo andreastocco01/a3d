@@ -18,9 +18,14 @@ __pycache__
 /journal-ranking-dataset
 /nobel-laureates
 /research-papers-dataset
+filtered_papers.csv
 
 # KAGGLE CREDENTIALS
 kaggle.json
 
-#VSCODE
+# VSCODE
 .vscode/
+
+# ZIP
+filteredPapers.zip
+nobelOntologyGraph.zip
