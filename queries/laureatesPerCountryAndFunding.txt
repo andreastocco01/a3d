@@ -1,0 +1,18 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+# For every year and country, the query extracts the number of laureate of that country and, if available, the funding for R&D --> how fundings in R&D affect the possibility to win?
+select ?year ?state (count(?laureate) as ?howmany) ?amount where {
+    ?laureate :hasWon ?nobel .
+    ?nobel :hasYear ?year .
+    ?laureate :basedIn | :bornIn ?city .
+    ?city :locatedIn ?country .
+    ?country foaf:name ?state .
+    optional {
+        ?country :hasFunded ?funding .
+        ?funding a :Funding ;
+                 :hasYear ?year ;
+                 :hasAmount ?amount .
+    }
+} group by ?year ?state ?amount
+order by desc (?howmany)
