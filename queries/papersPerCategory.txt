@@ -1,16 +1,26 @@
-PREFIX spif: <http://spinrdf.org/spif#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-
-# for each journal category, how many papers do we have
-
-select ?category (count(?paper) as ?numPapers) where {
-    ?paper :hasJournalCategory ?category.
-    # ?category skos:boraderTransitive ?sub.
-}
-group by ?category
-order by desc(?numPapers)
+# Extracts the number of papers we have for each category over the years --> the most studied research areas over the years
+select ?year1 ?category1 (sum(?howmany) as ?total) where {    
+    # Inner query to extract the number of papers published in journals that have at least one category that is a top concept of our skos scheme
+    {
+		select ?year1 ?category1 (count(distinct ?paper) as ?howmany1) where {
+        	?journal :hasJournalCategory ?cat .
+            :journalCategoryScheme skos:hasTopConcept ?category1 .
+            ?paper :publishedIn ?journal ;
+            	:hasYear ?year1 .
+        } group by ?year1 ?category1
+    }
+    # Inner query to extract the number of papers published in journals that have at least one category that is a subcategory of a top concept category
+    {
+        select ?year2 ?category2 (count(distinct ?paper) as ?howmany2) where {
+            ?journal :hasJournalCategory ?cat .
+            ?cat skos:broaderTransitive ?category2 .
+            ?paper :publishedIn ?journal ;
+            	:hasYear ?year2 .
+        } group by ?year2 ?category2
+    }
+    filter(?category1 = ?category2 && ?year1 = ?year2)
+    bind((?howmany1 + ?howmany2) as ?howmany)
+} group by ?year1 ?category1
+order by desc (?total)
