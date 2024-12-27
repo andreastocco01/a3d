@@ -1,0 +1,9 @@
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+# How many laureates were active in the year of their nobel? Note that the paper they wrote the year in which they won the nobel it's not necessary the reason why they won.
+select ?laureate ?year where {    
+    ?laureate :hasWon ?nobel ;
+    	:hasWritten ?paper .
+    ?nobel :hasYear ?year .
+    ?paper :hasYear ?year .
+} 
