@@ -1,11 +1,11 @@
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 # Extracts the number of papers we have for each category over the years --> the most studied research areas over the years
-select ?year1 ?category1 (sum(?howmany) as ?total) where {    
+select ?year1 ?category1 ?howmany where {
     # Inner query to extract the number of papers published in journals that have at least one category that is a top concept of our skos scheme
     {
 		select ?year1 ?category1 (count(distinct ?paper) as ?howmany1) where {
-        	?journal :hasJournalCategory ?cat .
+        	?journal :hasJournalCategory ?category1 .
             :journalCategoryScheme skos:hasTopConcept ?category1 .
             ?paper :publishedIn ?journal ;
             	:hasYear ?year1 .
@@ -22,5 +22,4 @@ select ?year1 ?category1 (sum(?howmany) as ?total) where {
     }
     filter(?category1 = ?category2 && ?year1 = ?year2)
     bind((?howmany1 + ?howmany2) as ?howmany)
-} group by ?year1 ?category1
-order by desc (?total)
+} order by asc (?howmany)
