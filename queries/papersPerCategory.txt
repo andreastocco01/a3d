@@ -22,4 +22,4 @@ select ?year1 ?category1 ?howmany where {
     }
     filter(?category1 = ?category2 && ?year1 = ?year2)
     bind((?howmany1 + ?howmany2) as ?howmany)
-} order by asc (?howmany)
+} order by desc (?howmany)
