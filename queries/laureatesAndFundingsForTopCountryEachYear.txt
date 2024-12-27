@@ -1,0 +1,31 @@
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+# Get the number of laureates and fundings for the most awarded country
+
+SELECT ?year (COUNT(DISTINCT ?laureate) AS ?numLaureates) (SUM(?fundingAmount) AS ?totalFunding) WHERE {
+  ?laureate rdf:type :Laureate ;
+  			   :hasWon ?nobelPrize ;
+      		   :bornIn ?city .
+  ?nobelPrize :hasYear ?year .
+  ?city :locatedIn ?topCountry .
+
+  OPTIONAL {
+    ?topCountry :hasFunded ?funding .
+    ?funding :hasYear ?year ;
+     		 :hasAmount ?fundingAmount .
+  } 
+  { # Select country with most laureates
+    SELECT (?country AS ?topCountry) WHERE {
+      ?laureate rdf:type :Laureate .
+       			   :bornIn ?city .
+      ?city :locatedIn ?country .
+    }
+    GROUP BY ?country
+    ORDER BY DESC(COUNT(DISTINCT ?laureate))
+    LIMIT 1
+  }
+}
+GROUP BY ?year
+HAVING(SUM(?fundingAmount) > 0)
+ORDER BY ?year
