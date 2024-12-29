@@ -29,3 +29,28 @@ SELECT ?year, ?topCountry (COUNT(DISTINCT ?laureate) AS ?numLaureates) (SUM(?fun
 GROUP BY ?year, ?topCountry
 HAVING(SUM(?fundingAmount) > 0)
 ORDER BY ?year, ?topCountry
+
+###########################################################################################################
+
+With this query, we identified the top three countries with the highest number of Nobel laureates born there,
+along with the annual amount of funding allocated to research and development (R&D) by these nations.
+To ensure data consistency, we focused exclusively on the years from 2000 to 2016.
+
+[plots/funding_comparison_by_country.png] 
+[plots/laureates_comparison_by_country.png]
+
+The graphs reveal a strong correlation between R&D funding and the number of Nobel laureates. In particular,
+the United States dominates both metrics, demonstrating how substantial investments in research directly
+contribute to significant achievements in this field, resulting in a higher number of laureates annually.
+
+The situation in Great Britain, highlighted in the following plot, further supports this observation:
+
+[plots/gb_funding_trend_bar.png]
+
+
+It’s clear that the trends in funding and the number of laureates mirror each other closely. From 2001 to 2003,
+we observe the same pattern in both metrics. Subsequently, a steady and low level of R&D funding resulted in a
+consistent number of British Nobel laureates until 2016, when a sharp increase in Nobel prizes coincided with
+a significant rise in R&D investments.
+
+###########################################################################################################
