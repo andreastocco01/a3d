@@ -3,7 +3,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 # Get the number of laureates and fundings for the most awarded country
 
-SELECT ?year (COUNT(DISTINCT ?laureate) AS ?numLaureates) (SUM(?fundingAmount) AS ?totalFunding) WHERE {
+SELECT ?year, ?topCountry (COUNT(DISTINCT ?laureate) AS ?numLaureates) (SUM(?fundingAmount) AS ?totalFunding) WHERE {
   ?laureate rdf:type :Laureate ;
   			   :hasWon ?nobelPrize ;
       		   :bornIn ?city .
@@ -23,9 +23,9 @@ SELECT ?year (COUNT(DISTINCT ?laureate) AS ?numLaureates) (SUM(?fundingAmount) A
     }
     GROUP BY ?country
     ORDER BY DESC(COUNT(DISTINCT ?laureate))
-    LIMIT 1
+    LIMIT 3
   }
 }
-GROUP BY ?year
+GROUP BY ?year, ?topCountry
 HAVING(SUM(?fundingAmount) > 0)
-ORDER BY ?year
+ORDER BY ?year, ?topCountry
