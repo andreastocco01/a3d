@@ -6,9 +6,9 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# how many nobels are shared?
+# how many nobels are shared? how many laureates are sharing a nobel?
 
-select (count(?nobel) as ?nobelShared) where {
+select (count(?nobel) as ?numSharedNobels) (sum(?share) as ?numLaureatesSharingNobels)where {
         ?nobel :hasPrizeShare ?share.
         filter (?share > 1)
 }
