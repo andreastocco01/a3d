@@ -3,7 +3,7 @@ Repository for GraphDB project
 ![Nobel Ontology](nobelOntology.png)
 
 # Top 8 queries
-- papersNobelTopicsYear
+- papersNobelTopicsYear (plot useless, we'll put sample tables from graphdb)
 - papersPerTopic
 - sharedNobels
 - laureatesCollaborations
