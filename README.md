@@ -5,7 +5,7 @@ Repository for GraphDB project
 # Top 8 queries
 - papersNobelTopicsYear (plot useless, we'll put sample tables from graphdb)
 - papersPerTopic
-- sharedNobels
+- sharedNobels (no plots needed, single result)
 - laureatesCollaborations
 - laureatesPerCountryAndFunding
 - moreThanOneNobel
