@@ -6,10 +6,23 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# papers per venue
+# papers per venue during the years
 
-select ?venue (count(?paper) as ?numPapers) where {
-    ?paper :publishedIn ?venue
+select ?venue ?year (count(?paper) as ?numPapers) where {
+
+    # get the most important venues (the ones with at least 800 papers published)
+    {
+        select ?venue (count(?paper) as ?totPapers) where {
+            ?paper :publishedIn ?venue.
+        }
+        group by ?venue
+        having (?totPapers > 800)
+        order by desc (?totPapers)
+    }
+
+    # get the number of paper published in the most important venues for each year
+    ?paper :publishedIn ?venue;
+        :hasYear ?year.
 }
-group by ?venue
-order by desc(?numPapers)
+group by ?venue ?year
+order by asc(?year)

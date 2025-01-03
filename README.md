@@ -10,4 +10,4 @@ Repository for GraphDB project
 - laureatesPerCountryAndFunding
 - moreThanOneNobel
 - papersPerVenue
-- papersPerCategory
+- papersPerCategory (added by Davide)
