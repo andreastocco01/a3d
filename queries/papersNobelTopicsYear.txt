@@ -27,3 +27,24 @@ select ?singleAbTopic ?nobel (count(?paper) as ?numPapers) where {
 }
 group by ?singleAbTopic ?nobel
 order by desc(?numPapers)
+
+####################################################################################
+This query shows the topics present in both Nobel motivations and paper abstracts.
+For a given year, it returns the number of paper in which these topics appear.
+This query can be used to find correlations between Nobel Prize topics and research
+papers.
+
+For instance, running this query for the year 2004 shows that the topic "protein"
+appeared in 28 papers. Hence, we could say that in 2004 chemistry was the main
+research field (considering the limited number of papers available) and that the
+main topic of the Nobel Prize awarded in that year was studied by several
+researcher.
+
+Unfortunately, this query is not always useful. In some cases, the
+main topics may include words like "method" and "analysis", which are not
+informative enough to determine how extensively a specific topic was studied
+in a given year.
+
+Due to the distribution of research papers in our dataset across different years,
+this query provides more meaningful results for years after 2000.
+####################################################################################
