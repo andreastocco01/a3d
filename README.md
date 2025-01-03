@@ -9,5 +9,5 @@ Repository for GraphDB project
 - laureatesCollaborations
 - laureatesPerCountryAndFunding
 - moreThanOneNobel
-- papersPerVenue
+- papersPerVenue (added by Gino)
 - papersPerCategory (added by Davide)

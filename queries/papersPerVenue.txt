@@ -26,3 +26,17 @@ select ?venue ?year (count(?paper) as ?numPapers) where {
 }
 group by ?venue ?year
 order by asc(?year)
+
+####################################################################################
+This plot shows the number of papers published over the years by major
+venues (those with at least 800 papers published, according to our dataset).
+
+In recent years, Bioinformatics could be considered one of the most influential
+venue due to its consistently higher number of papers published compared to others.
+IEEE venues, are the most prominent in the fields of information and tecnology.
+
+For instance, on 2009, the research community focused more on the field of
+communication.
+That same year, the Physics Nobel Prize was awarded for "groundbreaking achievements
+concerning the transmission of light in fibers for optical communication".
+####################################################################################
