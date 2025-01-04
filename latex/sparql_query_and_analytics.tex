@@ -50,7 +50,7 @@
     stringstyle=\color{red}\ttfamily,
     commentstyle=\color{gray}\itshape,
     sensitive=true,
-    morecomment=[l][\color{gray}]{#}
+    morecomment=[l][\color{gray}]
 }
 \lstset{
     language=SPARQL,
@@ -253,7 +253,7 @@ venue due to its consistently higher number of papers published compared to othe
 IEEE venues, are the most prominent in the fields of information and tecnology.
 
 For instance, on 2009, the research community focused more on the field of
-communication.
+communications.
 That same year, the Physics Nobel Prize was awarded for "groundbreaking achievements
 concerning the transmission of light in fibers for optical communication".
 
@@ -286,10 +286,14 @@ GROUP BY ?venue ?year
 ORDER BY ASC (?year)    
 \end{lstlisting}
 
-papers per venue during the years
-
 \subsection*{Query 8 - papersPerCategory}
-(da capire se fare il conteggio totale o per anno e se considerare anche le sottocategorie)
+The following query allows us to extract, for each year, the number of scientific articles published in each relevant category. The categories returned
+as results are the TopConcepts categories of our SKOS taxonomy, and they include in the count their various subcategories. For example, in the count
+of papers for the medicine category, articles belonging to subcategories like neuroscience are also included.
+
+\noindent To obtain this data, the query uses two distinct subqueries. The first subquery extracts the number of articles published for each main category
+(TopConcept), while the second identifies the number of articles associated with the subcategories of each main category. The sum of the results of
+the two subqueries, aggregated by year and category, provides the total number of articles published for each category and for each year.
 
 \begin{lstlisting}
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
@@ -321,5 +325,18 @@ SELECT ?year ?category (SUM(?howmany) AS ?totalPapers) WHERE {
 GROUP BY ?year ?category
 ORDER BY DESC (?totalPapers)    
 \end{lstlisting}
+
+\newpage
+
+\noindent This approach offers a comprehensive view of the distribution of published articles over time, allowing us to identify which research areas, related
+to Nobel categories, have attracted the most attention from scholars over the years.
+
+\noindent Below is a plot representing the trend of the number of papers published over the years, divided by their respective categories.
+In the recent years, the most studied field is medicine which got a big leap around 2002, while in the nineties the most studied one was economics, which
+reached its peak in 2008, probability due to the economic crisis of that time.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{../queries/plots/papersPerCategory.png}
+\end{figure}
 
 \end{document}
