@@ -4,6 +4,7 @@
 \usepackage{hyperref}
 \usepackage{multicol}
 \usepackage{graphicx}
+\usepackage{float}
 
 \geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm}
 \usepackage{graphicx}
@@ -156,27 +157,27 @@ Papers per topic
 This query shows the number of Nobel Prizes shared by multiple laureates
 and the number of laureates sharing Nobel Prizes.
 
-The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) have
+\noindent The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) have
 been shared by multiple laureates, and 632 laureates have shared different Nobel Prizes.
-On average, a Nobel Prize is shared by more than 2 laureates (2.6 laureates per prize).
+On average, a Nobel Prize is shared by more than two laureates (2.2 laureates per prize).
 
 \begin{lstlisting}
-PREFIX spif: <http://spinrdf.org/spif#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS ?numLaureatesSharingNobels) WHERE {
+SELECT ?share (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS                    ?numLaureatesSharingNobels) WHERE { %lasciare lo spazio dopo AS
     ?nobel :hasPrizeShare ?share.
-FILTER (?share > 1)
-}
+} GROUP BY ?share
 \end{lstlisting}
 
-how many nobels are shared? how many laureates are sharing a nobel?
-
+\noindent For each value in the x axis, representing the number of people sharing a certain Nobel Prize, the following chart displays two bars. 
+The first bar represents the total number of Nobel Prizes shared among the specified number of laureates.
+The second bar represents the total number of laureates who have shared these Nobel Prizes.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../queries/plots/prizeShare.png}
+    \caption{Graph showing the distribution of Nobel Prizes and laureates.}
+    \label{fig:prizeShare}
+\end{figure}
 
 \subsection*{Query 4 - laureatesCollaborations}
 
