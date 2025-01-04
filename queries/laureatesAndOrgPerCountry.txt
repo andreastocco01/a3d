@@ -1,7 +1,10 @@
 Per ciascun stato confronta il numero di laureate e quello di organizazzioni in cui lavora almeno un laureate.
 In questo modo si considera anche l'organizzazione in cui fa ricerca il laureate e non solo il suo luogo di nascita.
-In particolare, la Spagna ha 7 vincitori di nobel (numLaureates) ma solo uno ha fatto attività di ricerca in una 
-organization spagnola (numOrganizations = 1)
+Ad esempio, gli Stati Uniti hanno 257 vincitori di nobel (numLaureates) ma solo 113 hanno fatto attività di ricerca in una 
+organization americana (numOrganizations = 113)
+
+Un'altra idea potrebbe essere di fare una query e vedere per ogni stato quanti sono i vincitori nati in quello stato
+che hanno vinto un premio nobel facendo ricerca all'estero
 
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
