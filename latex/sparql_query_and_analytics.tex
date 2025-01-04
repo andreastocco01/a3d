@@ -1,0 +1,325 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{graphicx}
+
+\geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm}
+\usepackage{graphicx}
+\usepackage{titling}
+
+\title{Group A3D: SPARQL queries and Analytics}
+\author{Group A3D}
+\date{10th January 2025}
+
+ \usepackage{fancyhdr}
+\fancypagestyle{plain}{%  the preset of fancyhdr
+    \fancyhf{} % clear all header and footer fields
+    % \fancyfoot[R]{\includegraphics[width=2cm]{KULEUVEN_GENT_RGB_LOGO.png}}
+    \fancyhead[]{\thedate}
+    \fancyhead[L]{SPARQL queries and Analytics}
+    \fancyhead[R]{\theauthor}
+}
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+\usepackage{lipsum}
+\usepackage{cmbright}
+
+\usepackage{xcolor}
+\usepackage{listings}
+\lstdefinelanguage{SPARQL}{
+    keywords={SELECT, WHERE, AS, FILTER, OPTIONAL, GRAPH, UNION, PREFIX, ORDER, BY, ASC, DESC, LIMIT, OFFSET, BIND, GROUP, HAVING, COUNT, DISTINCT, SUM, AVG, MIN, MAX, GROUP_CONCAT},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={a, rdf:type},
+    ndkeywordstyle=\color{teal}\bfseries,
+    identifierstyle=\color{black},
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{gray}\itshape,
+    sensitive=true,
+    morecomment=[l][\color{gray}]{#}
+}
+\lstset{
+    language=SPARQL,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+    tabsize=2,
+    showstringspaces=false
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{tabular}{@{}ll}
+	\textbf{Group members:}
+	 & \href{mailto:andrea.bruttomesso.1@studenti.unipd.it}{Andrea Bruttomesso} 2120933 \\
+	 & \href{mailto:alessandro.corro.1@studenti.unipd.it}{Alessandro Corr\`o} 2125034   \\
+	 & \href{mailto:davide.seghetto@studenti.unipd.it}{Davide Seghetto} 2122548         \\
+	 & \href{mailto:andrea.stocco.8@studenti.unipd.it}{Andrea Stocco} 2108885           \\
+\end{tabular}
+
+
+\section*{TASK}
+Provide at least 8 SPARQL queries over your RDF datasets. You may also perform advanced data analytics to uncover interesting insights from your datasets. Please submit a PDF that includes the SPARQL queries along with relevant plots or tables summarizing your analytics. For each query, provide a description that explains its purpose and overall objective.
+
+\subsection*{Query 1 - papersNobelTopicsYear}
+This query shows the topics present in both Nobel motivations and paper abstracts.
+For a given year, it returns the number of paper in which these topics appear.
+This query can be used to find correlations between Nobel Prize topics and research
+papers.
+
+For instance, running this query for the year 2004 shows that the topic "protein"
+appeared in 28 papers. Hence, we could say that in 2004 chemistry was the main
+research field (considering the limited number of papers available) and that the
+main topic of the Nobel Prize awarded in that year was studied by several
+researcher.
+
+Unfortunately, this query is not always useful. In some cases, the
+main topics may include words like "method" and "analysis", which are not
+informative enough to determine how extensively a specific topic was studied
+in a given year.
+
+Due to the distribution of research papers in our dataset across different years,
+this query provides more meaningful results for years after 2000.
+
+\begin{lstlisting}
+PREFIX spif: <http://spinrdf.org/spif#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?singleAbTopic ?nobel (COUNT(?paper) AS ?numPapers) WHERE {
+    {
+        SELECT ?singleAbTopic ?paper WHERE {
+        		?paper :hasAbstractTopics ?topics;
+                :hasYear "2014"^^xsd:gYear.
+        		?singleAbTopic spif:split(?topics ",")
+        }
+    }
+    {
+        SELECT ?singleNoTopic ?nobel WHERE {
+            ?nobel :hasMotivationTopics ?topics;
+                :hasYear "2014"^^xsd:gYear.
+            ?singleNoTopic spif:split(?topics ",")
+        }
+    }
+    FILTER (?singleAbTopic = ?singleNoTopic)
+}
+GROUP BY ?singleAbTopic ?nobel
+ORDER BY desc(?numPapers)
+\end{lstlisting}
+
+\subsection*{Query 2 - papersPerTopic}
+
+\begin{lstlisting}
+PREFIX spif: <http://spinrdf.org/spif#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?singleTopic (COUNT(?paper) AS ?numPapers) WHERE {
+    ?paper :hasAbstractTopics ?topics.
+    ?singleTopic spif:split(?topics ",")
+}
+GROUP BY ?singleTopic
+ORDER BY desc(?numPapers)    
+\end{lstlisting}
+
+Papers per topic
+
+\subsection*{Query 3 - sharedNobels}
+This query shows the number of Nobel Prizes shared by multiple laureates
+and the number of laureates sharing Nobel Prizes.
+
+The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) have
+been shared by multiple laureates, and 632 laureates have shared different Nobel Prizes.
+On average, a Nobel Prize is shared by more than 2 laureates (2.6 laureates per prize).
+
+\begin{lstlisting}
+PREFIX spif: <http://spinrdf.org/spif#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS numLaureatesSharingNobels) WHERE {
+    ?nobel :hasPrizeShare ?share.
+FILTER (?share > 1)
+}
+\end{lstlisting}
+
+how many nobels are shared? how many laureates are sharing a nobel?
+
+
+\subsection*{Query 4 - laureatesCollaborations}
+
+\begin{lstlisting}
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?title (GROUP_CONCAT(?name; separator=", ") AS ?laureates) WHERE {
+    ?laureate rdf:type :Laureate .
+    ?paper rdf:type :Paper ;
+        :hasTitle ?title . 
+    ?laureate :hasWritten ?paper .
+    ?laureate foaf:name ?name .
+}
+GROUP BY ?title
+HAVING (COUNT(DISTINCT ?laureate) > 1)    
+\end{lstlisting}
+
+Laureates that wrote a paper together
+
+\subsection*{Query 5 - laureatesPerCountryAndFunding}
+
+\begin{lstlisting}
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+
+SELECT ?year ?state (COUNT(?laureate) AS ?howmany) ?amount WHERE {
+    ?laureate :hasWon ?nobel .
+    ?nobel :hasYear ?year .
+    ?laureate :basedIn | :bornIn ?city .
+    ?city :locatedIn ?country .
+    ?country foaf:name ?state .
+    OPTIONAL {
+        ?country :hasFunded ?funding .
+        ?funding a :Funding ;
+            :hasYear ?year ;
+            :hasAmount ?amount .
+    }
+} 
+GROUP BY ?year ?state ?amount
+ORDER BY DESC (?howmany)    
+\end{lstlisting}
+
+For every year and country, the query extracts the number of laureate of that country and, if available, the funding for R\&D : how fundings in R\&D affect the possibility to win?
+ 
+\subsection*{Query 6 - moreThanOneNobel}
+
+\begin{lstlisting}
+PREFIX spif: <http://spinrdf.org/spif#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?laureate (COUNT(?nobel) AS ?numNobels) WHERE {
+    ?laureate :hasWon ?nobel.
+}
+GROUP BY ?laureate
+HAVING (?numNobels > 1)    
+\end{lstlisting}
+
+who won more than one nobel prize
+
+\subsection*{Query 7 - papersPerVenue}
+This plot shows the number of papers published over the years by major
+venues (those with at least 800 papers published, according to our dataset).
+
+In recent years, Bioinformatics could be considered one of the most influential
+venue due to its consistently higher number of papers published compared to others.
+IEEE venues, are the most prominent in the fields of information and tecnology.
+
+For instance, on 2009, the research community focused more on the field of
+communication.
+That same year, the Physics Nobel Prize was awarded for "groundbreaking achievements
+concerning the transmission of light in fibers for optical communication".
+
+\begin{lstlisting}
+PREFIX spif: <http://spinrdf.org/spif#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
+
+    # get the most important venues (the ones with at least 800 papers published)
+    {
+        SELECT ?venue (COUNT(?paper) AS ?totPapers) WHERE {
+            ?paper :publishedIn ?venue.
+        }
+        GROUP BY ?venue
+        HAVING (?totPapers > 800)
+        ORDER BY DESC (?totPapers)
+    }
+
+    # get the number of paper published in the most important venues for each year
+    ?paper :publishedIn ?venue;
+        :hasYear ?year.
+}
+GROUP BY ?venue ?year
+ORDER BY ASC (?year)    
+\end{lstlisting}
+
+papers per venue during the years
+
+\subsection*{Query 8 - papersPerCategory}
+(da capire se fare il conteggio totale o per anno e se considerare anche le sottocategorie)
+
+\begin{lstlisting}
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+# Extracts the number of papers we have for each category over the years --> the most studied research areas over the years
+SELECT ?year ?category (SUM(?howmany) AS ?totalPapers) WHERE {
+    # Inner query to extract the number of papers published in journals that have at least one category that is a top concept of our skos scheme
+    {
+        SELECT ?year ?category (COUNT(DISTINCT ?paper) AS ?howmany) WHERE {
+            ?journal :hasJournalCategory ?category .
+            :journalCategoryScheme skos:hasTopConcept ?category .
+            ?paper :publishedIn ?journal ;
+                :hasYear ?year .
+        } 
+        GROUP BY ?year ?category
+    }
+    UNION
+    # Inner query to extract the number of papers published in journals that have at least one category that is a subcategory of a top concept category
+    {
+        SELECT ?year ?category (COUNT(DISTINCT ?paper) AS ?howmany) WHERE {
+            ?journal :hasJournalCategory ?cat .
+            ?cat skos:broaderTransitive ?category .
+            ?paper :publishedIn ?journal ;
+                :hasYear ?year .
+        } 
+        GROUP BY ?year ?category
+    }
+} 
+GROUP BY ?year ?category
+ORDER BY DESC (?totalPapers)    
+\end{lstlisting}
+
+\end{document}
