@@ -169,7 +169,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS numLaureatesSharingNobels) WHERE {
+SELECT (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS ?numLaureatesSharingNobels) WHERE {
     ?nobel :hasPrizeShare ?share.
 FILTER (?share > 1)
 }
