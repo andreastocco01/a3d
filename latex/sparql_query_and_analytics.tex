@@ -114,14 +114,14 @@ SELECT ?singleAbTopic ?nobel (COUNT(?paper) AS ?numPapers) WHERE {
     {
         SELECT ?singleAbTopic ?paper WHERE {
         		?paper :hasAbstractTopics ?topics;
-                :hasYear "2014"^^xsd:gYear.
+                :hasYear "2004"^^xsd:gYear.
         		?singleAbTopic spif:split(?topics ",")
         }
     }
     {
         SELECT ?singleNoTopic ?nobel WHERE {
             ?nobel :hasMotivationTopics ?topics;
-                :hasYear "2014"^^xsd:gYear.
+                :hasYear "2004"^^xsd:gYear.
             ?singleNoTopic spif:split(?topics ",")
         }
     }
