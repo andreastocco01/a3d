@@ -8,9 +8,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 # how many nobels are shared? how many laureates are sharing a nobel?
 
-select (count(?nobel) as ?numSharedNobels) (sum(?share) as ?numLaureatesSharingNobels)where {
+SELECT (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS ?numLaureatesSharingNobels) WHERE {
         ?nobel :hasPrizeShare ?share.
-        filter (?share > 1)
+        FILTER (?share > 1)
 }
 
 ####################################################################################

@@ -8,8 +8,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 # who won more than one nobel prize
 
-select ?laureate (count(?nobel) as ?numNobels) where {
+SELECT ?laureate (COUNT(?nobel) AS ?numNobels) WHERE {
     ?laureate :hasWon ?nobel.
 }
-group by ?laureate
-having (?numNobels > 1)
+GROUP BY ?laureate
+HAVING (?numNobels > 1)

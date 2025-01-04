@@ -6,11 +6,9 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# papers per topic
-
-select ?singleTopic (count(?paper) as ?numPapers)where {
+SELECT ?singleTopic (COUNT(?paper) AS ?numPapers) WHERE {
     ?paper :hasAbstractTopics ?topics.
     ?singleTopic spif:split(?topics ",")
 }
-group by ?singleTopic
-order by desc(?numPapers)
+GROUP BY ?singleTopic
+ORDER BY desc(?numPapers)

@@ -8,24 +8,24 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 # papers per venue during the years
 
-select ?venue ?year (count(?paper) as ?numPapers) where {
+SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
 
     # get the most important venues (the ones with at least 800 papers published)
     {
-        select ?venue (count(?paper) as ?totPapers) where {
+        SELECT ?venue (COUNT(?paper) AS ?totPapers) WHERE {
             ?paper :publishedIn ?venue.
         }
-        group by ?venue
-        having (?totPapers > 800)
-        order by desc (?totPapers)
+        GROUP BY ?venue
+        HAVING (?totPapers > 800)
+        ORDER BY DESC (?totPapers)
     }
 
     # get the number of paper published in the most important venues for each year
     ?paper :publishedIn ?venue;
-        :hasYear ?year.
+    	:hasYear ?year.
 }
-group by ?venue ?year
-order by asc(?year)
+GROUP BY ?venue ?year
+ORDER BY ASC (?year)
 
 ####################################################################################
 This plot shows the number of papers published over the years by major

@@ -1,25 +1,28 @@
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 # Extracts the number of papers we have for each category over the years --> the most studied research areas over the years
-select ?year ?category (sum(?howmany) as ?totalPapers) where {
+SELECT ?year ?category (SUM(?howmany) AS ?totalPapers) WHERE {
     # Inner query to extract the number of papers published in journals that have at least one category that is a top concept of our skos scheme
     {
-		select ?year ?category (count(distinct ?paper) as ?howmany) where {
+	SELECT ?year ?category (COUNT(DISTINCT ?paper) AS ?howmany) WHERE {
         	?journal :hasJournalCategory ?category .
-            :journalCategoryScheme skos:hasTopConcept ?category .
-            ?paper :publishedIn ?journal ;
-            	:hasYear ?year .
-        } group by ?year ?category
+            		:journalCategoryScheme skos:hasTopConcept ?category .
+            	?paper :publishedIn ?journal ;
+            		:hasYear ?year .
+        } 
+	GROUP BY ?year ?category
     }
     UNION
     # Inner query to extract the number of papers published in journals that have at least one category that is a subcategory of a top concept category
     {
-        select ?year ?category (count(distinct ?paper) as ?howmany) where {
-            ?journal :hasJournalCategory ?cat .
-            ?cat skos:broaderTransitive ?category .
-            ?paper :publishedIn ?journal ;
-            	:hasYear ?year .
-        } group by ?year ?category
+        SELECT ?year ?category (COUNT(DISTINCT ?paper) AS ?howmany) WHERE {
+        	?journal :hasJournalCategory ?cat .
+            	?cat skos:broaderTransitive ?category .
+            	?paper :publishedIn ?journal ;
+            		:hasYear ?year .
+        } 
+	GROUP BY ?year ?category
     }
-} group by ?year ?category
-order by desc (?totalPapers)
+} 
+GROUP BY ?year ?category
+ORDER BY DESC (?totalPapers)
