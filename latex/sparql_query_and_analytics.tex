@@ -89,7 +89,7 @@ This query can be used to find correlations between Nobel Prize topics and resea
 papers.
 
 For instance, running this query for the year 2004 shows that the topic "protein"
-appeared in 28 papers. Hence, we could say that in 2004 chemistry was the main
+appeared in 28 papers. Furthermore, we can say that in 2004 chemistry was the main
 research field (considering the limited number of papers available) and that the
 main topic of the Nobel Prize awarded in that year was studied by several
 researcher.
@@ -104,10 +104,6 @@ this query provides more meaningful results for years after 2000.
 
 \begin{lstlisting}
 PREFIX spif: <http://spinrdf.org/spif#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
@@ -136,12 +132,7 @@ ORDER BY desc(?numPapers)
 
 \begin{lstlisting}
 PREFIX spif: <http://spinrdf.org/spif#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?singleTopic (COUNT(?paper) AS ?numPapers) WHERE {
     ?paper :hasAbstractTopics ?topics.
@@ -151,8 +142,6 @@ GROUP BY ?singleTopic
 ORDER BY desc(?numPapers)    
 \end{lstlisting}
 
-Papers per topic
-
 \subsection*{Query 3 - sharedNobels}
 This query shows the number of Nobel Prizes shared by multiple laureates
 and the number of laureates sharing Nobel Prizes.
@@ -161,10 +150,12 @@ and the number of laureates sharing Nobel Prizes.
 been shared by multiple laureates, and 632 laureates have shared different Nobel Prizes.
 On average, a Nobel Prize is shared by more than two laureates (2.2 laureates per prize).
 
+%lasciare lo spazio dopo AS
+
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 
-SELECT ?share (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS                    ?numLaureatesSharingNobels) WHERE { %lasciare lo spazio dopo AS
+SELECT ?share (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS                    ?numLaureatesSharingNobels) WHERE {
     ?nobel :hasPrizeShare ?share.
 } GROUP BY ?share
 \end{lstlisting}
@@ -295,13 +286,7 @@ That same year, the Physics Nobel Prize was awarded for "groundbreaking achievem
 concerning the transmission of light in fibers for optical communication".
 
 \begin{lstlisting}
-PREFIX spif: <http://spinrdf.org/spif#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
 
