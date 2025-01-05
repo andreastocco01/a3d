@@ -222,12 +222,7 @@ GROUP BY ?singleTopic
 ORDER BY desc(?numPapers)
 \end{lstlisting}
 
-\section{sharedNobels}
-This query shows the number of Nobel Prizes shared by multiple laureates
-and the number of laureates sharing Nobel Prizes.\\
-The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) have
-been shared by multiple laureates, and 632 laureates have shared different Nobel Prizes.
-On average, a Nobel Prize is shared by more than two laureates (2.2 laureates per prize).
+\section{Number of shared Nobels and number of Laureates sharing multiple Nobels}
 
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
@@ -238,6 +233,13 @@ SELECT (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS ?numLaureatesSharingN
 }
 \end{lstlisting}
 
+This query shows the number of Nobel Prizes shared by multiple laureates
+and the number of laureates sharing Nobel Prizes.\\
+The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) have
+been shared by multiple laureates, and 632 laureates have shared different Nobel Prizes.
+On average, a Nobel Prize is shared by more than two laureates (2.2 laureates per prize).
+
+% TODO: write better
 \noindent For each value in the x axis, representing the number of people sharing a certain Nobel Prize, the following chart displays two bars.
 The first bar represents the total number of Nobel Prizes shared among the specified number of laureates.
 The second bar represents the total number of laureates who have shared these Nobel Prizes.
