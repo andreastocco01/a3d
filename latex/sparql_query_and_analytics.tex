@@ -364,14 +364,43 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?laureate (COUNT(?nobel) AS ?numNobels) WHERE {
-    ?laureate :hasWon ?nobel.
+SELECT ?laureate ?numNobels (GROUP_CONCAT(DISTINCT ?category; SEPARATOR = ", ") AS ?categories) WHERE {
+    {
+        SELECT ?laureate (COUNT(?nobel) AS ?numNobels) WHERE {
+            ?laureate :hasWon ?nobel.
+        }
+        GROUP BY ?laureate
+        HAVING (?numNobels > 1)
+    }
+    ?laureate2 :hasWon ?nobel2.
+    ?nobel2 :hasNobelCategory ?category.
+    FILTER (?laureate2 = ?laureate)
 }
-GROUP BY ?laureate
-HAVING (?numNobels > 1)
+GROUP BY ?laureate ?numNobels
 \end{lstlisting}
+The query aims to identify Laureates who have won more than one Nobel Prize. By grouping the laureates and counting the number of Nobel Prizes each has won, the query filters the results to show only those with more than one prize. 
+Table \ref{tab:moreThanOneNobel} shows the output of this query.
 
-who won more than one nobel prize
+\begin{table}[H]
+	\caption{Laureates who won more than one Nobel Prize}
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Laureate} & \textbf{Number of Nobels won} & \textbf{Categories} \\ \hline
+		Comite International De La Croix-Rouge              & 3       & Peace                        \\ \hline
+		Frederick Sanger          & 2           & Chemistry                        \\ \hline
+		John Bardeen                 & 2      & Physics                         \\ \hline
+		Linus Carl Pauling          & 2         & Chemistry, Peace                         \\ \hline
+		Marie Curie            & 2      & Physics, Chemistry                         \\ \hline
+		UNHCR            & 2         & Peace                         \\ \hline
+	\end{tabular}
+	\label{tab:moreThanOneNobel}
+\end{table}
+
+The results highlight the diverse contributions of laureates in different fields, from physics and chemistry to peace and humanitarian efforts. This demonstrates the breadth of achievements recognized by the Nobel Prizes and the multidisciplinary impact of the laureates. \\
+Furthermore, the fact that only six laureates have achieved this result serves as a powerful reminder of the Prize's prestige and reflects the long-term impact and ongoing relevance of a laureate’s work.
+
+
 
 \section{Number of papers published from the most important venues over the years}
 
