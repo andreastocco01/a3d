@@ -1,0 +1,13 @@
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?category (COUNT(?paper) as ?numPapers) WHERE {
+	?paper :publishedIn ?venue;
+    	:hasYear ?year.
+	?venue :hasJournalCategory ?category.
+    ?category skos:broaderTransitive ?sub.
+    FILTER (?year = "2004"^^xsd:gYear)
+}
+GROUP BY ?category
+ORDER BY DESC (?numPapers)
