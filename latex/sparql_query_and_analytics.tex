@@ -170,7 +170,7 @@ The second bar represents the total number of laureates who have shared these No
     \label{fig:prizeShare}
 \end{figure}
 
-\subsection*{Query 4 - laureatesCollaborations}
+\subsection*{Query 4 - Collaborations among Nobel Laureates}
 
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
@@ -185,10 +185,31 @@ SELECT ?title (GROUP_CONCAT(?name; separator=", ") AS ?laureates) WHERE {
     ?laureate foaf:name ?name .
 }
 GROUP BY ?title
-HAVING (COUNT(DISTINCT ?laureate) > 1)    
+HAVING (COUNT(DISTINCT ?laureate) > 1)
 \end{lstlisting}
 
-Laureates that wrote a paper together
+\vspace{1em}
+
+The goal of this query was to explore whether Nobel laureates collaborate with each other by co-authoring
+scientific papers. As the table \ref{tab:laureates_collaboration} shows, among approximately 53,000 papers
+and 904 laureates, only one paper was found to have been co-authored by multiple laureates.
+
+\begin{table}[H]
+    \caption{Paper co-authored by multiple Nobel Laureates}
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Title} & \textbf{Laureates} \\ \hline
+        \textit{Recursive Robust Estimation and Control Without Commitment} & Lars Peter Hansen, Thomas J. Sargent \\ \hline
+    \end{tabular}
+    \label{tab:laureates_collaboration}
+\end{table}
+
+This result suggests that collaboration between Nobel laureates is extremely rare. However, it is important to
+note that this outcome should not be taken as definitive, as the datasets used represent only a portion of all
+existing papers and laureates. Nevertheless, it provides an interesting insight into the rarity of such
+collaborations, offering a percentage-based perspective on how seldom laureates join forces to produce scientific
+work.
 
 \subsection*{Query 5 - How fundings in R\&D affect the possibility for a country to win a Nobel?}
 
