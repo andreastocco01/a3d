@@ -4,12 +4,12 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 # Laureates that wrote a paper together
 
-SELECT ?title (GROUP_CONCAT(?name; separator=", ") AS ?laureates) WHERE {
-  ?laureate rdf:type :Laureate .
-  ?paper rdf:type :Paper ;
-    	 :hasTitle ?title . 
-  ?laureate :hasWritten ?paper .
-  ?laureate foaf:name ?name .
+SELECT ?title (GROUP_CONCAT(?name; SEPARATOR = ", ") AS ?laureates) WHERE {
+	?laureate rdf:type :Laureate .
+	?paper rdf:type :Paper ;
+		:hasTitle ?title . 
+	?laureate :hasWritten ?paper ;
+		foaf:name ?name .
 }
 GROUP BY ?title
 HAVING (COUNT(DISTINCT ?laureate) > 1)

@@ -9,23 +9,26 @@ che hanno vinto un premio nobel facendo ricerca all'estero
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 
-select ?state ?numLaureates ?numOrganizations where {
+SELECT ?state ?numLaureates ?numOrganizations WHERE {
 	{
-        select ?state (count(distinct ?organization) as ?numOrganizations) where {
-            ?laureate a :Laureate ;
-                :worksFor ?organization .
-            ?organization :basedIn ?city .
-            ?city :locatedIn ?country .
-            ?country foaf:name ?state
-        } group by ?state
-    }
+        	SELECT ?state (COUNT(DISTINCT ?organization) AS ?numOrganizations) WHERE {
+            		?laureate a :Laureate ;
+                		:worksFor ?organization .
+            		?organization :basedIn ?city .
+            		?city :locatedIn ?country .
+            		?country foaf:name ?state
+        	} 
+		GROUP BY ?state
+    	}
     
-    {
-        select ?state (count(distinct ?laureate) as ?numLaureates) where {
-            ?laureate a :Laureate ;
-                :bornIn ?city .
-            ?city :locatedIn ?country .
-            ?country foaf:name ?state
-		} group by ?state
-    }
-} order by desc (?numLaureates)
+    	{
+        	SELECT ?state (COUNT(DISTINCT ?laureate) AS ?numLaureates) WHERE {
+            		?laureate a :Laureate ;
+                		:bornIn ?city .
+            		?city :locatedIn ?country .
+            		?country foaf:name ?state
+		} 
+		GROUP BY ?state
+    	}
+} 
+ORDER BY DESC (?numLaureates)

@@ -6,12 +6,12 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# laureates per country
+# Laureates per country
 
-select ?country (count(?laureate) as ?numLaureate) where {
-    ?laureate :hasWon ?nobel;
-    	:bornIn ?city.
-    ?city :locatedIn ?country
+SELECT ?country (COUNT(?laureate) AS ?numLaureate) WHERE {
+	?laureate :hasWon ?nobel;
+    		:bornIn ?city.
+    	?city :locatedIn ?country
 }
-group by ?country
-order by desc(?numLaureate)
+GROUP BY ?country
+ORDER BY DESC (?numLaureate)

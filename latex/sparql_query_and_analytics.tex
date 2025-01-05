@@ -43,7 +43,7 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \lstdefinelanguage{SPARQL}{
-    keywords={SELECT, WHERE, AS, FILTER, OPTIONAL, GRAPH, UNION, PREFIX, ORDER, BY, ASC, DESC, LIMIT, OFFSET, BIND, GROUP, HAVING, COUNT, DISTINCT, SUM, AVG, MIN, MAX, GROUP_CONCAT},
+    keywords={SELECT, WHERE, AS, FILTER, OPTIONAL, GRAPH, UNION, PREFIX, ORDER, BY, ASC, DESC, LIMIT, OFFSET, BIND, GROUP, HAVING, COUNT, DISTINCT, SUM, AVG, MIN, MAX, GROUP_CONCAT, SEPARATOR},
     keywordstyle=\color{blue}\bfseries,
     ndkeywords={a, rdf:type},
     ndkeywordstyle=\color{teal}\bfseries,
@@ -90,7 +90,7 @@ PREFIX spif: <http://spinrdf.org/spif#>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?nobelTopic ?nobel (count(?paper) AS ?numPapers) WHERE {
+SELECT ?nobelTopic ?nobel (COUNT(?paper) AS ?numPapers) WHERE {
     {
         SELECT ?paperTopic ?paper WHERE {
             ?paper :hasAbstractTopics ?topics;
@@ -110,7 +110,7 @@ SELECT ?nobelTopic ?nobel (count(?paper) AS ?numPapers) WHERE {
     FILTER (?nobelTopic = ?paperTopic)
 }
 GROUP BY ?nobelTopic ?nobel
-ORDER BY DESC(?numPapers)
+ORDER BY DESC (?numPapers)
 \end{lstlisting}
 
 This query shows the topics present in both Nobel Prize motivations and paper abstracts.
@@ -160,7 +160,7 @@ PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
-SELECT ?category (COUNT(?paper) as ?numPapers) WHERE {
+SELECT ?category (COUNT(?paper) AS ?numPapers) WHERE {
     ?paper :publishedIn ?venue;
         :hasYear ?year.
     ?venue :hasJournalCategory ?category.
@@ -219,7 +219,7 @@ SELECT ?singleTopic (COUNT(?paper) AS ?numPapers) WHERE {
     ?singleTopic spif:split(?topics ",")
 }
 GROUP BY ?singleTopic
-ORDER BY desc(?numPapers)
+ORDER BY DESC (?numPapers)
 \end{lstlisting}
 
 \section{Number of shared Nobels and number of Laureates sharing multiple Nobels}
@@ -257,12 +257,12 @@ PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
-SELECT ?title (GROUP_CONCAT(?name; separator=", ") AS ?laureates) WHERE {
+SELECT ?title (GROUP_CONCAT(?name; SEPARATOR = ", ") AS ?laureates) WHERE {
     ?laureate rdf:type :Laureate .
     ?paper rdf:type :Paper ;
         :hasTitle ?title .
     ?laureate :hasWritten ?paper .
-    ?laureate foaf:name ?name .
+        foaf:name ?name .
 }
 GROUP BY ?title
 HAVING (COUNT(DISTINCT ?laureate) > 1)
@@ -298,30 +298,30 @@ PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT ?year ?topCountry (COUNT(DISTINCT ?laureate) AS ?numLaureates) (SUM(?fundingAmount) AS ?totalFunding) WHERE {
-  ?laureate rdf:type :Laureate ;
-  			   :hasWon ?nobelPrize ;
-      		   :bornIn ?city .
-  ?nobelPrize :hasYear ?year .
-  ?city :locatedIn ?topCountry .
+    ?laureate rdf:type :Laureate ;
+  	:hasWon ?nobelPrize ;
+        :bornIn ?city .
+    ?nobelPrize :hasYear ?year .
+    ?city :locatedIn ?topCountry .
 
-  OPTIONAL {
-    ?topCountry :hasFunded ?funding .
-    ?funding :hasYear ?year ;
-     		 :hasAmount ?fundingAmount .
-  }
-  { # Select country with most laureates
-    SELECT (?country AS ?topCountry) WHERE {
-      ?laureate rdf:type :Laureate ;
-       			   :bornIn ?city .
-      ?city :locatedIn ?country .
+    OPTIONAL {
+        ?topCountry :hasFunded ?funding .
+        ?funding :hasYear ?year ;
+            :hasAmount ?fundingAmount .
     }
-    GROUP BY ?country
-    ORDER BY DESC(COUNT(DISTINCT ?laureate))
-    LIMIT 3
-  }
+    { # Select country with most laureates
+        SELECT (?country AS ?topCountry) WHERE {
+        ?laureate rdf:type :Laureate ;
+            :bornIn ?city .
+        ?city :locatedIn ?country .
+        }
+        GROUP BY ?country
+        ORDER BY DESC(COUNT(DISTINCT ?laureate))
+        LIMIT 3
+    }
 }
 GROUP BY ?year ?topCountry
-HAVING(SUM(?fundingAmount) > 0)
+HAVING (SUM(?fundingAmount) > 0)
 ORDER BY ?year ?topCountry
 \end{lstlisting}
 
@@ -409,7 +409,7 @@ PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 
 SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
 
-    # get the most important venues (the ones with at least 800 papers published)
+    # Get the most important venues (the ones with at least 800 papers published)
     {
         SELECT ?venue (COUNT(?paper) AS ?totPapers) WHERE {
             ?paper :publishedIn ?venue.

@@ -11,4 +11,4 @@ SELECT ?singleTopic (COUNT(?paper) AS ?numPapers) WHERE {
     ?singleTopic spif:split(?topics ",")
 }
 GROUP BY ?singleTopic
-ORDER BY desc(?numPapers)
+ORDER BY DESC (?numPapers)

@@ -2,29 +2,29 @@ PREFIX spif: <http://spinrdf.org/spif#>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# number of papers on nobel topics in a year (this is mush faster than the other one!!)
+# Number of papers on nobel topics in a year (this is mush faster than the other one!!)
 
-select ?nobelTopic ?nobel (count(?paper) as ?numPapers) where {
-    {
-        select ?paperTopic ?paper where {
+SELECT ?nobelTopic ?nobel (COUNT(?paper) AS ?numPapers) WHERE {
+	{
+        	SELECT ?paperTopic ?paper WHERE {
 			?paper :hasAbstractTopics ?topics;
-            	:hasYear ?year.
-            filter (?year = "2004"^^xsd:gYear)
+            			:hasYear ?year.
+            		FILTER (?year = "2004"^^xsd:gYear)
 			?paperTopic spif:split(?topics ",")
-        }
-    }
-    {
-		select ?nobelTopic ?nobel where {
+        	}
+    	}
+    	{
+		SELECT ?nobelTopic ?nobel WHERE {
 			?nobel :hasMotivationTopics ?topics;
-            	:hasYear ?year.
-            filter (?year = "2004"^^xsd:gYear)
+            			:hasYear ?year.
+            		FILTER (?year = "2004"^^xsd:gYear)
 			?nobelTopic spif:split(?topics ",")
-        }
-    }
-    filter (?nobelTopic = ?paperTopic)
+        	}
+    	}
+    	FILTER (?nobelTopic = ?paperTopic)
 }
-group by ?nobelTopic ?nobel
-order by desc(?numPapers)
+GROUP BY ?nobelTopic ?nobel
+ORDER BY DESC (?numPapers)
 
 ####################################################################################
 This query shows the topics present in both Nobel motivations and paper abstracts.
