@@ -224,20 +224,18 @@ ORDER BY desc(?numPapers)
 
 \section{sharedNobels}
 This query shows the number of Nobel Prizes shared by multiple laureates
-and the number of laureates sharing Nobel Prizes.
-
-\noindent The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) have
+and the number of laureates sharing Nobel Prizes.\\
+The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) have
 been shared by multiple laureates, and 632 laureates have shared different Nobel Prizes.
 On average, a Nobel Prize is shared by more than two laureates (2.2 laureates per prize).
-
-%lasciare lo spazio dopo AS
 
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 
-SELECT ?share (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS                    ?numLaureatesSharingNobels) WHERE {
-    ?nobel :hasPrizeShare ?share.
-} GROUP BY ?share
+SELECT (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS ?numLaureatesSharingNobels) WHERE {
+        ?nobel :hasPrizeShare ?share.
+        FILTER (?share > 1)
+}
 \end{lstlisting}
 
 \noindent For each value in the x axis, representing the number of people sharing a certain Nobel Prize, the following chart displays two bars.
@@ -373,18 +371,7 @@ HAVING (?numNobels > 1)
 
 who won more than one nobel prize
 
-\section{papersPerVenue}
-This plot shows the number of papers published over the years by major
-venues (those with at least 800 papers published, according to our dataset).
-
-In recent years, Bioinformatics could be considered one of the most influential
-venue due to its consistently higher number of papers published compared to others.
-IEEE venues, are the most prominent in the fields of information and tecnology.
-
-For instance, on 2009, the research community focused more on the field of
-communications.
-That same year, the Physics Nobel Prize was awarded for "groundbreaking achievements
-concerning the transmission of light in fibers for optical communication".
+\section{Number of papers published from the most important venues over the years}
 
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
@@ -408,6 +395,25 @@ SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
 GROUP BY ?venue ?year
 ORDER BY ASC (?year)
 \end{lstlisting}
+
+This query returns the number of papers published over the years by major
+venues (those with at least 800 papers published, according to our dataset).
+
+Figure \ref{fig:papersPerVenue} shows the trends of the six major research venues.
+
+\begin{figure}[H]
+	\centering
+	\label{fig:papersPerVenue}
+	\includegraphics[width=\textwidth]{../queries/plots/papersPerVenue.png}
+\end{figure}
+
+In recent years, Bioinformatics could be considered one of the most influential
+venue due to its consistently higher number of papers published compared to others.
+IEEE venues, are the most prominent in the fields of information and tecnology.\\
+For instance, on 2009, the research community focused more on the field of
+communications.
+That same year, the Physics Nobel Prize was awarded for "groundbreaking achievements
+concerning the transmission of light in fibers for optical communication".
 
 \section{papersPerCategory}
 The following query allows us to extract, for each year, the number of scientific articles published in each relevant category. The categories returned
