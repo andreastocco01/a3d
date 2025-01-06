@@ -499,4 +499,128 @@ reached its peak in 2008, probability due to the economic crisis of that time.
 	\includegraphics[width=\textwidth]{../queries/plots/papersPerCategory.png}
 \end{figure}
 
+\section{Age Analysis of Nobel Prize Winners}
+\begin{lstlisting}
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?category (MIN(?age) AS ?maxAge) (ROUND(AVG(?age)) AS ?avgAge) (MAX(?age) AS ?minAge)
+WHERE {
+  ?laureate a :Laureate ;
+            :birthDate ?birthDate ;
+            :hasWon ?prize .
+  ?prize :hasYear ?prizeYear ;
+         :hasNobelCategory ?category .
+
+  BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
+}
+GROUP BY ?category
+\end{lstlisting}
+
+The data extracted from the query provides insights into the age at which individuals achieve great results in
+their fields:
+
+\begin{table}[h!]
+\centering
+\caption{Age statistics of Nobel Prize winners by category.}
+\begin{tabular}{|c|l|c|c|c|}
+\hline
+\textbf{ID} & \textbf{Category} & \textbf{Min Age} & \textbf{Avg Age} & \textbf{Max Age} \\ \hline
+1 & Chemistry    & 35 & 58 & 85 \\ \hline
+2 & Economics    & 51 & 67 & 90 \\ \hline
+3 & Literature   & 42 & 65 & 88 \\ \hline
+4 & Medicine     & 32 & 58 & 87 \\ \hline
+5 & Peace        & 17 & 61 & 87 \\ \hline
+6 & Physics      & 25 & 55 & 88 \\ \hline
+\end{tabular}
+\label{tab:age_analysis}
+\end{table}
+
+\subsection{Observations and Analysis}
+The table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel Prize winners:
+
+\begin{itemize}
+    \item \textbf{Economics}: With an average age of 67, this category has the highest average age.
+    This observation likely reflects the time required to develop groundbreaking theories and gain significant
+    recognition in this field. Also the minimum age of 51 suggests that Nobel laureates in Economics often
+    achieve their recognition later in life.
+    
+    \item \textbf{Peace}: This category includes the youngest laureate, at only 17 years old.
+    The diversity in ages within the Peace category (average age 61, maximum 87) may reflect the variety of
+    contributions recognized, from lifelong efforts in diplomacy to impactful single events, such as activism
+    or humanitarian work.
+    
+    \item \textbf{Chemistry, Medicine, and Physics}: These science-related categories show similar average ages
+    (55-58 years) and a range of minimum ages (from 25 to 35 years). The relatively young ages of some laureates
+    in Physics (25) and Medicine (32) suggest that groundbreaking discoveries in these fields are sometimes made
+    early in a researcher's career, possibly during postdoctoral experiences.
+    
+    \item \textbf{Literature}: With an average age of 65, second only to Economics, and a minimum age of 42, this
+    category highlights the time often required for authors to craft a significant body of work or achieve literary
+    mastery. Furthermore, the Nobel Prize in Literature is frequently awarded in recognition of an author's
+    entire career, considering their overall contribution to the field rather than a single achievement.
+\end{itemize}
+
+By digging deeper into the age data, we performed an additional query to identify the youngest and oldest
+Nobel Prize winners. 
+
+\begin{lstlisting}
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age
+WHERE {
+  {
+    SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age
+    WHERE {
+      ?laureate a :Laureate ;
+                foaf:name ?name ;
+                :birthDate ?birthDate ;
+                :hasWon ?prize .
+      ?prize :hasYear ?prizeYear .
+
+      BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
+    }
+    ORDER BY ?age
+    LIMIT 1
+  }
+  UNION
+  {
+    SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age
+    WHERE {
+      ?laureate a :Laureate ;
+                foaf:name ?name ;
+                :birthDate ?birthDate ;
+                :hasWon ?prize .
+      ?prize :hasYear ?prizeYear .
+
+      BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
+    }
+    ORDER BY DESC(?age)
+    LIMIT 1
+  }
+}
+\end{lstlisting}
+
+The results are presented in the following table:
+
+\begin{table}[h!]
+\centering
+\caption{The youngest and oldest Nobel Prize winners.}
+\begin{tabular}{|l|l|l|l|c|}
+\hline
+\textbf{Name}    & \textbf{Birth Date} & \textbf{Prize}      & \textbf{Year} & \textbf{Age} \\ \hline
+Malala Yousafzai & 1997-07-12          & Peace 2014          & 2014          & 17           \\ \hline
+Leonid Hurwicz   & 1917-08-21          & Economics 2007      & 2007          & 90           \\ \hline
+\end{tabular}
+\label{tab:youngest_oldest}
+\end{table}
+
+The youngest Nobel Prize winner is Malala Yousafzai, who received the Peace Prize in 2014 at the age of just 17.
+Her recognition came as a result of her activism for girls' education and human rights, which gained international
+attention and inspired millions worldwide.\\
+The oldest Nobel laureate is Leonid Hurwicz, who was awarded the Nobel Prize in Economics in 2007 at the age of 90.
+This result demonstrates a lifetime of work in economics, highlighting how breakthroughs in theoretical fields
+often come from years and years of efforts and experience.
+
 \end{document}
