@@ -1,0 +1,35 @@
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age
+WHERE {
+  {
+    SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age
+    WHERE {
+      ?laureate a :Laureate ;
+                foaf:name ?name ;
+                :birthDate ?birthDate ;
+                :hasWon ?prize .
+      ?prize :hasYear ?prizeYear .
+
+      BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
+    }
+    ORDER BY ?age
+    LIMIT 1
+  }
+  UNION
+  {
+    SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age
+    WHERE {
+      ?laureate a :Laureate ;
+                foaf:name ?name ;
+                :birthDate ?birthDate ;
+                :hasWon ?prize .
+      ?prize :hasYear ?prizeYear .
+
+      BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
+    }
+    ORDER BY DESC(?age)
+    LIMIT 1
+  }
+}
