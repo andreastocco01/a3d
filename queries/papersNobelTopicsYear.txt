@@ -7,16 +7,16 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?nobelTopic ?nobel (COUNT(?paper) AS ?numPapers) WHERE {
 	{
         	SELECT ?paperTopic ?paper WHERE {
-			?paper :hasAbstractTopics ?topics;
-            			:hasYear ?year.
+			?paper :hasAbstractTopics ?topics ;
+            			:hasYear ?year .
             		FILTER (?year = "2004"^^xsd:gYear)
 			?paperTopic spif:split(?topics ",")
         	}
     	}
     	{
 		SELECT ?nobelTopic ?nobel WHERE {
-			?nobel :hasMotivationTopics ?topics;
-            			:hasYear ?year.
+			?nobel :hasMotivationTopics ?topics ;
+            			:hasYear ?year .
             		FILTER (?year = "2004"^^xsd:gYear)
 			?nobelTopic spif:split(?topics ",")
         	}

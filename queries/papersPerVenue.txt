@@ -13,7 +13,7 @@ SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
     # get the most important venues (the ones with at least 800 papers published)
     {
         SELECT ?venue (COUNT(?paper) AS ?totPapers) WHERE {
-            ?paper :publishedIn ?venue.
+            ?paper :publishedIn ?venue .
         }
         GROUP BY ?venue
         HAVING (?totPapers > 800)
@@ -21,8 +21,8 @@ SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
     }
 
     # get the number of paper published in the most important venues for each year
-    ?paper :publishedIn ?venue;
-    	:hasYear ?year.
+    ?paper :publishedIn ?venue ;
+    	:hasYear ?year .
 }
 GROUP BY ?venue ?year
 ORDER BY ASC (?year)

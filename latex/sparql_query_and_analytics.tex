@@ -43,7 +43,7 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \lstdefinelanguage{SPARQL}{
-    keywords={SELECT, WHERE, AS, FILTER, OPTIONAL, GRAPH, UNION, PREFIX, ORDER, BY, ASC, DESC, LIMIT, OFFSET, BIND, GROUP, HAVING, COUNT, DISTINCT, SUM, AVG, MIN, MAX, GROUP_CONCAT, SEPARATOR},
+    keywords={SELECT, WHERE, AS, FILTER, OPTIONAL, GRAPH, UNION, PREFIX, ORDER, BY, ASC, DESC, LIMIT, OFFSET, BIND, GROUP, HAVING, COUNT, DISTINCT, SUM, AVG, MIN, MAX, GROUP_CONCAT, SEPARATOR, YEAR, ROUND},
     keywordstyle=\color{blue}\bfseries,
     ndkeywords={a, rdf:type},
     ndkeywordstyle=\color{teal}\bfseries,
@@ -93,16 +93,16 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?nobelTopic ?nobel (COUNT(?paper) AS ?numPapers) WHERE {
     {
         SELECT ?paperTopic ?paper WHERE {
-            ?paper :hasAbstractTopics ?topics;
-               	:hasYear ?year.
+            ?paper :hasAbstractTopics ?topics ;
+               	:hasYear ?year .
             FILTER (?year = "2004"^^xsd:gYear)
             ?paperTopic spif:split(?topics ",")
         }
     }
     {
         SELECT ?nobelTopic ?nobel WHERE {
-            ?nobel :hasMotivationTopics ?topics;
-                :hasYear ?year.
+            ?nobel :hasMotivationTopics ?topics ;
+                :hasYear ?year .
             FILTER (?year = "2004"^^xsd:gYear)
             ?nobelTopic spif:split(?topics ",")
         }
@@ -161,10 +161,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?category (COUNT(?paper) AS ?numPapers) WHERE {
-    ?paper :publishedIn ?venue;
-        :hasYear ?year.
-    ?venue :hasJournalCategory ?category.
-    ?category skos:broaderTransitive ?sub.
+    ?paper :publishedIn ?venue ;
+        :hasYear ?year .
+    ?venue :hasJournalCategory ?category .
+    ?category skos:broaderTransitive ?sub .
     FILTER (?year = "2004"^^xsd:gYear)
 }
 GROUP BY ?category
@@ -215,7 +215,7 @@ PREFIX spif: <http://spinrdf.org/spif#>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 
 SELECT ?singleTopic (COUNT(?paper) AS ?numPapers) WHERE {
-    ?paper :hasAbstractTopics ?topics.
+    ?paper :hasAbstractTopics ?topics .
     ?singleTopic spif:split(?topics ",")
 }
 GROUP BY ?singleTopic
@@ -230,8 +230,8 @@ PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 SELECT (COUNT(?sharedNobel) AS ?numSharedNobels) (SUM(?numLaureates) AS ?totLaureatesSharingNobels) WHERE {
     {
         SELECT ?sharedNobel (COUNT(?laureate) AS ?numLaureates) WHERE {
-            ?sharedNobel :hasPrizeShare ?share.
-            ?laureate :hasWon ?sharedNobel.
+            ?sharedNobel :hasPrizeShare ?share .
+            ?laureate :hasWon ?sharedNobel .
             FILTER (?share > 1)
         }
         GROUP BY ?sharedNobel
@@ -372,13 +372,13 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?laureate ?numNobels (GROUP_CONCAT(DISTINCT ?category; SEPARATOR = ", ") AS ?categories) WHERE {
     {
         SELECT ?laureate (COUNT(?nobel) AS ?numNobels) WHERE {
-            ?laureate :hasWon ?nobel.
+            ?laureate :hasWon ?nobel .
         }
         GROUP BY ?laureate
         HAVING (?numNobels > 1)
     }
-    ?laureate2 :hasWon ?nobel2.
-    ?nobel2 :hasNobelCategory ?category.
+    ?laureate2 :hasWon ?nobel2 .
+    ?nobel2 :hasNobelCategory ?category .
     FILTER (?laureate2 = ?laureate)
 }
 GROUP BY ?laureate ?numNobels
@@ -417,7 +417,7 @@ SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
     # Get the most important venues (the ones with at least 800 papers published)
     {
         SELECT ?venue (COUNT(?paper) AS ?totPapers) WHERE {
-            ?paper :publishedIn ?venue.
+            ?paper :publishedIn ?venue .
         }
         GROUP BY ?venue
         HAVING (?totPapers > 800)
@@ -425,8 +425,8 @@ SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
     }
 
     # get the number of paper published in the most important venues for each year
-    ?paper :publishedIn ?venue;
-        :hasYear ?year.
+    ?paper :publishedIn ?venue ;
+        :hasYear ?year .
 }
 GROUP BY ?venue ?year
 ORDER BY ASC (?year)
@@ -509,15 +509,14 @@ reached its peak in 2008, probability due to the economic crisis of that time.
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
-SELECT ?category (MIN(?age) AS ?maxAge) (ROUND(AVG(?age)) AS ?avgAge) (MAX(?age) AS ?minAge)
-WHERE {
-  ?laureate a :Laureate ;
-            :birthDate ?birthDate ;
-            :hasWon ?prize .
-  ?prize :hasYear ?prizeYear ;
-         :hasNobelCategory ?category .
+SELECT ?category (MIN(?age) AS ?maxAge) (ROUND(AVG(?age)) AS ?avgAge) (MAX(?age) AS ?minAge) WHERE {
+    ?laureate a :Laureate ;
+        :birthDate ?birthDate ;
+        :hasWon ?prize .
+    ?prize :hasYear ?prizeYear ;
+        :hasNobelCategory ?category .
 
-  BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
+    BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
 }
 GROUP BY ?category
 \end{lstlisting}
@@ -573,35 +572,30 @@ Nobel Prize winners.
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
-SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age
-WHERE {
+SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age WHERE {
   {
-    SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age
-    WHERE {
-      ?laureate a :Laureate ;
-                foaf:name ?name ;
-                :birthDate ?birthDate ;
-                :hasWon ?prize .
-      ?prize :hasYear ?prizeYear .
-
-      BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
+    SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age WHERE {
+        ?laureate a :Laureate ;
+            foaf:name ?name ;
+            :birthDate ?birthDate ;
+            :hasWon ?prize .
+        ?prize :hasYear ?prizeYear .
+        BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
     }
     ORDER BY ?age
     LIMIT 1
   }
   UNION
   {
-    SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age
-    WHERE {
-      ?laureate a :Laureate ;
-                foaf:name ?name ;
-                :birthDate ?birthDate ;
-                :hasWon ?prize .
-      ?prize :hasYear ?prizeYear .
-
-      BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
+    SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age WHERE {
+        ?laureate a :Laureate ;
+            foaf:name ?name ;
+            :birthDate ?birthDate ;
+            :hasWon ?prize .
+        ?prize :hasYear ?prizeYear .
+        BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
     }
-    ORDER BY DESC(?age)
+    ORDER BY DESC (?age)
     LIMIT 1
   }
 }

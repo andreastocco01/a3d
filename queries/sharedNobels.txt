@@ -5,8 +5,8 @@ PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 SELECT (COUNT(?sharedNobel) AS ?numSharedNobels) (SUM(?numLaureates) AS ?totLaureatesSharingNobels) WHERE {
     {
         SELECT ?sharedNobel (COUNT(?laureate) AS ?numLaureates) WHERE {
-            ?sharedNobel :hasPrizeShare ?share.
-            ?laureate :hasWon ?sharedNobel.
+            ?sharedNobel :hasPrizeShare ?share .
+            ?laureate :hasWon ?sharedNobel .
             FILTER (?share > 1)
         }
         GROUP BY ?sharedNobel

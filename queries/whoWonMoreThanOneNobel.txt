@@ -9,13 +9,13 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?laureate ?numNobels (GROUP_CONCAT(DISTINCT ?category; SEPARATOR = ", ") AS ?categories) WHERE {
     {
         SELECT ?laureate (COUNT(?nobel) AS ?numNobels) WHERE {
-        	?laureate :hasWon ?nobel.
+        	?laureate :hasWon ?nobel .
     	}
     	GROUP BY ?laureate
     	HAVING (?numNobels > 1)
     }
-    ?laureate2 :hasWon ?nobel2.
-    ?nobel2 :hasNobelCategory ?category.
+    ?laureate2 :hasWon ?nobel2 .
+    ?nobel2 :hasNobelCategory ?category .
     FILTER (?laureate2 = ?laureate)
 }
 GROUP BY ?laureate ?numNobels

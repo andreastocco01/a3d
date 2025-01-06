@@ -9,9 +9,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 # Laureates per country
 
 SELECT ?country (COUNT(?laureate) AS ?numLaureate) WHERE {
-	?laureate :hasWon ?nobel;
-    		:bornIn ?city.
-    	?city :locatedIn ?country
+	?laureate :hasWon ?nobel ;
+    		:bornIn ?city .
+    	?city :locatedIn ?country .
 }
 GROUP BY ?country
 ORDER BY DESC (?numLaureate)

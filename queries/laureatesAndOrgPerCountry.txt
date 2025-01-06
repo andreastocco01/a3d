@@ -16,7 +16,7 @@ SELECT ?state ?numLaureates ?numOrganizations WHERE {
                 		:worksFor ?organization .
             		?organization :basedIn ?city .
             		?city :locatedIn ?country .
-            		?country foaf:name ?state
+            		?country foaf:name ?state .
         	} 
 		GROUP BY ?state
     	}
@@ -26,7 +26,7 @@ SELECT ?state ?numLaureates ?numOrganizations WHERE {
             		?laureate a :Laureate ;
                 		:bornIn ?city .
             		?city :locatedIn ?country .
-            		?country foaf:name ?state
+            		?country foaf:name ?state .
 		} 
 		GROUP BY ?state
     	}

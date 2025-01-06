@@ -9,7 +9,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 # female laureates
 
 SELECT (COUNT(?laureate) AS ?count) WHERE {
-	?laureate :hasWon ?nobel;
-    		foaf:gender ?gender.
+	?laureate :hasWon ?nobel ;
+    		foaf:gender ?gender .
     	FILTER (?gender = "Female")
 }

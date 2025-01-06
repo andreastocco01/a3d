@@ -7,7 +7,7 @@ PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?singleTopic (COUNT(?paper) AS ?numPapers) WHERE {
-    ?paper :hasAbstractTopics ?topics.
+    ?paper :hasAbstractTopics ?topics .
     ?singleTopic spif:split(?topics ",")
 }
 GROUP BY ?singleTopic
