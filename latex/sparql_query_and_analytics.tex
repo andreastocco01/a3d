@@ -333,31 +333,43 @@ ORDER BY ?year ?topCountry
 
 \vspace{1em}
 
-With this query, we identified the top three countries with the highest number of Nobel laureates born there, along with the annual amount of funding allocated to research and development (R\&D) by these nations. To ensure data consistency, we focused exclusively on the years from 2000 to 2016.
+With this query, we identified the top three countries with the highest number of Nobel laureates born there,
+along with the annual amount of funding allocated to research and development (R\&D) by these nations.
+To ensure data consistency, we focused exclusively on the years from 2000 to 2016.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{../queries/plots/funding_comparison_by_country.png}
+	\includegraphics[width=0.75\textwidth]{../queries/plots/funding_comparison_by_country.png}
 	\caption{Funding Comparison by Country}
+	\label{fig:fundings_per_country}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{../queries/plots/laureates_comparison_by_country.png}
+	\includegraphics[width=0.75\textwidth]{../queries/plots/laureates_comparison_by_country.png}
 	\caption{Laureates Comparison by Country}
+	\label{fig:laureates_per_country}
 \end{figure}
 
-The graphs reveal a strong correlation between R\&D funding and the number of Nobel laureates. In particular, the United States dominates both metrics, demonstrating how substantial investments in research directly contribute to significant achievements in this field, resulting in a higher number of laureates annually.
+The graphs \ref{fig:fundings_per_country} and \ref{fig:laureates_per_country} reveal a strong correlation between R\&D
+funding and the number of Nobel laureates. In particular, the United States dominates both metrics, demonstrating
+how substantial investments in research directly contribute to significant achievements in this field, resulting
+in a higher number of laureates annually.
 
-The situation in Great Britain, highlighted in the following plot, is particularly curious and further supports this observation:
+The situation in Great Britain, highlighted in the following plot \ref{fig:gb_fundings}, is particularly curious
+and further supports this observation:
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{../queries/plots/gb_funding_trend_bar.png}
 	\caption{Great Britain R\&D Funding Trend}
+	\label{fig:gb_fundings}
 \end{figure}
 
-It's clear that the trends in funding and the number of laureates mirror each other closely. From 2001 to 2003, we observe the same pattern in both metrics. Subsequently, a steady and low level of R\&D funding still reflects the number of British Nobel laureates until 2016, when a sharp increase in Nobel prizes matches with a significant rise in R\&D investments.
+It's clear that the trends in funding and the number of laureates mirror each other closely. From 2001 to 2003,
+we observe the same pattern in both metrics. Subsequently, a steady and low level of R\&D funding still reflects
+the number of British Nobel laureates until 2016, when a sharp increase in Nobel prizes matches with a significant
+rise in R\&D investments.
 
 \section{moreThanOneNobel}
 
