@@ -537,7 +537,7 @@ GROUP BY ?category
 The data extracted from the query provides insights into the age at which individuals achieve great results in
 their fields:
 
-\begin{table}[h!]
+\begin{table}[H]
 	\centering
 	\caption{Age statistics of Nobel Prize winners by category.}
 	\begin{tabular}{|l|c|c|c|}
@@ -553,7 +553,6 @@ their fields:
 	\label{tab:age_analysis}
 \end{table}
 
-\subsection{Observations and Analysis}
 The table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel Prize winners:
 
 \begin{itemize}
@@ -563,7 +562,7 @@ The table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel 
 	      achieve their recognition later in life.
 
 	\item \textbf{Peace}: This category includes the youngest laureate, at only 17 years old.
-	      The diversity in ages within the Peace category (average age 61, maximum 87) may reflect the variety of
+	      The diversity in ages within this category (average age 61, maximum 87) reflects the variety of
 	      contributions recognized, from lifelong efforts in diplomacy to impactful single events, such as activism
 	      or humanitarian work.
 
@@ -573,12 +572,12 @@ The table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel 
 	      early in a researcher's career, possibly during postdoctoral experiences.
 
 	\item \textbf{Literature}: With an average age of 65, second only to Economics, and a minimum age of 42, this
-	      category highlights the time often required for authors to craft a significant body of work or achieve literary
-	      mastery. Furthermore, the Nobel Prize in Literature is frequently awarded in recognition of an author's
+	      category highlights the time often required for authors to improve and craft a masterpiece.
+          Furthermore, the Nobel Prize in Literature is frequently awarded in recognition of an author's
 	      entire career, considering their overall contribution to the field rather than a single achievement.
 \end{itemize}
 
-By digging deeper into the age data, we performed an additional query to identify the youngest and oldest
+By digging deeper into the age data, we can perform an additional query to identify the youngest and oldest
 Nobel Prize winners.
 
 \begin{lstlisting}
@@ -614,9 +613,9 @@ SELECT ?laureate ?name ?birthDate ?prize ?prizeYear ?age WHERE {
 }
 \end{lstlisting}
 
-The results are presented in the following table:
+The results are presented in the following table \ref{tab:youngest_oldest}:
 
-\begin{table}[h!]
+\begin{table}[H]
 	\centering
 	\caption{The youngest and oldest Nobel Prize winners.}
 	\begin{tabular}{|l|l|l|l|c|}
