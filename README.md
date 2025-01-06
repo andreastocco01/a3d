@@ -2,12 +2,20 @@
 Repository for GraphDB project
 ![Nobel Ontology](nobelOntology.png)
 
-# Top 8 queries
-- papersNobelTopicsYear (plot useless, we'll put sample tables from graphdb)
-- papersPerTopic
-- sharedNobels (no plots needed, single result)
-- laureatesCollaborations
+# Queries 
+- activeLaureates (10)
+- agesPerNobelCategory 
+- femaleLaureates 
+- laureatesAndFundingsForTopCountryEachYear (6)
+- laureatesAndOrgPerCountry (11)
+- laureatesCollaborations (5)
+- laureatesPerCountry
 - laureatesPerCountryAndFunding
-- moreThanOneNobel
-- papersPerVenue (added by Gino)
-- papersPerCategory (added by Davide)
+- papersNobelTopicsYear (1)
+- papersPerCategory (9)
+- papersPerTopic (3 - TO REMOVE)
+- papersPerVenue (8)
+- papersPerYearPerSubcategory (2)
+- sharedNobels (4)
+- whoWonMoreThanOneNobel (7)
+- youngestAndOldestLaureates (10)
