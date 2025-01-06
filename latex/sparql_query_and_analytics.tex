@@ -371,17 +371,12 @@ we observe the same pattern in both metrics. Subsequently, a steady and low leve
 the number of British Nobel laureates until 2016, when a sharp increase in Nobel prizes matches with a significant
 rise in R\&D investments.
 
-\section{moreThanOneNobel}
+\section{Laureates that won multiple Nobels}
 
 \begin{lstlisting}
-PREFIX spif: <http://spinrdf.org/spif#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    
+
 SELECT ?laureate (COUNT(?nobel) AS ?numNobels) (GROUP_CONCAT(DISTINCT ?category; SEPARATOR = ", ") AS ?categories) WHERE {
     ?laureate :hasWon ?nobel .
     ?nobel :hasNobelCategory ?category .
@@ -390,8 +385,9 @@ GROUP BY ?laureate
 HAVING (?numNobels > 1)
 ORDER BY DESC (?numNobels)
 \end{lstlisting}
-The query aims to identify Laureates who have won more than one Nobel Prize. By grouping the laureates and counting the number of Nobel Prizes each has won, the query filters the results to show only those with more than one prize.
-Table \ref{tab:moreThanOneNobel} shows the output of this query.
+With this query we aim to discover Laureates that won multiple Nobel Prizes and for which categories.\\
+Table \ref{tab:moreThanOneNobel} highlights that only 6 Laureates have been awarded multiple times and only 3
+Nobel categories have repeated winners.
 
 \begin{table}[H]
 	\caption{Laureates who won more than one Nobel Prize}
@@ -409,10 +405,12 @@ Table \ref{tab:moreThanOneNobel} shows the output of this query.
 	\label{tab:moreThanOneNobel}
 \end{table}
 
-The results highlight the diverse contributions of laureates in different fields, from physics and chemistry to peace and humanitarian efforts. This demonstrates the breadth of achievements recognized by the Nobel Prizes and the multidisciplinary impact of the laureates. \\
-Furthermore, the fact that only six laureates have achieved this result serves as a powerful reminder of the Prize's prestige and reflects the long-term impact and ongoing relevance of a laureate’s work.
-
-
+It is interesting to notice how all of these individuals or organizations won a prize in the same category,
+or similar in the case of Marie Curie, except for one. Linus Carl Pauling won both Chemistry and Peace Nobels,
+suggesting that he was not only a scientist but also a socially engaged figure.\\
+Also, no repeat winners are found in the categories of Economics, Literature and Medicine.
+For Economics and Literature this absence might be partially attributed to the average high age of Nobel Prize
+winners in these fields, as further analyzed in Section \ref{winners age}.\\
 
 \section{Number of papers published from the most important venues over the years}
 
@@ -511,7 +509,7 @@ reached its peak in 2008, probability due to the economic crisis of that time.
 	\includegraphics[width=\textwidth]{../queries/plots/papersPerCategory.png}
 \end{figure}
 
-\section{Age Analysis of Nobel Prize Winners}
+\section{Age Analysis of Nobel Prize Winners} \label{winners age}
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
