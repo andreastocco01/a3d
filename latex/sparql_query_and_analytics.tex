@@ -245,9 +245,10 @@ The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) h
 been shared by multiple laureates, and 574 laureates have shared different Nobel Prizes.
 
 % TODO: write better
-\noindent For each value in the x axis, representing the number of people sharing a certain Nobel Prize, the following chart displays two bars.
-The first bar represents the total number of Nobel Prizes shared among the specified number of laureates.
-The second bar represents the total number of laureates who have shared these Nobel Prizes.
+\noindent The following chart summarizes the data obtained from the query. For each number in the x axis, two columns are displayed, considering
+only the Nobel Prizes shared among that number of laureates.
+The first column represents the total number of Nobel Prizes shared among the specified number of laureates.
+The second column represents the total number of laureates who have shared these Nobel Prizes.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{../queries/plots/prizeShare.png}
@@ -621,5 +622,41 @@ attention and inspired millions worldwide.\\
 The oldest Nobel laureate is Leonid Hurwicz, who was awarded the Nobel Prize in Economics in 2007 at the age of 90.
 This result demonstrates a lifetime of work in economics, highlighting how breakthroughs in theoretical fields
 often come from years and years of efforts and experience.
+
+\section{laureateAndOrgPerCountry}
+The following query returns, for each state, the number of laureates who were born in that state and the number of
+laureates who have worked in an organization located in that state, in addition to being born there.
+\begin{lstlisting}
+PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
+	{
+        SELECT ?state (COUNT(DISTINCT ?laureate) AS ?bornIn) WHERE {
+			    ?laureate a :Laureate ;
+			        :bornIn ?city .
+			    ?city :locatedIn ?country .
+			    ?country foaf:name ?state .
+		    } GROUP BY ?state
+    }
+    	
+    {
+        SELECT ?state (COUNT(distinct ?laureate) AS ?bornAndWorkIn) WHERE {
+            ?laureate a :Laureate ;
+                :worksFor ?organization ;
+                :bornIn ?birthCity .
+            ?organization :basedIn ?orgCity .
+            ?orgCity :locatedIn ?country .
+            ?birthCity :locatedIn ?country .
+            ?country foaf:name ?state
+        } GROUP BY ?state
+    }	
+} ORDER BY DESC (?bornIn)
+\end{lstlisting}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{../queries/plots/laureatesComparison.png}
+\end{figure}
 
 \end{document}
