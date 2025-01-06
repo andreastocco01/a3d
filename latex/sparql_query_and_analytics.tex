@@ -243,7 +243,6 @@ This query shows the number of Nobel Prizes shared by multiple laureates
 and the number of laureates sharing Nobel Prizes.\\
 The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) have
 been shared by multiple laureates, and 574 laureates have shared different Nobel Prizes.
-On average, a Nobel Prize is shared by more than two laureates (2.37 laureates per prize).
 
 % TODO: write better
 \noindent For each value in the x axis, representing the number of people sharing a certain Nobel Prize, the following chart displays two bars.
@@ -527,48 +526,48 @@ The data extracted from the query provides insights into the age at which indivi
 their fields:
 
 \begin{table}[h!]
-\centering
-\caption{Age statistics of Nobel Prize winners by category.}
-\begin{tabular}{|l|c|c|c|}
-\hline
-\textbf{Category} & \textbf{Min Age} & \textbf{Avg Age} & \textbf{Max Age} \\ \hline
-Chemistry    & 35 & 58 & 85 \\ \hline
-Economics    & 51 & 67 & 90 \\ \hline
-Literature   & 42 & 65 & 88 \\ \hline
-Medicine     & 32 & 58 & 87 \\ \hline
-Peace        & 17 & 61 & 87 \\ \hline
-Physics      & 25 & 55 & 88 \\ \hline
-\end{tabular}
-\label{tab:age_analysis}
+	\centering
+	\caption{Age statistics of Nobel Prize winners by category.}
+	\begin{tabular}{|l|c|c|c|}
+		\hline
+		\textbf{Category} & \textbf{Min Age} & \textbf{Avg Age} & \textbf{Max Age} \\ \hline
+		Chemistry         & 35               & 58               & 85               \\ \hline
+		Economics         & 51               & 67               & 90               \\ \hline
+		Literature        & 42               & 65               & 88               \\ \hline
+		Medicine          & 32               & 58               & 87               \\ \hline
+		Peace             & 17               & 61               & 87               \\ \hline
+		Physics           & 25               & 55               & 88               \\ \hline
+	\end{tabular}
+	\label{tab:age_analysis}
 \end{table}
 
 \subsection{Observations and Analysis}
 The table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel Prize winners:
 
 \begin{itemize}
-    \item \textbf{Economics}: With an average age of 67, this category has the highest average age.
-    This observation likely reflects the time required to develop groundbreaking theories and gain significant
-    recognition in this field. Also the minimum age of 51 suggests that Nobel laureates in Economics often
-    achieve their recognition later in life.
-    
-    \item \textbf{Peace}: This category includes the youngest laureate, at only 17 years old.
-    The diversity in ages within the Peace category (average age 61, maximum 87) may reflect the variety of
-    contributions recognized, from lifelong efforts in diplomacy to impactful single events, such as activism
-    or humanitarian work.
-    
-    \item \textbf{Chemistry, Medicine, and Physics}: These science-related categories show similar average ages
-    (55-58 years) and a range of minimum ages (from 25 to 35 years). The relatively young ages of some laureates
-    in Physics (25) and Medicine (32) suggest that groundbreaking discoveries in these fields are sometimes made
-    early in a researcher's career, possibly during postdoctoral experiences.
-    
-    \item \textbf{Literature}: With an average age of 65, second only to Economics, and a minimum age of 42, this
-    category highlights the time often required for authors to craft a significant body of work or achieve literary
-    mastery. Furthermore, the Nobel Prize in Literature is frequently awarded in recognition of an author's
-    entire career, considering their overall contribution to the field rather than a single achievement.
+	\item \textbf{Economics}: With an average age of 67, this category has the highest average age.
+	      This observation likely reflects the time required to develop groundbreaking theories and gain significant
+	      recognition in this field. Also the minimum age of 51 suggests that Nobel laureates in Economics often
+	      achieve their recognition later in life.
+
+	\item \textbf{Peace}: This category includes the youngest laureate, at only 17 years old.
+	      The diversity in ages within the Peace category (average age 61, maximum 87) may reflect the variety of
+	      contributions recognized, from lifelong efforts in diplomacy to impactful single events, such as activism
+	      or humanitarian work.
+
+	\item \textbf{Chemistry, Medicine, and Physics}: These science-related categories show similar average ages
+	      (55-58 years) and a range of minimum ages (from 25 to 35 years). The relatively young ages of some laureates
+	      in Physics (25) and Medicine (32) suggest that groundbreaking discoveries in these fields are sometimes made
+	      early in a researcher's career, possibly during postdoctoral experiences.
+
+	\item \textbf{Literature}: With an average age of 65, second only to Economics, and a minimum age of 42, this
+	      category highlights the time often required for authors to craft a significant body of work or achieve literary
+	      mastery. Furthermore, the Nobel Prize in Literature is frequently awarded in recognition of an author's
+	      entire career, considering their overall contribution to the field rather than a single achievement.
 \end{itemize}
 
 By digging deeper into the age data, we performed an additional query to identify the youngest and oldest
-Nobel Prize winners. 
+Nobel Prize winners.
 
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
@@ -611,15 +610,15 @@ WHERE {
 The results are presented in the following table:
 
 \begin{table}[h!]
-\centering
-\caption{The youngest and oldest Nobel Prize winners.}
-\begin{tabular}{|l|l|l|l|c|}
-\hline
-\textbf{Name}    & \textbf{Birth Date} & \textbf{Prize}      & \textbf{Year} & \textbf{Age} \\ \hline
-Malala Yousafzai & 1997-07-12          & Peace 2014          & 2014          & 17           \\ \hline
-Leonid Hurwicz   & 1917-08-21          & Economics 2007      & 2007          & 90           \\ \hline
-\end{tabular}
-\label{tab:youngest_oldest}
+	\centering
+	\caption{The youngest and oldest Nobel Prize winners.}
+	\begin{tabular}{|l|l|l|l|c|}
+		\hline
+		\textbf{Name}    & \textbf{Birth Date} & \textbf{Prize} & \textbf{Year} & \textbf{Age} \\ \hline
+		Malala Yousafzai & 1997-07-12          & Peace 2014     & 2014          & 17           \\ \hline
+		Leonid Hurwicz   & 1917-08-21          & Economics 2007 & 2007          & 90           \\ \hline
+	\end{tabular}
+	\label{tab:youngest_oldest}
 \end{table}
 
 The youngest Nobel Prize winner is Malala Yousafzai, who received the Peace Prize in 2014 at the age of just 17.
