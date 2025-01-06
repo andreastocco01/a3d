@@ -226,32 +226,30 @@ ORDER BY DESC (?numPapers)
 
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
-
-SELECT (COUNT(?sharedNobel) AS ?numSharedNobels) (SUM(?numLaureates) AS ?totLaureatesSharingNobels) WHERE {
-    {
-        SELECT ?sharedNobel (COUNT(?laureate) AS ?numLaureates) WHERE {
-            ?sharedNobel :hasPrizeShare ?share .
-            ?laureate :hasWon ?sharedNobel .
-            FILTER (?share > 1)
+    SELECT ?share (COUNT(?nobel) AS ?nNobels) (SUM(?share) AS ?nLaureates) WHERE {
+        {
+            SELECT ?nobel (COUNT(?laureate) AS ?share) WHERE {
+                ?laureate :hasWon ?nobel .
+            } GROUP BY ?nobel
         }
-        GROUP BY ?sharedNobel
-    }
-}
+    } GROUP BY ?share
+    ORDER BY (?share)
 \end{lstlisting}
 
 This query shows the number of Nobel Prizes shared by multiple laureates
 and the number of laureates sharing Nobel Prizes.\\
-The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) have
-been shared by multiple laureates, and 574 laureates have shared different Nobel Prizes.
+The query provides an interesting result: 235 out of 579 Nobel Prizes (40.6\%) have
+been shared by multiple laureates, and 567 laureates have shared different Nobel Prizes.
+Another interesting fact is that the number of laureates who have won a Nobel Prize shared among three people (291)
+is greater than the number of laureates who have won a Nobel Prize shared between two people (276).
 
-% TODO: write better
 \noindent The following chart summarizes the data obtained from the query. For each number in the x axis, two columns are displayed, considering
 only the Nobel Prizes shared among that number of laureates.
 The first column represents the total number of Nobel Prizes shared among the specified number of laureates.
 The second column represents the total number of laureates who have shared these Nobel Prizes.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{../queries/plots/prizeShare.png}
+	\includegraphics[width=0.7\linewidth]{../queries/plots/nobelShare.png}
 	\caption{Graph showing the distribution of Nobel Prizes and laureates.}
 	\label{fig:prizeShare}
 \end{figure}
