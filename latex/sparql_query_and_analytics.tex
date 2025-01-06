@@ -227,17 +227,23 @@ ORDER BY DESC (?numPapers)
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 
-SELECT (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS ?numLaureatesSharingNobels) WHERE {
-        ?nobel :hasPrizeShare ?share.
-        FILTER (?share > 1)
+SELECT (COUNT(?sharedNobel) AS ?numSharedNobels) (SUM(?numLaureates) AS ?totLaureatesSharingNobels) WHERE {
+    {
+        SELECT ?sharedNobel (COUNT(?laureate) AS ?numLaureates) WHERE {
+            ?sharedNobel :hasPrizeShare ?share.
+            ?laureate :hasWon ?sharedNobel.
+            FILTER (?share > 1)
+        }
+        GROUP BY ?sharedNobel
+    }
 }
 \end{lstlisting}
 
 This query shows the number of Nobel Prizes shared by multiple laureates
 and the number of laureates sharing Nobel Prizes.\\
 The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8\%) have
-been shared by multiple laureates, and 632 laureates have shared different Nobel Prizes.
-On average, a Nobel Prize is shared by more than two laureates (2.2 laureates per prize).
+been shared by multiple laureates, and 574 laureates have shared different Nobel Prizes.
+On average, a Nobel Prize is shared by more than two laureates (2.37 laureates per prize).
 
 % TODO: write better
 \noindent For each value in the x axis, representing the number of people sharing a certain Nobel Prize, the following chart displays two bars.
@@ -378,7 +384,7 @@ SELECT ?laureate ?numNobels (GROUP_CONCAT(DISTINCT ?category; SEPARATOR = ", ") 
 }
 GROUP BY ?laureate ?numNobels
 \end{lstlisting}
-The query aims to identify Laureates who have won more than one Nobel Prize. By grouping the laureates and counting the number of Nobel Prizes each has won, the query filters the results to show only those with more than one prize. 
+The query aims to identify Laureates who have won more than one Nobel Prize. By grouping the laureates and counting the number of Nobel Prizes each has won, the query filters the results to show only those with more than one prize.
 Table \ref{tab:moreThanOneNobel} shows the output of this query.
 
 \begin{table}[H]
@@ -386,13 +392,13 @@ Table \ref{tab:moreThanOneNobel} shows the output of this query.
 	\centering
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\textbf{Laureate} & \textbf{Number of Nobels won} & \textbf{Categories} \\ \hline
-		Comite International De La Croix-Rouge              & 3       & Peace                        \\ \hline
-		Frederick Sanger          & 2           & Chemistry                        \\ \hline
-		John Bardeen                 & 2      & Physics                         \\ \hline
-		Linus Carl Pauling          & 2         & Chemistry, Peace                         \\ \hline
-		Marie Curie            & 2      & Physics, Chemistry                         \\ \hline
-		UNHCR            & 2         & Peace                         \\ \hline
+		\textbf{Laureate}                      & \textbf{Number of Nobels won} & \textbf{Categories} \\ \hline
+		Comite International De La Croix-Rouge & 3                             & Peace               \\ \hline
+		Frederick Sanger                       & 2                             & Chemistry           \\ \hline
+		John Bardeen                           & 2                             & Physics             \\ \hline
+		Linus Carl Pauling                     & 2                             & Chemistry, Peace    \\ \hline
+		Marie Curie                            & 2                             & Physics, Chemistry  \\ \hline
+		UNHCR                                  & 2                             & Peace               \\ \hline
 	\end{tabular}
 	\label{tab:moreThanOneNobel}
 \end{table}

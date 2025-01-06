@@ -1,16 +1,16 @@
-PREFIX spif: <http://spinrdf.org/spif#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX jur: <http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 # how many nobels are shared? how many laureates are sharing a nobel?
 
-SELECT (COUNT(?nobel) AS ?numSharedNobels) (SUM(?share) AS ?numLaureatesSharingNobels) WHERE {
-        ?nobel :hasPrizeShare ?share.
-        FILTER (?share > 1)
+SELECT (COUNT(?sharedNobel) AS ?numSharedNobels) (SUM(?numLaureates) AS ?totLaureatesSharingNobels) WHERE {
+    {
+        SELECT ?sharedNobel (COUNT(?laureate) AS ?numLaureates) WHERE {
+            ?sharedNobel :hasPrizeShare ?share.
+            ?laureate :hasWon ?sharedNobel.
+            FILTER (?share > 1)
+        }
+        GROUP BY ?sharedNobel
+    }
 }
 
 ####################################################################################
@@ -18,6 +18,6 @@ This query shows the number of Nobel Prizes shared by multiple laureates
 and the number of laureates sharing Nobel Prizes.
 
 The query provides an interesting result: 242 out of 579 Nobel Prizes (41.8%) have
-been shared by multiple laureates, and 632 laureates have shared different Nobel Prizes.
+been shared by multiple laureates, and 574 laureates have shared different Nobel Prizes.
 On average, a Nobel Prize is shared by more than 2 laureates (2.6 laureates per prize).
 ####################################################################################
