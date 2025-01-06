@@ -627,8 +627,9 @@ This result demonstrates a lifetime of work in economics, highlighting how break
 often come from years and years of efforts and experience.
 
 \section{laureateAndOrgPerCountry}
-The following query returns, for each state, the number of laureates who were born in that state and the number of
-laureates who have worked in an organization located in that state, in addition to being born there.
+The following query returns, for each state, the number of laureates who were born in that state but conduct research abroad, and the number of
+laureates who were born in that state and conduct reasearch there.\\
+This allows us to understand how many Nobel Prize winners conducted research in their home country or abroad in order to earn the recognition.
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -657,9 +658,34 @@ SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
 } ORDER BY DESC (?bornIn)
 \end{lstlisting}
 
-\begin{figure}[ht]
+\noindent Figure \ref{fig:laureatesComparison} displays the data returned by the query, while table \ref{tab:laureates_active} reports the five states with the lowest percentage
+of laureates active in research in their home country.\\
+As expected, the US is the state with the most laureates and also with the highest percentage
+of laureates active in their home country (88\%), thanks to the large fundings allocated in R\&D, as seen before.\\
+An interesting fact is that Japan, despite being the 7th country in terms of Nobel Prizes won, manages to retain nearly 67\% of its laureates
+within its borders. On the other hand, Russia, despite being the 6th country in terms of Nobel Prizes won, has a retention rate of only 35\%.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{State}    & \textbf{Laureates} & \textbf{Laureates active in their home country} & \textbf{Percentage} \\ \hline
+		Canada & 19 & 2 & 10,5\% \\ \hline
+		China & 11 & 2 & 18,2\% \\ \hline
+        Italy & 19 & 4 & 21\% \\ \hline
+        Austria & 17 & 4 & 23,5\% \\ \hline
+        Australia & 11 & 3 & 27,3\% \\ \hline
+	\end{tabular}
+    \caption{How many laureates are active in research in their home country.}
+	\label{tab:laureates_active}
+\end{table}
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{../queries/plots/laureatesComparison.png}
+    \caption{The plot shows for each state two columns. The blue one indicates the number of laureates born in that state but active abroad.
+    The orange one indicates the number of laureates born and active in that state.}
+    \label{fig:laureatesComparison}
 \end{figure}
 
 \end{document}
