@@ -116,7 +116,7 @@ Table \ref{tab:papersNobelTopicsYear} shows the output of this query on year 200
 \begin{table}[H]
 	\caption{Number of papers per Nobel topic in 2004}
 	\centering
-	\begin{tabular}{|l|l|l|}
+	\begin{tabular}{|l|l|c|}
 		\hline
 		\textbf{Nobel topic} & \textbf{Nobel Prize} & \textbf{Number of papers} \\ \hline
 		protein              & Chemistry 2004       & 28                        \\ \hline
@@ -174,7 +174,7 @@ Table \ref{tab:papersPerSubcategoryPerYear} continues the analysis started in th
 \begin{table}[H]
 	\caption{Number of papers for each journal subcategory in 2004}
 	\centering
-	\begin{tabular}{|l|l|}
+	\begin{tabular}{|l|c|}
 		\hline
 		\textbf{Journal Subcategory}            & \textbf{Number of papers} \\ \hline
 		Biochemistry Genetics Molecular Biology & 418                       \\ \hline
@@ -286,6 +286,8 @@ existing papers and laureates. Nevertheless, it provides an interesting insight 
 collaborations, offering a percentage-based perspective on how seldom laureates join forces to produce scientific
 work.
 
+\newpage
+
 \section{How fundings in R\&D affect the possibility for a country to win a Nobel?}
 
 \begin{lstlisting}
@@ -381,7 +383,7 @@ Nobel categories have repeated winners.
 \begin{table}[H]
 	\caption{Laureates who won more than one Nobel Prize}
 	\centering
-	\begin{tabular}{|l|l|l|}
+	\begin{tabular}{|l|c|l|}
 		\hline
 		\textbf{Laureate}                      & \textbf{Number of Nobels won} & \textbf{Categories} \\ \hline
 		Comite International De La Croix-Rouge & 3                             & Peace               \\ \hline
@@ -445,6 +447,8 @@ communications.
 That same year, the Physics Nobel Prize was awarded for "groundbreaking achievements
 concerning the transmission of light in fibers for optical communication".
 
+\newpage
+
 \section{Number of papers published for each Nobel category}
 The following query allows us to extract, for each year, the number of scientific articles published in each relevant category. The categories returned
 as results are the TopConcepts categories of our SKOS taxonomy, and they include in the count their various subcategories. For example, in the count
@@ -498,6 +502,8 @@ reached its peak in 2008, probably due to the economic crisis of that time.
 	\centering
 	\includegraphics[width=\textwidth]{../queries/plots/papersPerCategory.png}
 \end{figure}
+
+\newpage
 
 \section{Age Analysis of Nobel Prize Winners} \label{winners age}
 \begin{lstlisting}
