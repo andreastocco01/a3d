@@ -78,12 +78,6 @@
 	 & \href{mailto:andrea.stocco.8@studenti.unipd.it}{Andrea Stocco} 2108885           \\
 \end{tabular}
 
-
-\section*{Task}
-Provide at least 8 SPARQL queries over your RDF datasets. You may also perform advanced data analytics to uncover interesting insights from your datasets.
-Please submit a PDF that includes the SPARQL queries along with relevant plots or tables summarizing your analytics.
-For each query, provide a description that explains its purpose and overall objective.
-
 \section{Relationship between Nobel Prize winning ideas and published studies}
 \begin{lstlisting}
 PREFIX spif: <http://spinrdf.org/spif#>
@@ -140,6 +134,8 @@ Table \ref{tab:papersNobelTopicsYear} shows the output of this query on year 200
 	\end{tabular}
 	\label{tab:papersNobelTopicsYear}
 \end{table}
+
+\newpage
 
 Considering the limited number of papers available, the topic ``protein'' appeared
 in 28 papers. The high number of papers mentioning this Nobel topic suggests that
@@ -208,19 +204,7 @@ focused on ``protein''.\\
 This topic held central importance that year, which may explain why a Nobel
 Prize was awarded for it.
 
-\section{papersPerTopic}
-
-\begin{lstlisting}
-PREFIX spif: <http://spinrdf.org/spif#>
-PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
-
-SELECT ?singleTopic (COUNT(?paper) AS ?numPapers) WHERE {
-    ?paper :hasAbstractTopics ?topics .
-    ?singleTopic spif:split(?topics ",")
-}
-GROUP BY ?singleTopic
-ORDER BY DESC (?numPapers)
-\end{lstlisting}
+\newpage
 
 \section{Number of shared Nobels and number of Laureates sharing multiple Nobels}
 
@@ -258,6 +242,8 @@ For each prize share on the x-axis, two columns are displayed:
 
 Another interesting fact is that the number of laureates who have won a Nobel Prize shared among three people (291)
 is greater than the number of laureates who have won a Nobel Prize shared between two people (276).
+
+\newpage
 
 \section{Collaborations among Nobel Laureates}
 
