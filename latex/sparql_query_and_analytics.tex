@@ -252,7 +252,7 @@ For each prize share on the x-axis, two columns are displayed:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{../queries/plots/nobelShare.png}
-	\caption{Graph showing the distribution of Nobel Prizes among laureates.}
+	\caption{Distribution of Nobel Prizes among laureates}
 	\label{fig:prizeShare}
 \end{figure}
 
@@ -343,14 +343,14 @@ To ensure data consistency, we focused exclusively on the years from 2000 to 201
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\textwidth]{../queries/plots/funding_comparison_by_country.png}
-	\caption{Funding Comparison by Country}
+	\caption{Funding comparison by Country}
 	\label{fig:fundings_per_country}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\textwidth]{../queries/plots/laureates_comparison_by_country.png}
-	\caption{Laureates Comparison by Country}
+	\caption{Laureates comparison by Country}
 	\label{fig:laureates_per_country}
 \end{figure}
 
@@ -535,7 +535,7 @@ their fields:
 
 \begin{table}[H]
 	\centering
-	\caption{Age statistics of Nobel Prize winners by category.}
+	\caption{Age statistics of Nobel Prize winners by category}
 	\begin{tabular}{|l|c|c|c|}
 		\hline
 		\textbf{Category} & \textbf{Min Age} & \textbf{Avg Age} & \textbf{Max Age} \\ \hline
@@ -613,7 +613,7 @@ The results are presented in the following table \ref{tab:youngest_oldest}:
 
 \begin{table}[H]
 	\centering
-	\caption{The youngest and oldest Nobel Prize winners.}
+	\caption{Youngest and oldest Nobel Prize winners}
 	\begin{tabular}{|l|l|l|l|c|}
 		\hline
 		\textbf{Name}    & \textbf{Birth Date} & \textbf{Prize} & \textbf{Year} & \textbf{Age} \\ \hline
@@ -639,13 +639,14 @@ PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
-	{
+    {
         SELECT ?state (COUNT(DISTINCT ?laureate) AS ?bornIn) WHERE {
-			    ?laureate a :Laureate ;
-			        :bornIn ?city .
-			    ?city :locatedIn ?country .
-			    ?country foaf:name ?state .
-		    } GROUP BY ?state
+            ?laureate a :Laureate ;
+                        :bornIn ?city .
+                ?city :locatedIn ?country .
+                ?country foaf:name ?state .
+            } 
+        GROUP BY ?state
     }
 
     {
@@ -657,9 +658,11 @@ SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
             ?orgCity :locatedIn ?country .
             ?birthCity :locatedIn ?country .
             ?country foaf:name ?state
-        } GROUP BY ?state
+        } 
+        GROUP BY ?state
     }
-} ORDER BY DESC (?bornIn)
+} 
+ORDER BY DESC (?bornIn)
 \end{lstlisting}
 
 \noindent Figure \ref{fig:laureatesComparison} displays the data returned by the query, while table \ref{tab:laureates_active} reports the five states with the lowest percentage
@@ -680,7 +683,7 @@ within its borders. On the other hand, Russia, despite being the 6th country in 
 		Austria        & 17                 & 4                                               & 23,5\%              \\ \hline
 		Australia      & 11                 & 3                                               & 27,3\%              \\ \hline
 	\end{tabular}
-	\caption{How many laureates are active in research in their home country.}
+	\caption{Laureates active in research in their home country}
 	\label{tab:laureates_active}
 \end{table}
 
@@ -688,7 +691,7 @@ within its borders. On the other hand, Russia, despite being the 6th country in 
 	\centering
 	\includegraphics[width=\textwidth]{../queries/plots/laureatesComparison.png}
 	\caption{The plot shows for each state two columns. The blue one indicates the number of laureates born in that state but active abroad.
-		The orange one indicates the number of laureates born and active in that state.}
+		The orange one indicates the number of laureates born and active in that state}
 	\label{fig:laureatesComparison}
 \end{figure}
 
