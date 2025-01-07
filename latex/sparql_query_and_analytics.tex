@@ -226,33 +226,38 @@ ORDER BY DESC (?numPapers)
 
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
-    SELECT ?share (COUNT(?nobel) AS ?nNobels) (SUM(?share) AS ?nLaureates) WHERE {
-        {
-            SELECT ?nobel (COUNT(?laureate) AS ?share) WHERE {
-                ?laureate :hasWon ?nobel .
-            } GROUP BY ?nobel
+SELECT ?share (COUNT(?nobel) AS ?nNobels) (SUM(?share) AS ?nLaureates) WHERE {
+    {
+        SELECT ?nobel (COUNT(?laureate) AS ?share) WHERE {
+            ?laureate :hasWon ?nobel .
         }
-    } GROUP BY ?share
-    ORDER BY (?share)
+        GROUP BY ?nobel
+    }
+}
+GROUP BY ?share
+ORDER BY ASC(?share)
 \end{lstlisting}
 
 This query shows the number of Nobel Prizes shared by multiple laureates
 and the number of laureates sharing Nobel Prizes.\\
 The query provides an interesting result: 235 out of 579 Nobel Prizes (40.6\%) have
 been shared by multiple laureates, and 567 laureates have shared different Nobel Prizes.
-Another interesting fact is that the number of laureates who have won a Nobel Prize shared among three people (291)
-is greater than the number of laureates who have won a Nobel Prize shared between two people (276).
+The chart in Figure \ref{fig:prizeShare} summarizes the data obtained from the query.\\
+For each prize share on the x-axis, two columns are displayed:
+\begin{itemize}
+	\item the first column represents the total number of Nobel Prizes shared among the specified number of laureates.
+	\item the second column represents the total number of laureates who have shared these Nobel Prizes.
+\end{itemize}
 
-\noindent The following chart summarizes the data obtained from the query. For each number in the x axis, two columns are displayed, considering
-only the Nobel Prizes shared among that number of laureates.
-The first column represents the total number of Nobel Prizes shared among the specified number of laureates.
-The second column represents the total number of laureates who have shared these Nobel Prizes.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{../queries/plots/nobelShare.png}
-	\caption{Graph showing the distribution of Nobel Prizes and laureates.}
+	\caption{Graph showing the distribution of Nobel Prizes among laureates.}
 	\label{fig:prizeShare}
 \end{figure}
+
+Another interesting fact is that the number of laureates who have won a Nobel Prize shared among three people (291)
+is greater than the number of laureates who have won a Nobel Prize shared between two people (276).
 
 \section{Collaborations among Nobel Laureates}
 
@@ -274,8 +279,8 @@ HAVING (COUNT(DISTINCT ?laureate) > 1)
 
 \vspace{1em}
 
-The goal of this query was to explore whether Nobel laureates collaborate with each other by co-authoring
-scientific papers. As the table \ref{tab:laureates_collaboration} shows, among approximately 53,000 papers
+The goal of this query is to explore whether Nobel laureates collaborate with each other by co-authoring
+scientific papers. As Table \ref{tab:laureates_collaboration} shows, among approximately 53,000 papers
 and 904 laureates, only one paper was found to have been co-authored by multiple laureates.
 
 \begin{table}[H]
@@ -283,8 +288,8 @@ and 904 laureates, only one paper was found to have been co-authored by multiple
 	\centering
 	\begin{tabular}{|l|l|}
 		\hline
-		\textbf{Title}                                                      & \textbf{Laureates}                   \\ \hline
-		\textit{Recursive Robust Estimation and Control Without Commitment} & Lars Peter Hansen, Thomas J. Sargent \\ \hline
+		\textbf{Title}                                             & \textbf{Laureates}                   \\ \hline
+		Recursive Robust Estimation and Control Without Commitment & Lars Peter Hansen, Thomas J. Sargent \\ \hline
 	\end{tabular}
 	\label{tab:laureates_collaboration}
 \end{table}
@@ -349,12 +354,12 @@ To ensure data consistency, we focused exclusively on the years from 2000 to 201
 	\label{fig:laureates_per_country}
 \end{figure}
 
-The graphs \ref{fig:fundings_per_country} and \ref{fig:laureates_per_country} reveal a strong correlation between R\&D
+Charts in Figure \ref{fig:fundings_per_country} and \ref{fig:laureates_per_country} reveal a strong correlation between R\&D
 funding and the number of Nobel laureates. In particular, the United States dominates both metrics, demonstrating
 how substantial investments in research directly contribute to significant achievements in this field, resulting
 in a higher number of laureates annually.
 
-The situation in Great Britain, highlighted in the following plot \ref{fig:gb_fundings}, is particularly curious
+The situation in Great Britain, highlighted in the chart in Figure \ref{fig:gb_fundings}, is particularly curious
 and further supports this observation:
 
 \begin{figure}[H]
@@ -403,10 +408,10 @@ Nobel categories have repeated winners.
 	\label{tab:moreThanOneNobel}
 \end{table}
 
-It is interesting to notice how all of these individuals or organizations won a prize in the same category,
-or similar in the case of Marie Curie, except for one. Linus Carl Pauling won both Chemistry and Peace Nobels,
+It is interesting to note that all of these individuals or organizations won a prize in the same category,
+or a similar one in the case of Marie Curie, except for one. Linus Carl Pauling won both the Chemistry and Peace Nobel Prizes,
 suggesting that he was not only a scientist but also a socially engaged figure.\\
-Also, no repeat winners are found in the categories of Economics, Literature and Medicine.
+Additionally, no repeat winners are found in the categories of Economics, Literature and Medicine.
 For Economics and Literature this absence might be partially attributed to the average high age of Nobel Prize
 winners in these fields, as further analyzed in Section \ref{winners age}.\\
 
@@ -563,7 +568,7 @@ The table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel 
 
 	\item \textbf{Literature}: With an average age of 65, second only to Economics, and a minimum age of 42, this
 	      category highlights the time often required for authors to improve and craft a masterpiece.
-          Furthermore, the Nobel Prize in Literature is frequently awarded in recognition of an author's
+	      Furthermore, the Nobel Prize in Literature is frequently awarded in recognition of an author's
 	      entire career, considering their overall contribution to the field rather than a single achievement.
 \end{itemize}
 
@@ -641,7 +646,7 @@ SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
 			    ?country foaf:name ?state .
 		    } GROUP BY ?state
     }
-    	
+
     {
         SELECT ?state (COUNT(distinct ?laureate) AS ?bornAndWorkIn) WHERE {
             ?laureate a :Laureate ;
@@ -652,7 +657,7 @@ SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
             ?birthCity :locatedIn ?country .
             ?country foaf:name ?state
         } GROUP BY ?state
-    }	
+    }
 } ORDER BY DESC (?bornIn)
 \end{lstlisting}
 
@@ -667,23 +672,23 @@ within its borders. On the other hand, Russia, despite being the 6th country in 
 	\centering
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		\textbf{State}    & \textbf{Laureates} & \textbf{Laureates active in their home country} & \textbf{Percentage} \\ \hline
-		Canada & 19 & 2 & 10,5\% \\ \hline
-		China & 11 & 2 & 18,2\% \\ \hline
-        Italy & 19 & 4 & 21\% \\ \hline
-        Austria & 17 & 4 & 23,5\% \\ \hline
-        Australia & 11 & 3 & 27,3\% \\ \hline
+		\textbf{State} & \textbf{Laureates} & \textbf{Laureates active in their home country} & \textbf{Percentage} \\ \hline
+		Canada         & 19                 & 2                                               & 10,5\%              \\ \hline
+		China          & 11                 & 2                                               & 18,2\%              \\ \hline
+		Italy          & 19                 & 4                                               & 21\%                \\ \hline
+		Austria        & 17                 & 4                                               & 23,5\%              \\ \hline
+		Australia      & 11                 & 3                                               & 27,3\%              \\ \hline
 	\end{tabular}
-    \caption{How many laureates are active in research in their home country.}
+	\caption{How many laureates are active in research in their home country.}
 	\label{tab:laureates_active}
 \end{table}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{../queries/plots/laureatesComparison.png}
-    \caption{The plot shows for each state two columns. The blue one indicates the number of laureates born in that state but active abroad.
-    The orange one indicates the number of laureates born and active in that state.}
-    \label{fig:laureatesComparison}
+	\caption{The plot shows for each state two columns. The blue one indicates the number of laureates born in that state but active abroad.
+		The orange one indicates the number of laureates born and active in that state.}
+	\label{fig:laureatesComparison}
 \end{figure}
 
 \end{document}
