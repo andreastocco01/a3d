@@ -108,10 +108,10 @@ ORDER BY DESC (?numPapers)
 \end{lstlisting}
 
 This query shows the topics present in both Nobel Prize motivations and paper abstracts.
-For a given year, it returns the number of paper in which a Nobel topic appears.
+For a given year, it returns the number of papers in which a Nobel topic appears.
 This query can be used to find correlations between Nobel Prize topics and research
 papers.\\
-Table \ref{tab:papersNobelTopicsYear} shows the output of this query on year 2004.
+Table \ref{tab:papersNobelTopicsYear} shows the output of this query in 2004.
 
 \begin{table}[H]
 	\caption{Number of papers per Nobel topic in 2004}
@@ -140,7 +140,7 @@ Table \ref{tab:papersNobelTopicsYear} shows the output of this query on year 200
 Considering the limited number of papers available, the topic ``protein'' appeared
 in 28 papers. The high number of papers mentioning this Nobel topic suggests that
 it was widely discussed or relevant in 2004.\\
-We cannot conclude whether the research area of molecular biology was particularly active
+We cannot conclude whether the molecular biology research area was particularly active
 in that year, but in Section \ref{moreActiveResearchAreas} we will further
 investigate this.\\
 Unfortunately, this query is not always useful. In some cases, the
@@ -201,7 +201,7 @@ Considering the limited number of papers in our dataset, molecular biology
 was the most active research area in 2004.\\
 Building on the previous section, 28 out of 418 molecular biology papers
 focused on ``protein''.\\
-This topic held central importance that year, which may explain why a Nobel
+This topic was of central importance that year, which may explain why a Nobel
 Prize was awarded for it.
 
 \newpage
@@ -219,17 +219,17 @@ SELECT ?share (COUNT(?nobel) AS ?nNobels) (SUM(?share) AS ?nLaureates) WHERE {
     }
 }
 GROUP BY ?share
-ORDER BY ASC(?share)
+ORDER BY ASC (?share)
 \end{lstlisting}
 
 This query shows the number of Nobel Prizes shared by multiple laureates
 and the number of laureates sharing Nobel Prizes.\\
-The query provides an interesting result: 235 out of 579 Nobel Prizes (40.6\%) have
+The query provides an interesting result: 235 of 579 Nobel Prizes (40.6\%) have
 been shared by multiple laureates, and 567 laureates have shared different Nobel Prizes.
 The chart in Figure \ref{fig:prizeShare} summarizes the data obtained from the query.\\
 For each prize share on the x-axis, two columns are displayed:
 \begin{itemize}
-	\item the first column represents the total number of Nobel Prizes shared among the specified number of laureates.
+	\item the first column represents the total number of Nobel Prizes shared among the specified number of laureates;
 	\item the second column represents the total number of laureates who have shared these Nobel Prizes.
 \end{itemize}
 
@@ -308,12 +308,12 @@ SELECT ?year ?topCountry (COUNT(DISTINCT ?laureate) AS ?numLaureates) (SUM(?fund
     }
     { # Select country with most laureates
         SELECT (?country AS ?topCountry) WHERE {
-        ?laureate rdf:type :Laureate ;
-            :bornIn ?city .
-        ?city :locatedIn ?country .
+            ?laureate rdf:type :Laureate ;
+                :bornIn ?city .
+            ?city :locatedIn ?country .
         }
         GROUP BY ?country
-        ORDER BY DESC(COUNT(DISTINCT ?laureate))
+        ORDER BY DESC (COUNT(DISTINCT ?laureate))
         LIMIT 3
     }
 }
@@ -326,7 +326,7 @@ ORDER BY ?year ?topCountry
 
 With this query, we identified the top three countries with the highest number of Nobel laureates born there,
 along with the annual amount of funding allocated to research and development (R\&D) by these nations.
-To ensure data consistency, we focused exclusively on the years from 2000 to 2016.
+To ensure data consistency, we limited our focus exclusively to the years between 2000 and 2016.
 
 \begin{figure}[H]
 	\centering
@@ -377,7 +377,7 @@ HAVING (?numNobels > 1)
 ORDER BY DESC (?numNobels)
 \end{lstlisting}
 With this query we aim to discover Laureates that won multiple Nobel Prizes and for which categories.\\
-Table \ref{tab:moreThanOneNobel} highlights that only 6 Laureates have been awarded multiple times and only 3
+Table \ref{tab:moreThanOneNobel} highlights that only six Laureates have been awarded multiple times and only three
 Nobel categories have repeated winners.
 
 \begin{table}[H]
@@ -441,8 +441,8 @@ Figure \ref{fig:papersPerVenue} shows the trends of the six major research venue
 
 In recent years, Bioinformatics could be considered one of the most influential
 venue due to its consistently higher number of papers published compared to others.
-IEEE venues, are the most prominent in the fields of information and tecnology.\\
-For instance, on 2009, the research community focused more on the field of
+IEEE venues are the most prominent in the fields of information and tecnology.\\
+For instance, in 2009 the research community focused more on the field of
 communications.
 That same year, the Physics Nobel Prize was awarded for "groundbreaking achievements
 concerning the transmission of light in fibers for optical communication".
@@ -450,14 +450,6 @@ concerning the transmission of light in fibers for optical communication".
 \newpage
 
 \section{Number of papers published for each Nobel category}
-The following query allows us to extract, for each year, the number of scientific articles published in each relevant category. The categories returned
-as results are the TopConcepts categories of our SKOS taxonomy, and they include in the count their various subcategories. For example, in the count
-of papers for the medicine category, articles belonging to subcategories like neuroscience are also included.
-
-\noindent To obtain this data, the query uses two distinct subqueries. The first subquery extracts the number of articles published for each main category
-(TopConcept), while the second identifies the number of articles associated with the subcategories of each main category. The sum of the results of
-the two subqueries, aggregated by year and category, provides the total number of articles published for each category and for each year.
-
 \begin{lstlisting}
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
@@ -489,13 +481,21 @@ GROUP BY ?year ?category
 ORDER BY DESC (?totalPapers)
 \end{lstlisting}
 
+\noindent This query allows us to extract, for each year, the number of scientific articles published in each relevant category. The categories returned
+as results are the TopConcepts categories of our SKOS taxonomy, and they include in the count their various subcategories. For example, in the count
+of papers for the medicine category, articles belonging to subcategories like neuroscience are also included.
+
+To obtain this data, the query uses two distinct subqueries. The first subquery extracts the number of articles published for each main category
+(TopConcept), while the second identifies the number of articles associated with the subcategories of each main category. The sum of the results of
+the two subqueries, aggregated by year and category, provides the total number of articles published for each category and for each year.
+
 \newpage
 
 \noindent This approach offers a comprehensive view of the distribution of published articles over time, allowing us to identify which research areas, related
 to Nobel categories, have attracted the most attention from scholars over the years.
 
-\noindent Figure \ref{fig:papersPerCategory} shows a plot representing the trend of the number of papers published over the years, divided by their respective categories.
-In the recent years, the most studied field is medicine which got a big leap around 2002, while in the nineties the most studied one was economics, which
+\noindent Figure \ref{fig:papersPerCategory} shows a plot showing the trend of the number of papers published over the years, divided by their respective categories.
+In recent years, the most studied field is medicine which got a big leap around 2002, while in the nineties the most studied one was economics, which
 reached its peak in 2008, probably due to the economic crisis of that time.
 \begin{figure}[ht]
 	\label{fig:papersPerCategory}
@@ -545,8 +545,7 @@ The table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel 
 
 \begin{itemize}
 	\item \textbf{Economics}: With an average age of 67, this category has the highest average age.
-	      This observation likely reflects the time required to develop groundbreaking theories and gain significant
-	      recognition in this field. Also the minimum age of 51 suggests that Nobel laureates in Economics often
+	      This observation likely reflects the time required to develop groundbreaking theories and gain significant recognition in this field. Also the minimum age of 51 suggests that Nobel laureates in Economics often
 	      achieve their recognition later in life.
 
 	\item \textbf{Peace}: This category includes the youngest laureate, at only 17 years old.
@@ -565,7 +564,9 @@ The table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel 
 	      entire career, considering their overall contribution to the field rather than a single achievement.
 \end{itemize}
 
-By digging deeper into the age data, we can perform an additional query to identify the youngest and oldest
+\newpage
+
+\noindent By digging deeper into the age data, we can perform an additional query to identify the youngest and oldest
 Nobel Prize winners.
 
 \begin{lstlisting}
@@ -622,10 +623,9 @@ The oldest Nobel laureate is Leonid Hurwicz, who was awarded the Nobel Prize in 
 This result demonstrates a lifetime of work in economics, highlighting how breakthroughs in theoretical fields
 often come from years and years of efforts and experience.
 
+\newpage
+
 \section{Nobel Laureates: Birthplace vs. Research Location by State}
-The following query returns, for each state, the number of laureates who were born in that state but conduct research abroad, and the number of
-laureates who were born in that state and conduct reasearch there.\\
-This allows us to understand how many Nobel Prize winners conducted research in their home country or abroad in order to earn the recognition.
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -634,10 +634,10 @@ SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
     {
         SELECT ?state (COUNT(DISTINCT ?laureate) AS ?bornIn) WHERE {
             ?laureate a :Laureate ;
-                        :bornIn ?city .
-                ?city :locatedIn ?country .
-                ?country foaf:name ?state .
-            } 
+                :bornIn ?city .
+            ?city :locatedIn ?country .
+            ?country foaf:name ?state .
+        } 
         GROUP BY ?state
     }
 
@@ -657,10 +657,14 @@ SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
 ORDER BY DESC (?bornIn)
 \end{lstlisting}
 
-\noindent Figure \ref{fig:laureatesComparison} displays the data returned by the query, while table \ref{tab:laureates_active} reports the five states with the lowest percentage
+\noindent The preceding query returns, for each state, the number of laureates who were born in that state but conducted research abroad, and the number of
+laureates who were born in that state and conducted research there.\\
+This allows us to understand how many Nobel Prize winners conducted research in their home country or abroad in order to earn the recognition.
+
+Figure \ref{fig:laureatesComparison} displays the data returned by the query, while table \ref{tab:laureates_active} reports the five states with the lowest percentage
 of laureates active in research in their home country.\\
 As expected, the US is the state with the most laureates and also with the highest percentage
-of laureates active in their home country (88\%), thanks to the large fundings allocated in R\&D, as seen before.\\
+of active laureates in their home country (88\%), thanks to the large fundings allocated in R\&D, as seen before.\\
 An interesting fact is that Japan, despite being the 7th country in terms of Nobel Prizes won, manages to retain nearly 67\% of its laureates
 within its borders. On the other hand, Russia, despite being the 6th country in terms of Nobel Prizes won, has a retention rate of only 35\%.
 
