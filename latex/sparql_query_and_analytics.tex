@@ -131,7 +131,7 @@ Table \ref{tab:papersNobelTopicsYear} shows the output of this query in 2004.
 		olfactory            & Medicine 2004        & 1                         \\ \hline
 		organization         & Medicine 2004        & 1                         \\ \hline
 	\end{tabular}
-    \caption{Number of papers per Nobel topic in 2004}
+	\caption{Number of papers per Nobel topic in 2004}
 	\label{tab:papersNobelTopicsYear}
 \end{table}
 
@@ -193,17 +193,14 @@ Table \ref{tab:papersPerSubcategoryPerYear} continues the analysis started in th
 		Energy                                  & 2                         \\ \hline
 		Pharmacology Toxicology Pharmaceutics   & 2                         \\ \hline
 	\end{tabular}
-    \caption{Number of papers for each journal subcategory in 2004}
+	\caption{Number of papers for each journal subcategory in 2004}
 	\label{tab:papersPerSubcategoryPerYear}
 \end{table}
-%TODO
-!!!!DA RIVEDERE !!!!!!
 Considering the limited number of papers in our dataset, molecular biology
 was the most active research area in 2004.\\
-Building on the previous section, 28 out of 418 molecular biology papers
-focused on ``protein''.\\
-This topic was of central importance that year, which may explain why a Nobel
-Prize was awarded for it.
+Building on the previous section, 28 papers
+focused on ``protein'', indicating that it held central importance that year,
+which may explain why a Nobel Prize was awarded for it.
 
 \newpage
 
@@ -257,7 +254,7 @@ SELECT ?title (GROUP_CONCAT(?name; SEPARATOR = ", ") AS ?laureates) WHERE {
     ?laureate rdf:type :Laureate .
     ?paper rdf:type :Paper ;
         :hasTitle ?title .
-    ?laureate :hasWritten ?paper .
+    ?laureate :hasWritten ?paper ;
         foaf:name ?name .
 }
 GROUP BY ?title
@@ -394,7 +391,7 @@ Nobel categories have repeated winners.
 		Marie Curie                            & 2                             & Physics, Chemistry  \\ \hline
 		UNHCR                                  & 2                             & Peace               \\ \hline
 	\end{tabular}
-    \caption{Laureates who won more than one Nobel Prize}
+	\caption{Laureates who won more than one Nobel Prize}
 	\label{tab:moreThanOneNobel}
 \end{table}
 
@@ -444,7 +441,7 @@ Figure \ref{fig:papersPerVenue} shows the trends of the six major research venue
 \end{figure}
 
 In recent years, Bioinformatics could be considered one of the most influential
-venue due to its consistently higher number of papers published compared to others.
+venue because of its consistently higher number of papers published compared to others.
 IEEE venues are the most prominent in the fields of information and tecnology.\\
 For instance, in 2009 the research community focused more on the field of
 communications.
@@ -459,7 +456,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 
 SELECT ?year ?category (SUM(?howmany) AS ?totalPapers) WHERE {
-    
+
     {
         SELECT ?year ?category (COUNT(DISTINCT ?paper) AS ?howmany) WHERE {
             ?journal :hasJournalCategory ?category .
@@ -469,9 +466,9 @@ SELECT ?year ?category (SUM(?howmany) AS ?totalPapers) WHERE {
         }
         GROUP BY ?year ?category
     }
-    
+
     UNION
-    
+
     {
         SELECT ?year ?category (COUNT(DISTINCT ?paper) AS ?howmany) WHERE {
             ?journal :hasJournalCategory ?cat .
@@ -542,11 +539,11 @@ their fields:
 		Peace             & 17               & 61               & 87               \\ \hline
 		Physics           & 25               & 55               & 88               \\ \hline
 	\end{tabular}
-    \caption{Age statistics of Nobel Prize winners by category}
+	\caption{Age statistics of Nobel Prize winners by category}
 	\label{tab:age_analysis}
 \end{table}
 
-The table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel Prize winners:
+Table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel Prize winners:
 
 \begin{itemize}
 	\item \textbf{Economics}: With an average age of 67, this category has the highest average age.
@@ -610,7 +607,7 @@ SELECT ?laureate ?name ?birthDate ?age WHERE {
 }
 \end{lstlisting}
 
-The results are presented in the following table \ref{tab:youngest_oldest}:
+The results are presented in Table \ref{tab:youngest_oldest}:
 
 \begin{table}[H]
 	\centering
@@ -645,7 +642,7 @@ SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
                 :bornIn ?city .
             ?city :locatedIn ?country .
             ?country foaf:name ?state .
-        } 
+        }
         GROUP BY ?state
     }
 
@@ -658,18 +655,18 @@ SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
             ?orgCity :locatedIn ?country .
             ?birthCity :locatedIn ?country .
             ?country foaf:name ?state
-        } 
+        }
         GROUP BY ?state
     }
-} 
+}
 ORDER BY DESC (?bornIn)
 \end{lstlisting}
 
-\noindent The preceding query returns, for each state, the number of laureates who were born in that state but conducted research abroad, and the number of
+\noindent This query returns, for each state, the number of laureates who were born in that state but conducted research abroad, and the number of
 laureates who were born in that state and conducted research there.\\
 This allows us to understand how many Nobel Prize winners conducted research in their home country or abroad in order to earn the recognition.
 
-Figure \ref{fig:laureatesComparison} displays the data returned by the query, while table \ref{tab:laureates_active} reports the five states with the lowest percentage
+Figure \ref{fig:laureatesComparison} displays the data returned by the query, while Table \ref{tab:laureates_active} reports the five states with the lowest percentage
 of laureates active in research in their home country.\\
 As expected, the US is the state with the most laureates and also with the highest percentage
 of active laureates in their home country (88\%), thanks to the large fundings allocated in R\&D, as seen before.\\
