@@ -51,7 +51,7 @@
     stringstyle=\color{red}\ttfamily,
     commentstyle=\color{gray}\itshape,
     sensitive=true,
-    morecomment=[l][\color{gray}]
+    morecomment=[l][\color{gray}]{\#}
 }
 \lstset{
     language=SPARQL,
@@ -289,7 +289,7 @@ work.
 
 \newpage
 
-\section{How fundings in R\&D affect the possibility for a country to win a Nobel?}
+\section{Relationship between funding allocated for R\&D and possibility of winning a Nobel Prize}
 
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
@@ -413,7 +413,6 @@ winners in these fields, as further analyzed in Section \ref{winners age}.\\
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 
 SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
-
     # Get the most important venues (the ones with more than 800 papers published)
     {
         SELECT ?venue (COUNT(?paper) AS ?totPapers) WHERE {
@@ -424,7 +423,7 @@ SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
         ORDER BY DESC (?totPapers)
     }
 
-    # get the number of paper published in the most important venues for each year
+    # Get the number of paper published in the most important venues for each year
     ?paper :publishedIn ?venue ;
         :hasYear ?year .
 }
@@ -459,7 +458,6 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 
 SELECT ?year ?category (SUM(?howmany) AS ?totalPapers) WHERE {
-
     {
         SELECT ?year ?category (COUNT(DISTINCT ?paper) AS ?howmany) WHERE {
             ?journal :hasJournalCategory ?category .
@@ -469,9 +467,7 @@ SELECT ?year ?category (SUM(?howmany) AS ?totalPapers) WHERE {
         }
         GROUP BY ?year ?category
     }
-
     UNION
-
     {
         SELECT ?year ?category (COUNT(DISTINCT ?paper) AS ?howmany) WHERE {
             ?journal :hasJournalCategory ?cat .
@@ -521,7 +517,6 @@ SELECT ?category (MIN(?age) AS ?minAge) (ROUND(AVG(?age)) AS ?avgAge) (MAX(?age)
         :hasWon ?prize .
     ?prize :hasYear ?prizeYear ;
         :hasNobelCategory ?category .
-
     BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
 }
 GROUP BY ?category
@@ -582,9 +577,9 @@ SELECT ?laureate ?name ?birthDate ?age WHERE {
     {
         SELECT (MIN(YEAR(?prizeYear) - YEAR(?birthDate)) AS ?minAge) WHERE {
             ?laureate a :Laureate ;
-                    foaf:name ?name ;
-                        :birthDate ?birthDate ;
-                        :hasWon ?prize .
+                foaf:name ?name ;
+                :birthDate ?birthDate ;
+                :hasWon ?prize .
             ?prize :hasYear ?prizeYear .
         }
     }
@@ -592,17 +587,17 @@ SELECT ?laureate ?name ?birthDate ?age WHERE {
     {
         SELECT (MAX(YEAR(?prizeYear) - YEAR(?birthDate)) AS ?maxAge) WHERE {
             ?laureate a :Laureate ;
-                    foaf:name ?name ;
-                        :birthDate ?birthDate ;
-                        :hasWon ?prize .
+                foaf:name ?name ;
+                :birthDate ?birthDate ;
+                :hasWon ?prize .
             ?prize :hasYear ?prizeYear .
         }
     }
 
     ?laureate a :Laureate ;
-            foaf:name ?name ;
-                :birthDate ?birthDate ;
-                :hasWon ?prize .
+        foaf:name ?name ;
+        :birthDate ?birthDate ;
+        :hasWon ?prize .
     ?prize :hasYear ?prizeYear .
 
     BIND (YEAR(?prizeYear) - YEAR(?birthDate) AS ?age)
@@ -629,7 +624,7 @@ Her recognition came as a result of her activism for girls' education and human 
 attention and inspired millions worldwide.\\
 The oldest Nobel laureate is Leonid Hurwicz, who was awarded the Nobel Prize in Economics in 2007 at the age of 90.
 This result demonstrates a lifetime of work in economics, highlighting how breakthroughs in theoretical fields
-often come from years and years of efforts and experience.
+often come from years and years of effort and experience.
 
 \newpage
 
@@ -648,7 +643,6 @@ SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
         }
         GROUP BY ?state
     }
-
     {
         SELECT ?state (COUNT(distinct ?laureate) AS ?bornAndWorkIn) WHERE {
             ?laureate a :Laureate ;
@@ -671,7 +665,7 @@ This allows us to understand how many Nobel Prize winners conducted research in 
 
 Figure \ref{fig:laureatesComparison} displays the data returned by the query, while Table \ref{tab:laureates_active} reports the five states with the lowest percentage
 of laureates active in research in their home country.\\
-As expected, the US is the state with the most laureates and also with the highest percentage
+As expected, the US is the state with the highest number of laureates and also with the highest percentage
 of active laureates in their home country (88\%), thanks to the large fundings allocated in R\&D, as seen before.\\
 An interesting fact is that Japan, despite being the 7th country in terms of Nobel Prizes won, manages to retain nearly 67\% of its laureates
 within its borders. On the other hand, Russia, despite being the 6th country in terms of Nobel Prizes won, has a retention rate of only 35\%.
