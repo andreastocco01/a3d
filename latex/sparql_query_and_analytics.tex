@@ -588,19 +588,9 @@ Nobel Prize winners.
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
-SELECT ?laureate ?name ?birthDate ?age WHERE {
+SELECT ?name ?birthDate ?prize ?age WHERE {
     {
-        SELECT (MIN(YEAR(?prizeYear) - YEAR(?birthDate)) AS ?minAge) WHERE {
-            ?laureate a :Laureate ;
-                foaf:name ?name ;
-                :birthDate ?birthDate ;
-                :hasWon ?prize .
-            ?prize :hasYear ?prizeYear .
-        }
-    }
-    UNION
-    {
-        SELECT (MAX(YEAR(?prizeYear) - YEAR(?birthDate)) AS ?maxAge) WHERE {
+        SELECT (MIN(YEAR(?prizeYear) - YEAR(?birthDate)) AS ?minAge) (MAX(YEAR(?prizeYear) - YEAR(?birthDate)) AS ?maxAge) WHERE {
             ?laureate a :Laureate ;
                 foaf:name ?name ;
                 :birthDate ?birthDate ;
@@ -627,9 +617,9 @@ The results are presented in Table \ref{tab:youngest_oldest}:
 	\caption{Youngest and oldest Nobel Prize winners}
 	\begin{tabular}{|l|l|l|l|c|}
 		\hline
-		\textbf{Name}    & \textbf{Birth Date} & \textbf{Prize} & \textbf{Year} & \textbf{Age} \\ \hline
-		Malala Yousafzai & 1997-07-12          & Peace 2014     & 2014          & 17           \\ \hline
-		Leonid Hurwicz   & 1917-08-21          & Economics 2007 & 2007          & 90           \\ \hline
+		\textbf{Name}    & \textbf{Birth Date} & \textbf{Prize} & \textbf{Age} \\ \hline
+		Leonid Hurwicz   & 1917-08-21          & Economics 2007 & 90           \\ \hline
+		Malala Yousafzai & 1997-07-12          & Peace 2014     & 17           \\ \hline
 	\end{tabular}
 	\label{tab:youngest_oldest}
 \end{table}
