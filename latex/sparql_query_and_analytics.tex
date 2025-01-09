@@ -107,6 +107,8 @@ GROUP BY ?nobelTopic ?nobel
 ORDER BY DESC (?numPapers)
 \end{lstlisting}
 
+\vspace{1em}
+
 This query shows the topics present in both Nobel Prize motivations and paper abstracts.
 For a given year, it returns the number of papers in which a Nobel topic appears.
 This query can be used to find correlations between Nobel Prize topics and research
@@ -167,6 +169,8 @@ GROUP BY ?category
 ORDER BY DESC (?numPapers)
 \end{lstlisting}
 
+\vspace{1em}
+
 This query shows the number of papers published for each journal subcategory for a given year.
 It can be used to identify which research areas were particularly active in that year.\\
 Table \ref{tab:papersPerSubcategoryPerYear} continues the analysis started in the previous section.
@@ -219,6 +223,8 @@ SELECT ?share (COUNT(?nobel) AS ?nNobels) (SUM(?share) AS ?nLaureates) WHERE {
 GROUP BY ?share
 ORDER BY ASC (?share)
 \end{lstlisting}
+
+\vspace{1em}
 
 This query shows the number of Nobel Prizes shared by multiple laureates
 and the number of laureates sharing Nobel Prizes.\\
@@ -378,8 +384,11 @@ GROUP BY ?laureate
 HAVING (?numNobels > 1)
 ORDER BY DESC (?numNobels)
 \end{lstlisting}
-With this query we aim to discover Laureates that won multiple Nobel Prizes and for which categories.\\
-Table \ref{tab:moreThanOneNobel} highlights that only six Laureates have been awarded multiple times and only three
+
+\vspace{1em}
+
+With this query we aim to discover laureates that won multiple Nobel Prizes and for which categories.\\
+Table \ref{tab:moreThanOneNobel} highlights that only six laureates have been awarded multiple times and only three
 Nobel categories have repeated winners.
 
 \begin{table}[H]
@@ -430,6 +439,8 @@ SELECT ?venue ?year (COUNT(?paper) AS ?numPapers) WHERE {
 GROUP BY ?venue ?year
 ORDER BY ASC (?year)
 \end{lstlisting}
+
+\vspace{1em}
 
 This query returns the number of papers published over the years by major
 venues (those with more than 800 papers published, according to our dataset).
@@ -482,7 +493,9 @@ GROUP BY ?year ?category
 ORDER BY DESC (?totalPapers)
 \end{lstlisting}
 
-\noindent This query allows us to extract, for each year, the number of scientific articles published in each relevant category. The categories returned
+\vspace{1em}
+
+This query allows us to extract, for each year, the number of scientific articles published in each relevant category. The categories returned
 as results are the TopConcepts categories of our SKOS taxonomy, and they include in the count their various subcategories. For example, in the count
 of papers for the medicine category, articles belonging to subcategories like neuroscience are also included.
 
@@ -521,6 +534,8 @@ SELECT ?category (MIN(?age) AS ?minAge) (ROUND(AVG(?age)) AS ?avgAge) (MAX(?age)
 }
 GROUP BY ?category
 \end{lstlisting}
+
+\vspace{1em}
 
 The data extracted from the query provides insights into the age at which individuals achieve great results in
 their fields:
@@ -659,7 +674,9 @@ SELECT ?state ?bornIn ?bornAndWorkIn WHERE {
 ORDER BY DESC (?bornIn)
 \end{lstlisting}
 
-\noindent This query returns, for each state, the number of laureates who were born in that state but conducted research abroad, and the number of
+\vspace{1em}
+
+This query returns, for each state, the number of laureates who were born in that state but conducted research abroad, and the number of
 laureates who were born in that state and conducted research there.\\
 This allows us to understand how many Nobel Prize winners conducted research in their home country or abroad in order to earn the recognition.
 
