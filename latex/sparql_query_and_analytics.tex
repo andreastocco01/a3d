@@ -509,26 +509,18 @@ ORDER BY DESC (?totalPapers)
 
 \vspace{1em}
 
-This query allows us to extract, for each year, the number of scientific articles published in each relevant category. The categories returned
-as results are the TopConcepts categories of our SKOS taxonomy, and they include in the count their various subcategories. For example, in the count
-of papers for the medicine category, articles belonging to subcategories like neuroscience are also included.
+This query allows us to extract, for each year, the number of scientific articles published for each Nobel Prize category. This approach offers a comprehensive view
+of the distribution of published papers over time, allowing us to identify which research areas, related to Nobel categories, have attracted the most attention
+from scholars over the time.\\
 
-To obtain this data, the query uses two distinct subqueries. The first subquery extracts the number of articles published for each main category
-(TopConcept), while the second identifies the number of articles associated with the subcategories of each main category. The sum of the results of
-the two subqueries, aggregated by year and category, provides the total number of articles published for each category and for each year.
+As we can see from Figure \ref{fig:papersPerCategory}, in recent years the most studied field is Medicine which attracted more and more attention since 2002, while in the
+90s the most studied one was Economics, which reached its peak in 2008, probably due to the economic crisis of that time.
 
-\newpage
-
-\noindent This approach offers a comprehensive view of the distribution of published articles over time, allowing us to identify which research areas, related
-to Nobel categories, have attracted the most attention from scholars over the years.
-
-\noindent Figure \ref{fig:papersPerCategory} shows a plot showing the trend of the number of papers published over the years, divided by their respective categories.
-In recent years, the most studied field is medicine which got a big leap around 2002, while in the nineties the most studied one was economics, which
-reached its peak in 2008, probably due to the economic crisis of that time.
 \begin{figure}[ht]
 	\label{fig:papersPerCategory}
 	\centering
-	\includegraphics[width=\textwidth]{../queries/plots/papersPerCategory.png}
+	\includegraphics[width=0.9\textwidth]{../queries/plots/papersPerCategory.png}
+    \caption{Published papers over the years per Category}
 \end{figure}
 
 \newpage
@@ -595,7 +587,7 @@ Table \ref{tab:age_analysis} highlights notable trends in the ages of Nobel Priz
 
 \newpage
 
-\noindent By digging deeper into the age data, we can perform an additional query to identify the youngest and oldest
+By digging deeper into the age data, we can perform an additional query to identify the youngest and oldest
 Nobel Prize winners.
 
 \begin{lstlisting}
