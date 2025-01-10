@@ -79,6 +79,7 @@
 \end{tabular}
 
 \section{Relationship between Nobel Prize winning ideas and published studies}
+\label{sec:nobelTopics}
 \begin{lstlisting}
 PREFIX spif: <http://spinrdf.org/spif#>
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
@@ -117,6 +118,7 @@ Table \ref{tab:papersNobelTopicsYear} shows the output of this query in 2004.
 
 \begin{table}[H]
 	\centering
+	\caption{Number of papers per Nobel topic in 2004}
 	\begin{tabular}{|l|l|c|}
 		\hline
 		\textbf{Nobel topic} & \textbf{Nobel Prize} & \textbf{Number of papers} \\ \hline
@@ -133,7 +135,6 @@ Table \ref{tab:papersNobelTopicsYear} shows the output of this query in 2004.
 		olfactory            & Medicine 2004        & 1                         \\ \hline
 		organization         & Medicine 2004        & 1                         \\ \hline
 	\end{tabular}
-	\caption{Number of papers per Nobel topic in 2004}
 	\label{tab:papersNobelTopicsYear}
 \end{table}
 
@@ -151,6 +152,8 @@ informative enough to determine how extensively a specific topic was studied
 in a given year.\\
 Due to the distribution of research papers in our dataset across different years,
 this query provides more meaningful results for years after 2000.
+
+\newpage
 
 \section{Most active research areas in a year} \label{moreActiveResearchAreas}
 \begin{lstlisting}
@@ -173,7 +176,7 @@ ORDER BY DESC (?numPapers)
 
 This query shows the number of papers published for each journal subcategory for a given year.
 It can be used to identify which research areas were particularly active in that year.\\
-Table \ref{tab:papersPerSubcategoryPerYear} continues the analysis started in the previous section.
+Table \ref{tab:papersPerSubcategoryPerYear} continues the analysis started in Section \ref{sec:nobelTopics}.
 
 \begin{table}[H]
 	\centering
@@ -229,7 +232,7 @@ ORDER BY ASC (?share)
 This query shows the number of Nobel Prizes shared by multiple laureates
 and the number of laureates sharing Nobel Prizes.\\
 The query provides an interesting result: 235 of 579 Nobel Prizes (40.6\%) have
-been shared by multiple laureates, and 567 laureates have shared different Nobel Prizes.
+been shared by multiple laureates, and 567 of 904 laureates have shared different Nobel Prizes.
 The chart in Figure \ref{fig:prizeShare} summarizes the data obtained from the query.\\
 For each prize share on the x-axis, two columns are displayed:
 \begin{itemize}
@@ -375,7 +378,7 @@ produced more laureates than Germany. This suggests that the link between fundin
 straightforward. \\
 
 In this case, the data and charts alone do not allow us to draw clear conclusions. While it is true that higher
-funding supports development, Nobel-winning discoveries do not always follow trends reagarding money. With this, 
+funding supports development, Nobel-winning discoveries do not always follow trends reagarding money. With this,
 we can conclude that this kind of discoveries generally come from exceptional minds and sparks of genius that
 go beyond the usual patterns.
 
@@ -404,6 +407,7 @@ Nobel categories have repeated winners.
 
 \begin{table}[H]
 	\centering
+	\caption{Laureates who won more than one Nobel Prize}
 	\begin{tabular}{|l|c|l|}
 		\hline
 		\textbf{Laureate}                      & \textbf{Number of Nobels won} & \textbf{Categories} \\ \hline
@@ -414,7 +418,6 @@ Nobel categories have repeated winners.
 		Marie Curie                            & 2                             & Physics, Chemistry  \\ \hline
 		UNHCR                                  & 2                             & Peace               \\ \hline
 	\end{tabular}
-	\caption{Laureates who won more than one Nobel Prize}
 	\label{tab:moreThanOneNobel}
 \end{table}
 
@@ -553,6 +556,7 @@ their fields:
 
 \begin{table}[H]
 	\centering
+	\caption{Age statistics of Nobel Prize winners by category}
 	\begin{tabular}{|l|c|c|c|}
 		\hline
 		\textbf{Category} & \textbf{Min Age} & \textbf{Avg Age} & \textbf{Max Age} \\ \hline
@@ -563,7 +567,6 @@ their fields:
 		Peace             & 17               & 61               & 87               \\ \hline
 		Physics           & 25               & 55               & 88               \\ \hline
 	\end{tabular}
-	\caption{Age statistics of Nobel Prize winners by category}
 	\label{tab:age_analysis}
 \end{table}
 
@@ -620,6 +623,8 @@ SELECT ?name ?birthDate ?prize ?age WHERE {
     FILTER (?age = ?minAge || ?age = ?maxAge)
 }
 \end{lstlisting}
+
+\vspace{1em}
 
 The results are presented in Table \ref{tab:youngest_oldest}:
 
@@ -690,6 +695,7 @@ within its borders. On the other hand, Russia, despite being the 6th country in 
 
 \begin{table}[h!]
 	\centering
+	\caption{Laureates active in research in their home country}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
 		\textbf{State} & \textbf{Laureates} & \textbf{Laureates active in their home country} & \textbf{Percentage} \\ \hline
@@ -699,7 +705,6 @@ within its borders. On the other hand, Russia, despite being the 6th country in 
 		Austria        & 17                 & 4                                               & 23,5\%              \\ \hline
 		Australia      & 11                 & 3                                               & 27,3\%              \\ \hline
 	\end{tabular}
-	\caption{Laureates active in research in their home country}
 	\label{tab:laureates_active}
 \end{table}
 
