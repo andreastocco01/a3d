@@ -322,8 +322,8 @@ SELECT ?year ?topCountry (COUNT(?laureate) AS ?numLaureates) (COALESCE(CEIL(?fun
 
     {
         SELECT DISTINCT ?year WHERE {
-            ?nobelPrize :hasYear ?year .
-            FILTER(?year < "2017"^^xsd:gYear)
+            ?nobelPrize a :NobelPrize ;
+                        :hasYear ?year .
         }
     }
 
