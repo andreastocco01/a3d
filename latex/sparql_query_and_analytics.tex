@@ -292,8 +292,8 @@ The two laureates won the Nobel Prize in 2013 and 2011, respectively, and the pa
 Hence, these two laureates collaborate years before winning the Nobel Prize.
 
 This result suggests that collaboration between Nobel laureates is extremely rare. However, it is important to
-note that this outcome should not be taken as definitive, as the datasets used represent only a portion of all
-existing papers and laureates. Nevertheless, it provides an interesting insight into the rarity of such
+note that this outcome should not be taken as definitive, as the dataset used represents only a portion of all
+existing papers. Nevertheless, it provides an interesting insight into the rarity of such
 collaborations, offering a percentage-based perspective on how seldom laureates join forces to produce scientific
 work.
 
@@ -597,7 +597,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 SELECT ?name ?birthDate ?prize ?age WHERE {
     {
-        SELECT (MIN(YEAR(?prizeYear) - YEAR(?birthDate)) AS ?minAge) (MAX(YEAR(?prizeYear) - YEAR(?birthDate)) AS ?maxAge) WHERE {
+        SELECT (MIN(YEAR(?prizeYear) - YEAR(?birthDate)) AS ?minAge)               (MAX(YEAR(?prizeYear) - YEAR(?birthDate)) AS ?maxAge) WHERE {
             ?laureate a :Laureate ;
                 foaf:name ?name ;
                 :birthDate ?birthDate ;
@@ -704,7 +704,7 @@ In Table \ref{tab:laureates_active} we can see which are the 5 states with lowes
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{../queries/plots/laureatesComparison.png}
-	\caption{Comparison between Laureates who stayed in their home country and moved abroad}
+	\caption{Comparison between Laureates who stayed in their home country and those who moved abroad}
 	\label{fig:laureatesComparison}
 \end{figure}
 
