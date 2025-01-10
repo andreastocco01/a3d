@@ -300,34 +300,46 @@ work.
 \begin{lstlisting}
 PREFIX : <http://www.semanticweb.org/a3d/ontologies/2024/10/nobelOntology/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?year ?topCountry (COUNT(DISTINCT ?laureate) AS ?numLaureates)
-        (SUM(?fundingAmount) AS ?totalFunding) WHERE {
-    ?laureate rdf:type :Laureate ;
-  	    :hasWon ?nobelPrize ;
-        :bornIn ?city .
-    ?nobelPrize :hasYear ?year .
-    ?city :locatedIn ?topCountry .
+SELECT ?year ?topCountry (COUNT(?laureate) AS ?numLaureates) (COALESCE(CEIL(?fundingAmount), 0) as ?totalFunding) WHERE {
+    {
+        SELECT ?country WHERE {
+            ?laureate rdf:type :Laureate ;
+                      :worksFor ?organization .
+            ?organization :basedIn ?city .
+            ?city :locatedIn ?country .
+        }
+        GROUP BY ?country
+        ORDER BY DESC(COUNT(DISTINCT ?laureate))
+        LIMIT 3
+    }
+    BIND(?country AS ?topCountry)
+
+    {
+        SELECT DISTINCT ?year WHERE {
+            ?nobelPrize :hasYear ?year .
+            FILTER(?year < "2017"^^xsd:gYear)
+        }
+    }
+
+    OPTIONAL {
+        ?laureate rdf:type :Laureate ;
+                  :hasWon ?nobelPrize ;
+                  :worksFor ?organization .
+        ?organization :basedIn ?city .
+        ?nobelPrize :hasYear ?year .
+        ?city :locatedIn ?topCountry .
+    }
 
     OPTIONAL {
         ?topCountry :hasFunded ?funding .
         ?funding :hasYear ?year ;
-            :hasAmount ?fundingAmount .
-    }
-    {
-        SELECT (?country AS ?topCountry) WHERE {
-            ?laureate rdf:type :Laureate ;
-                :bornIn ?city .
-            ?city :locatedIn ?country .
-        }
-        GROUP BY ?country
-        ORDER BY DESC (COUNT(DISTINCT ?laureate))
-        LIMIT 3
+                  :hasAmount ?fundingAmount .
     }
 }
-GROUP BY ?year ?topCountry
-HAVING (SUM(?fundingAmount) > 0)
-ORDER BY ?year ?topCountry
+GROUP BY ?year ?topCountry ?fundingAmount
+ORDER BY DESC(?year) ?topCountry
 \end{lstlisting}
 
 \vspace{1em}
