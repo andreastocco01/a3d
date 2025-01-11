@@ -13,16 +13,16 @@
 %    TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title{SimplePlus Beamer Theme}
-\subtitle{Subtitle}
+\title{Nobel Ontology}
+\subtitle{Group A3D}
 
-\author{Pin-Yen Huang}
+\author{Andrea Bruttomesso, Alessandro Corr\`o, Davide Seghetto, Andrea Stocco}
 
-\institute
-{
-    Department of Computer Science and Information Engineering \\
-    National Taiwan University % Your institution for the title page
-}
+%\institute
+%{
+%    Department of Computer Science and Information Engineering \\
+%    National Taiwan University % Your institution for the title page
+%}
 \date{\today} % Date, can be changed to a custom date
 
 %----------------------------------------------------------------------------------------
@@ -41,17 +41,30 @@
 	\tableofcontents
 \end{frame}
 
+\section{Domain of Interest}
+
+\begin{frame}{Domain of Interest}
+	We have chosen the domain of scientific research. Specifically, we aim to analyze potential correlations among Nobel Prize winners,
+	their publications, and the research funding invested by various countries. This domain was selected because it allows us to reveal potential historical
+	and geographical patterns in scientific research.
+\end{frame}
+
 %------------------------------------------------
-\section{First Section}
+\section{Ontology Design}
 %------------------------------------------------
 
-\begin{frame}{Bullet Points}
+\begin{frame}{Nobel Ontology}
+	\begin{figure}
+		\includegraphics[width=0.75\linewidth]{../nobelOntologyTransparent.png}
+	\end{figure}
+\end{frame}
+
+\section{Problems}
+
+\begin{frame}{Problems}
 	\begin{itemize}
-		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-		\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-		\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-		\item Nam cursus est eget velit posuere pellentesque
-		\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+		\item Prize share
+		\item Used only a portion of the papers dataset
 	\end{itemize}
 \end{frame}
 
@@ -93,10 +106,10 @@
 \end{frame}
 
 %------------------------------------------------
-\section{Second Section}
+\section{Analytics}
 %------------------------------------------------
 
-\begin{frame}{Table}
+\begin{frame}{Query 1}
 	\begin{table}
 		\begin{tabular}{l l l}
 			\toprule
@@ -113,7 +126,7 @@
 
 %------------------------------------------------
 
-\begin{frame}{Theorem}
+\begin{frame}{Query 2}
 	\begin{theorem}[Mass--energy equivalence]
 		$E = mc^2$
 	\end{theorem}
@@ -121,7 +134,7 @@
 
 %------------------------------------------------
 
-\begin{frame}{Figure}
+\begin{frame}{Query 3}
 	Uncomment the code on this slide to include your own image from the same directory as the template .TeX file.
 	%\begin{figure}
 	%\includegraphics[width=0.8\linewidth]{test}
@@ -130,25 +143,8 @@
 
 %------------------------------------------------
 
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-	\frametitle{Citation}
-	An example of the \verb|\cite| command to cite within the presentation:\\~
-
-	This statement requires citation \cite{p1}.
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}{References}
-	\footnotesize
-	\bibliography{reference.bib}
-	\bibliographystyle{apalike}
-\end{frame}
-
-%------------------------------------------------
-
 \begin{frame}
-	\Huge{\centerline{\textbf{The End}}}
+	\Huge{\centerline{\textbf{Questions?}}}
 \end{frame}
 
 %----------------------------------------------------------------------------------------
