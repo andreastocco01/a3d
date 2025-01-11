@@ -29,3 +29,11 @@ kaggle.json
 # ZIP
 filteredPapers.zip
 nobelOntologyGraph.zip
+
+slides/*.aux
+slides/*.vrb
+slides/*.toc
+slides/*.log
+slides/*.out
+slides/*.nav
+slides/*.snm
