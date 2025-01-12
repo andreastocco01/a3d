@@ -1,7 +1,3 @@
-%----------------------------------------------------------------------------------------
-%    PACKAGES AND THEMES
-%----------------------------------------------------------------------------------------
-
 \documentclass[aspectratio=169,xcolor=dvipsnames]{beamer}
 \usetheme{SimplePlus}
 
@@ -9,26 +5,27 @@
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
 
-%----------------------------------------------------------------------------------------
-%    TITLE PAGE
-%----------------------------------------------------------------------------------------
-
 \title{Nobel Ontology}
 \subtitle{Group A3D}
 
 \author{Andrea Bruttomesso, Alessandro Corr\`o, Davide Seghetto, Andrea Stocco}
 
-%\institute
-%{
-%    Department of Computer Science and Information Engineering \\
-%    National Taiwan University % Your institution for the title page
-%}
 \date{\today} % Date, can be changed to a custom date
+
+\setbeamertemplate{footline}{\leavevmode%
+\begin{beamercolorbox}[wd=.33\paperwidth,left,ht=2.5ex,dp=1.5ex,leftskip=0.5ex]{subsection in head/foot} A3D
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.33\paperwidth,center,ht=2.5ex,dp=1.5ex]{section in head/foot}
+  \usebeamercolor[fg]{section in foot/head}\insertshorttitle
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.34\paperwidth,right,ht=2.5ex,dp=1.5ex, rightskip=1.5ex]{subsection in head/foot}
+  \insertshortdate
+\end{beamercolorbox}%
+}
 
 %----------------------------------------------------------------------------------------
 %    PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
-
 \begin{document}
 
 \begin{frame}
@@ -44,16 +41,25 @@
 \section{Domain of Interest}
 
 \begin{frame}{Domain of Interest}
-	We have chosen the domain of scientific research. Specifically, we aim to analyze potential correlations among Nobel Prize winners,
-	their publications, and the research funding invested by various countries. This domain was selected because it allows us to reveal potential historical
-	and geographical patterns in scientific research.
+\centering
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../nobel.png} % Left image
+    \end{minipage}%
+    \hspace{3em}
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        We have chosen the domain of scientific research. Specifically, we aim to analyze potential correlations among Nobel Prize winners,
+        their publications, and the research funding invested by various countries. This domain was selected because it allows us to reveal potential historical
+        and geographical patterns in scientific research.
+    \end{minipage}%
 \end{frame}
 
 %------------------------------------------------
 \section{Ontology Design}
 %------------------------------------------------
 
-\begin{frame}{Nobel Ontology}
+\begin{frame}[plain]
 	\begin{figure}
 		\includegraphics[width=0.75\linewidth]{../nobelOntologyTransparent.png}
 	\end{figure}
