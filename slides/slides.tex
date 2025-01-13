@@ -41,25 +41,25 @@
 \section{Domain of Interest}
 
 \begin{frame}{Domain of Interest}
-\centering
-    \begin{minipage}{0.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../nobel.png} % Left image
-    \end{minipage}%
-    \hspace{3em}
-    \begin{minipage}{0.4\textwidth}
-        \centering
-        We have chosen the domain of scientific research. Specifically, we aim to analyze potential correlations among Nobel Prize winners,
-        their publications, and the research funding invested by various countries. This domain was selected because it allows us to reveal potential historical
-        and geographical patterns in scientific research.
-    \end{minipage}%
+	\centering
+	\begin{minipage}{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{nobel.png} % Left image
+	\end{minipage}%
+	\hspace{3em}
+	\begin{minipage}{0.4\textwidth}
+		\centering
+		We have chosen the domain of scientific research. Specifically, we aim to analyze potential correlations among Nobel Prize winners,
+		their publications, and the research funding invested by various countries. This domain was selected because it allows us to reveal potential historical
+		and geographical patterns in scientific research.
+	\end{minipage}%
 \end{frame}
 
 %------------------------------------------------
 \section{Ontology Design}
 %------------------------------------------------
 
-\begin{frame}[plain]
+\begin{frame}{Nobel Ontology}
 	\begin{figure}
 		\includegraphics[width=0.75\linewidth]{../nobelOntologyTransparent.png}
 	\end{figure}
@@ -71,6 +71,7 @@
 	\begin{itemize}
 		\item Prize share
 		\item Used only a portion of the papers dataset
+		\item Researchers and Nobel laureates matching
 	\end{itemize}
 \end{frame}
 
@@ -115,27 +116,69 @@
 \section{Analytics}
 %------------------------------------------------
 
-\begin{frame}{Query 1}
-	\begin{table}
-		\begin{tabular}{l l l}
-			\toprule
-			\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2} \\
-			\midrule
-			Treatment 1         & 0.0003262           & 0.562               \\
-			Treatment 2         & 0.0015681           & 0.910               \\
-			Treatment 3         & 0.0009271           & 0.296               \\
-			\bottomrule
-		\end{tabular}
-		\caption{Table caption}
-	\end{table}
+\begin{frame}{Relationship between Nobel Prize winning ideas and published studies}
+	\begin{columns}[c]
+		\column{0.45\textwidth}
+		\begin{table}[H]
+			\centering
+			\caption{Number of papers per Nobel topic in 2004}
+			\resizebox{\linewidth}{!}{\begin{tabular}{|l|l|c|}
+					\hline
+					\textbf{Nobel topic} & \textbf{Nobel Prize} & \textbf{Number of papers} \\ \hline
+					protein              & Chemistry 2004       & 28                        \\ \hline
+					development          & Peace 2004           & 13                        \\ \hline
+					flow                 & Literature 2004      & 8                         \\ \hline
+					interaction          & Physics 2004         & 4                         \\ \hline
+					discovery            & Chemistry 2004       & 3                         \\ \hline
+					discovery            & Physics 2004         & 3                         \\ \hline
+					degradation          & Chemistry 2004       & 3                         \\ \hline
+					asymptotic           & Physics 2004         & 2                         \\ \hline
+					forces               & Economics 2004       & 1                         \\ \hline
+					cycles               & Economics 2004       & 1                         \\ \hline
+					olfactory            & Medicine 2004        & 1                         \\ \hline
+					organization         & Medicine 2004        & 1                         \\ \hline
+				\end{tabular}}
+			\label{tab:papersNobelTopicsYear}
+		\end{table}
+		\column{.45\textwidth}
+		The topic ``protein'' appeared in 28 papers. The high number of papers mentioning this Nobel topic suggests that
+		it was widely discussed or relevant in 2004.
+	\end{columns}
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{Query 2}
-	\begin{theorem}[Mass--energy equivalence]
-		$E = mc^2$
-	\end{theorem}
+\begin{frame}{Most active research areas in a year}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{table}[H]
+			\centering
+			\caption{Number of papers for each journal subcategory in 2004}
+			\resizebox{\linewidth}{!}{\begin{tabular}{|l|c|}
+					\hline
+					\textbf{Journal Subcategory}            & \textbf{Number of papers} \\ \hline
+					Biochemistry Genetics Molecular Biology & 418                       \\ \hline
+					Social Sciences                         & 344                       \\ \hline
+					Decision Sciences                       & 125                       \\ \hline
+					Arts Humanities                         & 74                        \\ \hline
+					Business Management Accounting          & 68                        \\ \hline
+					Physics Astronomy                       & 65                        \\ \hline
+					Neuroscience                            & 55                        \\ \hline
+					Health Professions                      & 34                        \\ \hline
+					Psychology                              & 27                        \\ \hline
+					Earth Planetary Sciences                & 22                        \\ \hline
+					Economics Econometrics Finance          & 14                        \\ \hline
+					Materials Science                       & 12                        \\ \hline
+					Environmental Science                   & 12                        \\ \hline
+					Agricultural Biological Sciences        & 10                        \\ \hline
+					Energy                                  & 2                         \\ \hline
+					Pharmacology Toxicology Pharmaceutics   & 2                         \\ \hline
+				\end{tabular}}
+			\label{tab:papersPerSubcategoryPerYear}
+		\end{table}
+		\column{.45\textwidth}
+		Molecular biology was the most active research area in 2004.\\
+	\end{columns}
 \end{frame}
 
 %------------------------------------------------
