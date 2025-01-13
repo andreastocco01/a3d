@@ -69,10 +69,26 @@
 
 \begin{frame}{Problems}
 	\begin{itemize}
-		\item Prize share
-		\item Used only a portion of the papers dataset
+		\item Errors in Nobel laureates dataset
+		\item Subset of papers dataset
 		\item Researchers and Nobel laureates matching
 	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Errors in Nobel-Laureate dataset}
+	\begin{table}[H]
+		\centering
+		\caption{Example of dataset error}
+		\resizebox{.6\linewidth}{!}{\begin{tabular}{|l|l|l|l|}
+				\hline
+				\textbf{Year} & \textbf{Category} & \textbf{Prize Share} & \textbf{Full Name}    \\ \hline
+				1908          & Medicine          & 1/2                  & Ilya Ilyich Mechnikov \\ \hline
+				1908          & Medicine          & 1/2                  & Paul Ehrlich          \\ \hline
+				1908          & Medicine          & 1/2                  & Paul Ehrlich          \\ \hline
+			\end{tabular}}
+		\label{tab:datasetError}
+	\end{table}
 \end{frame}
 
 %------------------------------------------------
