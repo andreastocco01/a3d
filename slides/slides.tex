@@ -88,6 +88,30 @@
 	\end{table}
 \end{frame}
 
+\begin{frame}{Subset of papers dataset}
+    \centering
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{huge_dataset.png}
+    \end{minipage} \\
+    \vspace{1em}
+    \begin{minipage}{0.8\textwidth}
+        The Papers Dataset originally contained 1 million rows, which made it necessary to filter the data.
+		After careful consideration, we decided to retain only the papers authored by a Laureate or published
+		in a venue included in the Venues Dataset.
+        Even with this filter applied, the dataset still contained approximately 300,000 rows so we further
+		reduced it by selecting only the first 50,000 rows.
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Researchers and Nobel laureates matching}
+        The Laureates and Papers Datasets often represent names differently, such as "Antoine Henri Becquerel"
+		and "Antoine H. Becquerel." To effectively link these datasets, we utilized a library that implements a
+		fuzzy matching algorithm with a similarity threshold of 90\%. This approach allowed us to identify and
+		match names that were not identical but sufficiently similar, ensuring a robust connection between the
+		datasets.
+\end{frame}
+
 \section{Analytics}
 
 \begin{frame}{Relationship between Nobel Prize winning ideas and published studies}
