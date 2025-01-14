@@ -67,11 +67,11 @@
 
 \begin{frame}{Challenges}
 	\begin{itemize}
-		\item Finding Papers topics
+		\item Finding topics
 		      \vspace{1em}
-		\item Restricting Papers dataset
+		\item Restricting papers' dataset
 		      \vspace{1em}
-		\item Matching Researchers and Nobel Laureates names
+		\item Matching researchers and Nobel laureates names
 	\end{itemize}
 \end{frame}
 
@@ -91,7 +91,7 @@
 	\vspace{1em}
 	\begin{minipage}{0.8\textwidth}
 		The Papers Dataset originally contained 1 million rows, which made it necessary to filter the data.
-		After careful consideration, we decided to retain only the papers authored by a Laureate or published
+		After careful consideration, we decided to retain only the papers authored by a laureate or published
 		in a venue included in the Venues Dataset.
 		Even with this filter applied, the dataset still contained approximately 300,000 rows so we further
 		reduced it by selecting only the first 50,000 rows.
@@ -109,6 +109,7 @@
 \section{Analytics}
 
 \begin{frame}{Relationship between funding allocated for R\&D and possibility of winning a Nobel Prize}
+	\vspace{-1em}
 	\begin{columns}[c]
 		\column{0.65\textwidth}
 		\begin{figure}[H]
@@ -122,7 +123,8 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Relationship between funding allocated for R\&D and possibility of winning a Nobel Prize (continued)}
+\begin{frame}{Relationship between funding allocated for R\&D and possibility of winning a Nobel Prize}
+	\vspace{-1em}
 	\begin{columns}[c]
 		\column{0.65\textwidth}
 		\begin{figure}[H]
@@ -137,9 +139,10 @@
 \end{frame}
 
 \begin{frame}{Nobel laureates: birthplace vs. research location by state}
+	\vspace{-1em}
 	\begin{table}[h!]
 		\centering
-		\caption{States with lowest percentage of Laureates active in their home country}
+		\caption{States with lowest percentage of laureates active in their home country}
 		\begin{tabular}{|c|c|c|c|c|}
 			\hline
 			\textbf{State} & \textbf{Laureates} & \textbf{Laureates active in their home country} & \textbf{Percentage} \\ \hline
@@ -162,13 +165,14 @@ being the sixth country in terms of Nobel Prizes won, has a retention rate of on
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.75\textwidth]{../queries/plots/laureatesComparison.png}
-		\caption{Comparison between Laureates who stayed in their home country and those who moved abroad}
+		\caption{Comparison between laureates who stayed in their home country and those who moved abroad}
 		\label{fig:laureatesComparison}
 	\end{figure}
 \end{frame}
 
 \begin{frame}{Age analysis of Nobel Prize winners}
 	\begin{table}[H]
+		\vspace{-1em}
 		\centering
 		\caption{Age statistics of Nobel Prize winners by category}
 		\begin{tabular}{|l|c|c|c|}
