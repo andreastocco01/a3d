@@ -30,6 +30,7 @@ kaggle.json
 filteredPapers.zip
 nobelOntologyGraph.zip
 
+# SLIDES
 slides/*.aux
 slides/*.vrb
 slides/*.toc
@@ -37,3 +38,6 @@ slides/*.log
 slides/*.out
 slides/*.nav
 slides/*.snm
+slides/*.fdb_latexmk
+slides/*.fls
+slides/*.synctex.gz
