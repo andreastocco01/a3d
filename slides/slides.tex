@@ -67,13 +67,12 @@
 
 \begin{frame}{Challenges}
 	\begin{itemize}
-		\item Errors in Nobel laureates dataset
-            \vspace{1em}
-		\item Subset of papers dataset
-            \vspace{1em}
-		\item Researchers and Nobel laureates matching
 		\item Errors in Nobel Laureates dataset
-		\item Papers dataset was too big
+		      \vspace{1em}
+		\item Topic Modeling
+		      \vspace{1em}
+		\item Subset of papers dataset
+		      \vspace{1em}
 		\item Researchers and Nobel Laureates matching names
 	\end{itemize}
 \end{frame}
@@ -94,108 +93,57 @@
 \end{frame}
 
 \begin{frame}{Papers dataset was too big}
-    \centering
-    \begin{minipage}{0.8\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{huge_dataset.png}
-    \end{minipage} \\
-    \vspace{1em}
-    \begin{minipage}{0.8\textwidth}
-        The Papers Dataset originally contained 1 million rows, which made it necessary to filter the data.
+	\centering
+	\begin{minipage}{0.8\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{huge_dataset.png}
+	\end{minipage} \\
+	\vspace{1em}
+	\begin{minipage}{0.8\textwidth}
+		The Papers Dataset originally contained 1 million rows, which made it necessary to filter the data.
 		After careful consideration, we decided to retain only the papers authored by a Laureate or published
 		in a venue included in the Venues Dataset.
-        Even with this filter applied, the dataset still contained approximately 300,000 rows so we further
+		Even with this filter applied, the dataset still contained approximately 300,000 rows so we further
 		reduced it by selecting only the first 50,000 rows.
-    \end{minipage}
+	\end{minipage}
 \end{frame}
 
 \begin{frame}{Researchers and Nobel Laureates matching names}
-        The Laureates and Papers Datasets often represent names differently, such as "Antoine Henri Becquerel"
-		and "Antoine H. Becquerel." To effectively link these datasets, we utilized a library that implements a
-		fuzzy matching algorithm with a similarity threshold of 90\%. This approach allowed us to identify and
-		match names that were not identical but sufficiently similar, ensuring a robust connection between the
-		datasets.
+	The Laureates and Papers Datasets often represent names differently, such as "Antoine Henri Becquerel"
+	and "Antoine H. Becquerel." To effectively link these datasets, we utilized a library that implements a
+	fuzzy matching algorithm with a similarity threshold of 90\%. This approach allowed us to identify and
+	match names that were not identical but sufficiently similar, ensuring a robust connection between the
+	datasets.
 \end{frame}
 
 \section{Analytics}
 
-\begin{frame}{Relationship between Nobel Prize winning ideas and published studies}
+\begin{frame}{Relationship between funding allocated for R\&D and possibility of winning a Nobel Prize}
 	\begin{columns}[c]
-		\column{0.45\textwidth}
-		\begin{table}[H]
+		\column{0.65\textwidth}
+		\begin{figure}[H]
 			\centering
-			\caption{Number of papers per Nobel topic in 2004}
-			\resizebox{\linewidth}{!}{\begin{tabular}{|l|l|c|}
-					\hline
-					\textbf{Nobel topic} & \textbf{Nobel Prize} & \textbf{Number of papers} \\ \hline
-					protein              & Chemistry 2004       & 28                        \\ \hline
-					development          & Peace 2004           & 13                        \\ \hline
-					flow                 & Literature 2004      & 8                         \\ \hline
-					interaction          & Physics 2004         & 4                         \\ \hline
-					discovery            & Chemistry 2004       & 3                         \\ \hline
-					discovery            & Physics 2004         & 3                         \\ \hline
-					degradation          & Chemistry 2004       & 3                         \\ \hline
-					asymptotic           & Physics 2004         & 2                         \\ \hline
-					forces               & Economics 2004       & 1                         \\ \hline
-					cycles               & Economics 2004       & 1                         \\ \hline
-					olfactory            & Medicine 2004        & 1                         \\ \hline
-					organization         & Medicine 2004        & 1                         \\ \hline
-				\end{tabular}}
-			\label{tab:papersNobelTopicsYear}
-		\end{table}
-		\column{.45\textwidth}
-		The topic ``protein'' appeared in 28 papers. The high number of papers mentioning this Nobel topic suggests that
-		it was widely discussed or relevant in 2004.
+			\includegraphics[width=\textwidth]{../queries/plots/funding_comparison_by_country.png}
+			\label{fig:fundings_per_country}
+		\end{figure}
+		\column{0.35\textwidth}
+		Germany's R\&D funding has been increasing over the years, whereas
+		Great Britain's funding remains lower and more stable.
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Most active research areas in a year}
-	\begin{columns}
-		\column{.43\textwidth}
-		\begin{table}[H]
+\begin{frame}{Relationship between funding allocated for R\&D and possibility of winning a Nobel Prize (continued)}
+	\begin{columns}[c]
+		\column{0.65\textwidth}
+		\begin{figure}[H]
 			\centering
-			\caption{Number of papers for each journal subcategory in 2004}
-			\resizebox{\linewidth}{!}{\begin{tabular}{|l|c|}
-					\hline
-					\textbf{Journal Subcategory}            & \textbf{Number of papers} \\ \hline
-					Biochemistry Genetics Molecular Biology & 418                       \\ \hline
-					Social Sciences                         & 344                       \\ \hline
-					Decision Sciences                       & 125                       \\ \hline
-					Arts Humanities                         & 74                        \\ \hline
-					Business Management Accounting          & 68                        \\ \hline
-					Physics Astronomy                       & 65                        \\ \hline
-					Neuroscience                            & 55                        \\ \hline
-					Health Professions                      & 34                        \\ \hline
-					Psychology                              & 27                        \\ \hline
-					Earth Planetary Sciences                & 22                        \\ \hline
-					Economics Econometrics Finance          & 14                        \\ \hline
-					Materials Science                       & 12                        \\ \hline
-					Environmental Science                   & 12                        \\ \hline
-					Agricultural Biological Sciences        & 10                        \\ \hline
-					Energy                                  & 2                         \\ \hline
-					Pharmacology Toxicology Pharmaceutics   & 2                         \\ \hline
-				\end{tabular}}
-			\label{tab:papersPerSubcategoryPerYear}
-		\end{table}
-		\column{.45\textwidth}
-		Molecular biology was the most active research area in 2004.\\
+			\includegraphics[width=\textwidth]{../queries/plots/laureates_comparison_by_country.png}
+			\label{fig:laureates_per_country}
+		\end{figure}
+		\column{0.35\textwidth}
+		These two plots suggest that the link between funding and Nobel prizes is not always
+		straightforward.
 	\end{columns}
-\end{frame}
-
-\begin{frame}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../queries/plots/funding_comparison_by_country.png}
-	\label{fig:fundings_per_country}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../queries/plots/laureates_comparison_by_country.png}
-	\label{fig:laureates_per_country}
-\end{figure}
 \end{frame}
 
 \begin{frame}
