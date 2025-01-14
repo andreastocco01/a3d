@@ -63,19 +63,22 @@
 	\end{figure}
 \end{frame}
 
-\section{Problems}
+\section{Challenges}
 
-\begin{frame}{Problems}
+\begin{frame}{Challenges}
 	\begin{itemize}
 		\item Errors in Nobel laureates dataset
             \vspace{1em}
 		\item Subset of papers dataset
             \vspace{1em}
 		\item Researchers and Nobel laureates matching
+		\item Errors in Nobel Laureates dataset
+		\item Papers dataset was too big
+		\item Researchers and Nobel Laureates matching names
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Errors in Nobel-Laureate dataset}
+\begin{frame}{Errors in Nobel Laureate dataset}
 	\begin{table}[H]
 		\centering
 		\caption{Example of dataset error}
@@ -90,7 +93,7 @@
 	\end{table}
 \end{frame}
 
-\begin{frame}{Subset of papers dataset}
+\begin{frame}{Papers dataset was too big}
     \centering
     \begin{minipage}{0.8\textwidth}
         \centering
@@ -106,7 +109,7 @@
     \end{minipage}
 \end{frame}
 
-\begin{frame}{Researchers and Nobel laureates matching}
+\begin{frame}{Researchers and Nobel Laureates matching names}
         The Laureates and Papers Datasets often represent names differently, such as "Antoine Henri Becquerel"
 		and "Antoine H. Becquerel." To effectively link these datasets, we utilized a library that implements a
 		fuzzy matching algorithm with a similarity threshold of 90\%. This approach allowed us to identify and
