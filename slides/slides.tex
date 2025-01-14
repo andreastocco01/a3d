@@ -67,32 +67,22 @@
 
 \begin{frame}{Challenges}
 	\begin{itemize}
-		\item Errors in Nobel Laureates dataset
+		\item Finding Papers topics
 		      \vspace{1em}
-		\item Topic Modeling
+		\item Restricting Papers dataset
 		      \vspace{1em}
-		\item Subset of papers dataset
-		      \vspace{1em}
-		\item Researchers and Nobel Laureates matching names
+		\item Matching Researchers and Nobel Laureates names
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Errors in Nobel Laureate dataset}
-	\begin{table}[H]
-		\centering
-		\caption{Example of dataset error}
-		\resizebox{.6\linewidth}{!}{\begin{tabular}{|l|l|l|l|}
-				\hline
-				\textbf{Year} & \textbf{Category} & \textbf{Prize Share} & \textbf{Full Name}    \\ \hline
-				1908          & Medicine          & 1/2                  & Ilya Ilyich Mechnikov \\ \hline
-				1908          & Medicine          & 1/2                  & Paul Ehrlich          \\ \hline
-				1908          & Medicine          & 1/2                  & Paul Ehrlich          \\ \hline
-			\end{tabular}}
-		\label{tab:datasetError}
-	\end{table}
+\begin{frame}{Finding Papers topics}
+	The Papers dataset includes an "abstract" column, which is crucial for efficiently understanding
+	and analyzing the content of scientific publications. To compare and explore this data, we applied
+	topic modeling with the LDA algorithm, creating a bag of words for each paper. This allowed us to
+	uncover deeper insights and establish meaningful connections across the dataset.
 \end{frame}
 
-\begin{frame}{Papers dataset was too big}
+\begin{frame}{Restricting Papers dataset}
 	\centering
 	\begin{minipage}{0.8\textwidth}
 		\centering
